@@ -36,6 +36,7 @@ const Footer = () => {
                 >
                   Наши апартаменты
                 </Link>
+              </li>
               <li>
                 <Link
                   to="/about"
