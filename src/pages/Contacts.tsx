@@ -17,8 +17,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "posutochosochi@mail.ru",
-    href: "mailto:posutochosochi@mail.ru",
+    value: "ArendaApartmentSochi@ya.ru",
+    href: "mailto:ArendaApartmentSochi@ya.ru",
   },
   {
     icon: MapPin,

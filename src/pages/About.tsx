@@ -1,43 +1,24 @@
 import Layout from "@/components/layout/Layout";
-import { Shield, Users, Award, Heart } from "lucide-react";
-
-const values = [
-  {
-    icon: Shield,
-    title: "Надёжность",
-    description: "Гарантируем качество каждого объекта и прозрачность сделки",
-  },
-  {
-    icon: Users,
-    title: "Клиентоориентированность",
-    description: "Ваш комфорт и удовлетворённость — наш главный приоритет",
-  },
-  {
-    icon: Award,
-    title: "Профессионализм",
-    description: "Многолетний опыт на рынке краткосрочной аренды в Сочи",
-  },
-  {
-    icon: Heart,
-    title: "Забота",
-    description: "Поддержка 24/7 на всех этапах вашего пребывания",
-  },
-];
+import { Phone, Mail, CreditCard, Banknote, Building2, MessageCircle } from "lucide-react";
+import logoAbout from "@/assets/logo-about.png";
 
 const About = () => {
   return (
     <Layout>
-      {/* Hero */}
-      <section
-        className="pt-32 pb-20 bg-gradient-to-br from-primary/10 to-accent/10"
-      >
+      {/* Hero with Logo */}
+      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
+            <img
+              src={logoAbout}
+              alt="ArendaApartmentSochi.ru"
+              className="mx-auto mb-8 max-w-xs md:max-w-sm"
+            />
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
               О нас
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              ПосуточноСочи — ваш надёжный партнёр в поиске идеального жилья для отдыха в Сочи. 
+              ArendaApartmentSochi — ваш надёжный партнёр в поиске идеального жилья для отдыха в Сочи.
               Мы работаем, чтобы каждый гость чувствовал себя как дома.
             </p>
           </div>
@@ -47,107 +28,137 @@ const About = () => {
       {/* Story */}
       <section className="py-20 bg-background">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-serif font-bold text-foreground mb-6">
-                Наша история
-              </h2>
-              <div className="space-y-4 text-muted-foreground">
-                <p>
-                  Мы начали свой путь с простой идеи — сделать аренду жилья в Сочи 
-                  простой, безопасной и приятной для каждого гостя нашего прекрасного города.
-                </p>
-                <p>
-                  За годы работы мы собрали лучшие апартаменты, выстроили систему 
-                  проверки качества и создали команду профессионалов, готовых помочь 
-                  в любой ситуации.
-                </p>
-                <p>
-                  Сегодня сотни довольных клиентов выбирают нас для своего отдыха, 
-                  зная, что с ПосуточноСочи их ждёт только лучший сервис.
-                </p>
-              </div>
-            </div>
-            <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Сочи"
-                className="rounded-2xl shadow-card w-full"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-accent text-accent-foreground p-6 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold">500+</div>
-                <div className="text-sm">Довольных гостей</div>
-              </div>
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-serif font-bold text-foreground mb-6">
+              Наша история
+            </h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p>
+                Мы начали свой путь с простой идеи — сделать аренду жилья в Сочи
+                простой, безопасной и приятной для каждого гостя нашего прекрасного города.
+              </p>
+              <p>
+                За годы работы мы собрали лучшие апартаменты, выстроили систему
+                проверки качества и создали команду профессионалов, готовых помочь
+                в любой ситуации.
+              </p>
+              <p>
+                Сегодня сотни довольных клиентов выбирают нас для своего отдыха,
+                зная, что их ждёт только лучший сервис.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-20 bg-secondary/30">
+      {/* Реквизиты */}
+      <section className="py-16 bg-secondary/30">
         <div className="container-custom">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Наши ценности
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-serif font-bold text-foreground mb-8">
+              Реквизиты
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Принципы, которыми мы руководствуемся каждый день
-            </p>
+            <div className="bg-card rounded-2xl p-6 md:p-8 shadow-soft space-y-3">
+              <p className="text-foreground font-semibold text-lg">
+                Индивидуальный предприниматель Евтеев Олег Владимирович
+              </p>
+              <div className="grid md:grid-cols-2 gap-3 text-muted-foreground">
+                <p><span className="font-medium text-foreground">ИНН:</span> 500104030645</p>
+                <p><span className="font-medium text-foreground">ОГРНИП:</span> 322508100259172</p>
+                <p><span className="font-medium text-foreground">Р/С:</span> 40802810500003286175</p>
+                <p><span className="font-medium text-foreground">К/С:</span> 30101810145250000974</p>
+                <p><span className="font-medium text-foreground">БИК:</span> 044525974</p>
+              </div>
+              <p className="text-muted-foreground pt-2">
+                <span className="font-medium text-foreground">Юр. адрес:</span> г. Сочи, Курортный проспект, д. 129
+              </p>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value) => (
-              <div
-                key={value.title}
-                className="p-6 bg-card rounded-xl shadow-soft text-center hover:shadow-card transition-all duration-300"
+      {/* Контакты */}
+      <section className="py-16 bg-background">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-serif font-bold text-foreground mb-8">
+              Контакты
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <a
+                href="tel:+79952282874"
+                className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft hover:shadow-card transition-shadow"
               >
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-5">
-                  <value.icon className="w-8 h-8 text-primary" />
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                  <Phone className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {value.description}
-                </p>
-              </div>
-            ))}
+                <div>
+                  <div className="text-sm text-muted-foreground">Телефон</div>
+                  <div className="text-foreground font-semibold">+7(995)228-28-74</div>
+                </div>
+              </a>
+
+              <a
+                href="mailto:ArendaApartmentSochi@ya.ru"
+                className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft hover:shadow-card transition-shadow"
+              >
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                  <Mail className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <div className="text-sm text-muted-foreground">Email</div>
+                  <div className="text-foreground font-semibold">ArendaApartmentSochi@ya.ru</div>
+                </div>
+              </a>
+
+              <a
+                href="https://t.me/posutochnosochi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-5 bg-[#0088cc] text-white rounded-xl shadow-soft hover:opacity-90 transition-opacity sm:col-span-2"
+              >
+                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                  <MessageCircle className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-white/80 text-sm">Telegram</div>
+                  <div className="font-semibold">Написать в Telegram</div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Gallery */}
-      <section className="py-20 bg-background">
+      {/* Способы оплаты */}
+      <section className="py-16 bg-secondary/30">
         <div className="container-custom">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Наши апартаменты
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-serif font-bold text-foreground mb-8">
+              Способы оплаты
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Каждый объект — это уникальное пространство для вашего комфортного отдыха
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-              "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-              "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-              "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-              "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-              "https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-            ].map((src, index) => (
-              <div
-                key={index}
-                className="aspect-[4/3] rounded-xl overflow-hidden group"
-              >
-                <img
-                  src={src}
-                  alt={`Апартаменты ${index + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+            <div className="grid sm:grid-cols-3 gap-6">
+              <div className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft">
+                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+                  <Building2 className="w-6 h-6 text-accent" />
+                </div>
+                <div className="text-foreground font-medium">СБП</div>
               </div>
-            ))}
+
+              <div className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft">
+                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+                  <CreditCard className="w-6 h-6 text-accent" />
+                </div>
+                <div className="text-foreground font-medium">МИР / VISA / MASTER CARD</div>
+              </div>
+
+              <div className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft">
+                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+                  <Banknote className="w-6 h-6 text-accent" />
+                </div>
+                <div className="text-foreground font-medium">Наличные</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

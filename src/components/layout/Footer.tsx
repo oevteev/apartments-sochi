@@ -79,11 +79,11 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="mailto:arendasochiaparts@ya.ru"
+                  href="mailto:ArendaApartmentSochi@ya.ru"
                   className="flex items-center gap-2 text-muted-foreground hover:text-background transition-colors text-sm"
                 >
                   <Mail className="w-4 h-4" />
-                  arendasochiaparts@ya.ru
+                  ArendaApartmentSochi@ya.ru
                 </a>
               </li>
               <li>
