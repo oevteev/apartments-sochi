@@ -6,6 +6,7 @@ import MobileMenu from "./MobileMenu";
 
 const navItems = [
   { name: "Каталог", path: "/catalog" },
+  { name: "Наши апартаменты", path: "/apartments" },
   { name: "О нас", path: "/about" },
   { name: "Вопросы", path: "/faq" },
   { name: "Отзывы", path: "/reviews" },
@@ -70,11 +71,11 @@ const Header = () => {
             {/* Contact Info - Desktop */}
             <div className={`hidden lg:flex items-center gap-6 ${textColor}`}>
               <a
-                href="mailto:posutochosochi@mail.ru"
+                href="mailto:arendasochiaparts@ya.ru"
                 className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                <span className="hidden xl:inline">posutochosochi@mail.ru</span>
+                <span className="hidden xl:inline">arendasochiaparts@ya.ru</span>
               </a>
               <a
                 href="tel:+79952282874"
