@@ -71,11 +71,11 @@ const Header = () => {
             {/* Contact Info - Desktop */}
             <div className={`hidden lg:flex items-center gap-6 ${textColor}`}>
               <a
-                href="mailto:arendasochiaparts@ya.ru"
+                href="mailto:ArendaApartmentSochi@ya.ru"
                 className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                <span className="hidden xl:inline">arendasochiaparts@ya.ru</span>
+                <span className="hidden xl:inline">ArendaApartmentSochi@ya.ru</span>
               </a>
               <a
                 href="tel:+79952282874"
