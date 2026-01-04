@@ -31,6 +31,14 @@ const Footer = () => {
               </li>
               <li>
                 <Link
+                  to="/apartments"
+                  className="text-muted-foreground hover:text-background transition-colors text-sm"
+                >
+                  Наши апартаменты
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/about"
                   className="text-muted-foreground hover:text-background transition-colors text-sm"
                 >
@@ -71,11 +79,11 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="mailto:posutochosochi@mail.ru"
+                  href="mailto:arendasochiaparts@ya.ru"
                   className="flex items-center gap-2 text-muted-foreground hover:text-background transition-colors text-sm"
                 >
                   <Mail className="w-4 h-4" />
-                  posutochosochi@mail.ru
+                  arendasochiaparts@ya.ru
                 </a>
               </li>
               <li>

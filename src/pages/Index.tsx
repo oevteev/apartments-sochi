@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import BookingForm from "@/components/BookingForm";
 import RealtyCalendarWidget from "@/components/RealtyCalendarWidget";
 import { Shield, FileCheck, HeadphonesIcon, MessageCircle } from "lucide-react";
+import heroBackground from "@/assets/heroback.jpg";
 
 const features = [
   {
@@ -33,7 +34,7 @@ const Index = () => {
       <section
         className="relative min-h-screen flex items-center justify-center pt-20"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80')`,
+          backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%), url('${heroBackground}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
