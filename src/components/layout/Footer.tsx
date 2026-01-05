@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-serif font-bold">ПосуточноСочи</h3>
+            <h3 className="text-xl font-serif font-bold">ВашСочи</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Бронируйте квартиры посуточно в Сочи с гарантией качества и
               поддержкой 24/7. Лучшие апартаменты для вашего отдыха.
@@ -34,7 +34,7 @@ const Footer = () => {
                   to="/apartments"
                   className="text-muted-foreground hover:text-background transition-colors text-sm"
                 >
-                  Наши апартаменты
+                  Апартаменты
                 </Link>
               </li>
               <li>
@@ -115,7 +115,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-10 pt-6 border-t border-muted-foreground/20">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>© {currentYear} ПосуточноСочи. Все права защищены.</p>
+            <p>© {currentYear} ВашСочи. Все права защищены.</p>
             <p>Сделано с ❤️ для лучшего отдыха</p>
           </div>
         </div>
