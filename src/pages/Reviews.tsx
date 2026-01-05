@@ -4,7 +4,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import avitoIcon from "@/assets/icons/avito.png";
 import sutochnoIcon from "@/assets/icons/sutochno.png";
 import ostrovokIcon from "@/assets/icons/ostrovok.png";
-import cianIcon from "@/assets/icons/cian.png";
+import cianIcon from "@/assets/icons/cian.png1";
 
 const reviews = [
   {
