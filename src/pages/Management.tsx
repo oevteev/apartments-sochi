@@ -57,10 +57,7 @@ const Management = () => {
                     <p className="text-muted-foreground leading-relaxed mb-4 text-justify">Я являюсь основателем компании по аренде апартаментов ВашСочи. 
 Наша компания занимается сервисом по аренде и обслуживанию квартир и апартаментов с 2022 года.</p>
                     <p className="text-muted-foreground leading-relaxed mb-4 text-justify">Мы работаем в сфере управления недвижимостью на территории Центрального Сочи. В нашем управлении квартиры разного уровня: от среднего до люкс апартаментов.</p>
-                    <p className="text-foreground font-medium leading-relaxed text-justify">
-                      Наша команда создает комфортные условия отдыха для гостей города Сочи, а также безопасные условия
-                      пассивного дохода для собственников!
-                    </p>
+                    <p className="text-foreground font-medium leading-relaxed text-justify">Наша компания предлагает вам партнерское сотрудничество. Мы развиваем сеть краткосрочной, среднесрочной аренды квартир на территории Сочи. Предлагаем вам заключить агентский договор на передачу вашего объекта недвижимости в управление нашей компании.</p>
                   </div>
                 </div>
               </CardContent>
@@ -70,20 +67,7 @@ const Management = () => {
       </section>
 
       {/* Partnership Section */}
-      <section className="py-16 bg-secondary/30">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
-              Партнерское сотрудничество
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Наша компания предлагает вам партнерское сотрудничество. Мы развиваем сеть краткосрочной, среднесрочной
-              аренды квартир на территории Сочи. Предлагаем вам заключить агентский договор на передачу вашего объекта
-              недвижимости в управление нашей компании.
-            </p>
-          </div>
-        </div>
-      </section>
+      
 
       {/* 5 Reasons Section */}
       <section className="bg-background py-[40px]">
