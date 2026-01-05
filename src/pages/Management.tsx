@@ -27,7 +27,7 @@ const reasons = [{
 const Management = () => {
   return <Layout>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-secondary via-background to-secondary/50 py-[80px]">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-secondary via-background to-secondary/50 py-[90px]">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4 animate-fade-in">
