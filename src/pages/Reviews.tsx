@@ -4,7 +4,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import avitoIcon from "@/assets/icons/avito.png";
 import sutochnoIcon from "@/assets/icons/sutochno.png";
 import ostrovokIcon from "@/assets/icons/ostrovok.png";
-import cianIcon from "@/assets/icons/cian.png1";
+import cianIcon from "@/assets/icons/cian.png";
 
 const reviews = [
   {
@@ -280,17 +280,9 @@ const Reviews = () => {
                 >
                   <img src={ostrovokIcon} alt="Ostrovok" className="w-8 h-8 rounded" />
                 </a>
-                <a
-                  href="https://sochi.cian.ru/rent/flat/300248141/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
-                >
-                  <img src={cianIcon} alt="Cian" className="w-8 h-8 rounded" />
-                </a>
               </div>
             </div>
-            <span className="text-muted-foreground">{reviews.length} отзывов из 4 источников</span>
+            <span className="text-muted-foreground">{reviews.length} отзывов из 3 источников</span>
           </div>
 
           <Carousel
