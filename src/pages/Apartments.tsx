@@ -26,7 +26,7 @@ import apart17 from "@/assets/aparts/apart-17.jpg";
 import apart18 from "@/assets/aparts/apart-18.jpg";
 import apart19 from "@/assets/aparts/apart-19.jpg";
 
-const initialImages = [apart1, apart2, apart4, apart5, apart7];
+const initialImages = [apart1, apart2, apart4, apart5, apart6, apart7];
 const moreImages = [
   apart8,
   apart9,
