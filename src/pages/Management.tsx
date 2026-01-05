@@ -41,7 +41,7 @@ const Management = () => {
       </section>
 
       {/* About Section */}
-      <section className="bg-background py-[32px]">
+      <section className="bg-background py-0">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <Card className="border-none shadow-card bg-card overflow-hidden">
