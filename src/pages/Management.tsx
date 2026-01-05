@@ -142,7 +142,7 @@ const Management = () => {
       </section>
 
       {/* Income Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section className="bg-primary text-primary-foreground py-[20px]">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-8">Сколько можно с нами заработать?</h2>
