@@ -30,9 +30,8 @@ const Management = () => {
       <section className="pt-32 pb-16 bg-gradient-to-br from-secondary via-background to-secondary/50 py-[90px]">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4 animate-fade-in">
-              Для собственников квартир и инвесторов
-            </h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4 animate-fade-in">Для собственников квартир 
+и инвесторов</h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-2 animate-slide-up">
               Уважаемые собственники, приветствуем вас на нашем сайте
             </p>
