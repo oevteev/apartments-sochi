@@ -1,5 +1,5 @@
 import Layout from "@/components/layout/Layout";
-import { CheckCircle, Sparkles, Shield, FileText, Clock, Star, Banknote, Users, Home } from "lucide-react";
+import { CheckCircle, Sparkles, Shield, FileText, Clock, Star, Users, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -57,7 +57,7 @@ const Management = () => {
                     <p className="text-muted-foreground leading-relaxed mb-4 text-justify">Я являюсь основателем компании по аренде апартаментов ВашСочи. 
 Наша компания занимается сервисом по аренде и обслуживанию квартир и апартаментов с 2022 года.</p>
                     <p className="text-muted-foreground leading-relaxed mb-4 text-justify">Мы работаем в сфере управления недвижимостью на территории Центрального Сочи. В нашем управлении квартиры разного уровня: от среднего до люкс апартаментов.</p>
-                    <p className="text-foreground font-medium leading-relaxed text-justify">Наша компания предлагает вам партнерское сотрудничество. Мы развиваем сеть краткосрочной, среднесрочной аренды квартир на территории Сочи. Предлагаем вам заключить агентский договор на передачу вашего объекта недвижимости в управление нашей компании.</p>
+                    <p className="font-medium leading-relaxed text-justify text-primary">Наша компания предлагает вам партнерское сотрудничество. Мы развиваем сеть краткосрочной, среднесрочной аренды квартир на территории Сочи. Предлагаем вам заключить агентский договор на передачу вашего объекта недвижимости в управление нашей компании.</p>
                   </div>
                 </div>
               </CardContent>
@@ -137,7 +137,7 @@ const Management = () => {
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <Banknote className="w-16 h-16 mx-auto mb-6 opacity-90" />
+            
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-8">Сколько можно с нами заработать?</h2>
 
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 mb-8">
