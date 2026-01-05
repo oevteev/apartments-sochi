@@ -189,7 +189,7 @@ const Reviews = () => {
             const sources = [avitoIcon, sutochnoIcon, ostrovokIcon];
             const sourcesCount = sources.length;
             return (
-              <div className="flex flex-col items-center gap-2 mb-8">
+              <div className="flex flex-col items-center gap-1 mb-8">
                 <div className="flex items-center gap-4">
                   <span className="text-foreground font-medium text-lg">Все отзывы</span>
                   <div className="flex items-center gap-3">
