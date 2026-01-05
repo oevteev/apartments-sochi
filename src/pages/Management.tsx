@@ -78,7 +78,7 @@ const Management = () => {
       {/* Partnership Section */}
 
       {/* 5 Reasons Section */}
-      <section className="bg-background py-[10px]">
+      <section className="bg-background py-[6px]">
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
