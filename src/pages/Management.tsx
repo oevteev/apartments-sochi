@@ -3,35 +3,46 @@ import { CheckCircle, Sparkles, Shield, FileText, Clock, Star, Users, Home } fro
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-const reasons = [{
-  icon: Sparkles,
-  title: "Чистота и профессиональные регулярные уборки",
-  description: "После каждого выезда производится профессиональная уборка по стандартам гостиничного сервиса. Генеральная уборка производится по мере необходимости, но не менее одного раза в месяц."
-}, {
-  icon: Shield,
-  title: "Устранение технических поломок в квартирах",
-  description: "У нас в штате работает мастер, который в состоянии починить сантехнику, электрику, сделает все, чтобы в квартире все было исправно."
-}, {
-  icon: Clock,
-  title: "Своевременные выплаты",
-  description: "Выплаты производятся вовремя и регулярно в соответствии с агентским договором."
-}, {
-  icon: FileText,
-  title: "Отчетность",
-  description: "Полный и понятный отчет для собственника."
-}, {
-  icon: Star,
-  title: "Постоянные улучшения",
-  description: "От каждого гостя мы собираем обратную связь, чтобы постоянно улучшать качество наших услуг. Средний рейтинг на площадках бронирования 4,8 — мы любим и ценим каждого гостя!"
-}];
+const reasons = [
+  {
+    icon: Sparkles,
+    title: "Чистота и профессиональные регулярные уборки",
+    description:
+      "После каждого выезда производится профессиональная уборка по стандартам гостиничного сервиса. Генеральная уборка производится по мере необходимости, но не менее одного раза в месяц.",
+  },
+  {
+    icon: Shield,
+    title: "Устранение технических поломок в квартирах",
+    description:
+      "У нас в штате работает мастер, который в состоянии починить сантехнику, электрику, сделает все, чтобы в квартире все было исправно.",
+  },
+  {
+    icon: Clock,
+    title: "Своевременные выплаты",
+    description: "Выплаты производятся вовремя и регулярно в соответствии с агентским договором.",
+  },
+  {
+    icon: FileText,
+    title: "Отчетность",
+    description: "Полный и понятный отчет для собственника.",
+  },
+  {
+    icon: Star,
+    title: "Постоянные улучшения",
+    description:
+      "От каждого гостя мы собираем обратную связь, чтобы постоянно улучшать качество наших услуг. Средний рейтинг на площадках бронирования 4,8 — мы любим и ценим каждого гостя!",
+  },
+];
 const Management = () => {
-  return <Layout>
+  return (
+    <Layout>
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-secondary via-background to-secondary/50 py-[90px]">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4 animate-fade-in">Для собственников квартир 
-и инвесторов</h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4 animate-fade-in">
+              Для собственников квартир  и инвесторов
+            </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-2 animate-slide-up">
               Уважаемые собственники, приветствуем вас на нашем сайте
             </p>
@@ -86,7 +97,8 @@ const Management = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {reasons.map((reason, index) => <Card key={index} className="border-none shadow-card bg-card card-hover group">
+            {reasons.map((reason, index) => (
+              <Card key={index} className="border-none shadow-card bg-card card-hover group">
                 <CardContent className="p-6">
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                     <reason.icon className="w-7 h-7 text-primary" />
@@ -94,7 +106,8 @@ const Management = () => {
                   <h3 className="text-lg font-semibold text-foreground mb-3">{reason.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed text-left">{reason.description}</p>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -115,10 +128,9 @@ const Management = () => {
                   </div>
                   <h3 className="text-xl font-serif font-bold text-foreground mb-4">Суть предложения</h3>
                   <p className="text-muted-foreground leading-relaxed text-justify">
-                    Рынок аренды — это целый отдельный бизнес, а для вас это пассивный доход. С нами вы будете
-                    зарабатывать в среднем на <span className="text-primary font-semibold">10% выше рынка</span>{" "}
-                    абсолютно не вникая в процессы, так как мы умеем правильно упаковать и презентовать вашу
-                    недвижимость.
+                    Рынок аренды — это целый бизнес, а для вас это пассивный доход. С нами вы будете зарабатывать в
+                    среднем на <span className="text-primary font-semibold">10% выше рынка</span> абсолютно не вникая в
+                    процессы, так как мы умеем правильно упаковать и презентовать вашу недвижимость.
                   </p>
                 </CardContent>
               </Card>
@@ -190,6 +202,7 @@ const Management = () => {
           </div>
         </div>
       </section>
-    </Layout>;
+    </Layout>
+  );
 };
 export default Management;
