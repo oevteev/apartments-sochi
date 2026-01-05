@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, Phone } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MobileMenu from "./MobileMenu";
 const navItems = [
@@ -62,16 +62,6 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* Contact Info - Desktop */}
-            <div className={`hidden lg:flex items-center ${textColor}`}>
-              <a
-                href="tel:+79952282874"
-                className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                <span>+7(995)228-28-74</span>
-              </a>
-            </div>
 
             {/* Mobile Menu Button */}
             <Button
