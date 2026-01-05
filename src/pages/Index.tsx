@@ -1,7 +1,8 @@
 import Layout from "@/components/layout/Layout";
 import BookingForm from "@/components/BookingForm";
 import RealtyCalendarWidget from "@/components/RealtyCalendarWidget";
-import { Shield, FileCheck, HeadphonesIcon, MessageCircle, Play, ExternalLink, ChevronDown } from "lucide-react";
+import { Shield, FileCheck, HeadphonesIcon, MessageCircle, Play, ExternalLink, ChevronDown, Star, Quote } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import heroBackground from "@/assets/heroback.jpg";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -57,6 +58,45 @@ const faqData = [
       { question: "Какая предоплата?", answer: "Предоплата – 20% от стоимости проживания. Вносится при бронировании." },
       { question: "Какой залог?", answer: "При заселении оплачивается залог от порчи имущества в размере 6000 руб. Залог возвращается при выезде." },
     ],
+  },
+];
+
+const reviews = [
+  {
+    name: "Денис",
+    date: "13 ноября 2025 г.",
+    rating: 5,
+    text: "Всё прекрасно! Олег приятный порядочный человек, пунктуальный, подсказал как лучше добраться до разных мест, так как мы первый раз в Сочи. Всё что на фото соответствует действительности. Никаких проблем не возникло. Однозначно рекомендую!",
+  },
+  {
+    name: "Николай",
+    date: "7 ноября 2025 г.",
+    rating: 5,
+    text: "Квартира супер! Очень здорово продуман интерьер - дизайнеру респект. Прекрасно отметили с супругой 25 лет совместной жизни. Вид прекрасный, все рассветы и закаты были наши - просто фантастика. Олегу отдельно спасибо за всё. Рекомендую!",
+  },
+  {
+    name: "Эльвира",
+    date: "22 октября 2025 г.",
+    rating: 5,
+    text: "Обустроенная, комфортная квартира. Но главное: это шикарный вид из окон, и восход и закат! Просто можно не выходить из квартиры и релаксировать. Олег всегда на связи, все рассказал, подсказал. Рекомендую на сто процентов!",
+  },
+  {
+    name: "Зарина",
+    date: "14 октября 2025 г.",
+    rating: 5,
+    text: "Очень красивая и хорошая квартира, все соответствует фотографиям тут. Хозяин дома приятный человек, легко нашли общий язык. Вид из квартиры просто супер. Залог при выезде возвращается. Рекомендую!",
+  },
+  {
+    name: "Ольга",
+    date: "5 июля 2025 г.",
+    rating: 5,
+    text: "Еще раз хочу поблагодарить Олега и его супругу за отдых!!! Заселили раньше, все рассказал, показал, такой гостеприимный, добрый, отзывчивый человек!!!! А роскошный панорамный вид на море - это нужно видеть! ОДНОЗНАЧНО РЕКОМЕНДУЮ!",
+  },
+  {
+    name: "Татьяна",
+    date: "26 апреля 2025 г.",
+    rating: 5,
+    text: "Чудесная квартира, вид не передать словами, спишь на море, ешь на море, смотришь на море. Чувствуешь себя очень классно в ней. Есть все необходимое. Все как на фото. С удовольствием приедем еще.",
   },
 ];
 
@@ -216,6 +256,52 @@ const Index = () => {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section className="py-20 bg-background">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+              Отзывы наших гостей
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Узнайте, что говорят о нас наши клиенты
+            </p>
+          </div>
+
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full max-w-5xl mx-auto"
+          >
+            <CarouselContent className="-ml-4">
+              {reviews.map((review, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="bg-card rounded-xl p-6 shadow-soft h-full flex flex-col">
+                    <div className="flex items-center gap-1 mb-3">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+                    <Quote className="w-8 h-8 text-primary/20 mb-3" />
+                    <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-4">
+                      {review.text}
+                    </p>
+                    <div className="border-t border-border pt-4">
+                      <p className="font-semibold text-foreground">{review.name}</p>
+                      <p className="text-xs text-muted-foreground">{review.date}</p>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex -left-12" />
+            <CarouselNext className="hidden md:flex -right-12" />
+          </Carousel>
         </div>
       </section>
 
