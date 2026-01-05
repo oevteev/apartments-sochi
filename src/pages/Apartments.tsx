@@ -8,13 +8,13 @@ import { Play, ExternalLink, ChevronDown } from "lucide-react";
 // Import apartment images
 import apart1 from "@/assets/aparts/apart-1.jpg";
 import apart2 from "@/assets/aparts/apart-2.jpg";
+import apart3 from "@/assets/aparts/apart-3.jpg";
 import apart4 from "@/assets/aparts/apart-4.jpg";
 import apart5 from "@/assets/aparts/apart-5.jpg";
 import apart6 from "@/assets/aparts/apart-6.jpg";
 import apart7 from "@/assets/aparts/apart-7.jpg";
 import apart8 from "@/assets/aparts/apart-8.jpg";
 import apart9 from "@/assets/aparts/apart-9.jpg";
-import apart3 from "@/assets/aparts/apart-3.jpg";
 import apart10 from "@/assets/aparts/apart-10.jpg";
 import apart11 from "@/assets/aparts/apart-11.jpg";
 import apart12 from "@/assets/aparts/apart-12.jpg";
@@ -26,14 +26,14 @@ import apart17 from "@/assets/aparts/apart-17.jpg";
 import apart18 from "@/assets/aparts/apart-18.jpg";
 import apart19 from "@/assets/aparts/apart-19.jpg";
 
-const initialImages = [apart1, apart2, apart3, apart4, apart5, apart6];
+const initialImages = [apart1, apart2, apart4, apart5, apart7];
 const moreImages = [
-  apart7,
   apart8,
   apart9,
   apart10,
   apart11,
   apart12,
+  apart3,
   apart13,
   apart14,
   apart15,
