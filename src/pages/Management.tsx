@@ -54,7 +54,7 @@ const Management = () => {
                     <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-4 text-center md:text-left">
                       Меня зовут Евтеев Олег Владимирович
                     </h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4 text-justify">Я являюсь основателем компании по аренде апартаментов ВашСочи. 
+                    <p className="text-muted-foreground leading-relaxed mb-4 text-justify">Я являюсь основателем компании по аренде апартаментов ВашСочи.  
 Наша компания занимается сервисом по аренде и обслуживанию квартир и апартаментов с 2022 года.</p>
                     <p className="text-muted-foreground leading-relaxed mb-4 text-justify">Мы работаем в сфере управления недвижимостью на территории Центрального Сочи. В нашем управлении квартиры разного уровня: от среднего до люкс апартаментов.</p>
                     <p className="font-medium leading-relaxed text-justify text-primary">Наша компания предлагает вам партнерское сотрудничество. Мы развиваем сеть краткосрочной, среднесрочной аренды квартир на территории Сочи. Предлагаем вам заключить агентский договор на передачу вашего объекта недвижимости в управление нашей компании.</p>
