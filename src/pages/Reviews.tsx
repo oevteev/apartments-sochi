@@ -5,6 +5,7 @@ import avitoIcon from "@/assets/icons/avito.png";
 import sutochnoIcon from "@/assets/icons/sutochno.png";
 import ostrovokIcon from "@/assets/icons/ostrovok.png";
 import cianIcon from "@/assets/icons/cian.png";
+import yandexIcon from "@/assets/icons/yandex.png";
 
 const reviews = [
   {
@@ -306,37 +307,45 @@ const Reviews = () => {
                   href="https://www.avito.ru/brands/i10778160"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
+                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
                 >
-                  <img src={avitoIcon} alt="Avito" className="h-6 w-auto object-contain" />
+                  <img src={avitoIcon} alt="Avito" className="h-6 w-6 object-contain" />
                 </a>
                 <a
                   href="https://sutochno.ru/front/searchapp/detail/1734459?host_id=5448483&host_device=PC&guest_id=5448483"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
+                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
                 >
-                  <img src={sutochnoIcon} alt="Суточно.ру" className="h-6 w-auto object-contain" />
+                  <img src={sutochnoIcon} alt="Суточно.ру" className="h-6 w-6 object-contain" />
                 </a>
                 <a
                   href="https://ostrovok.ru/hotel/russia/sochi/mid13111434/v_zhk_yuzhnoye_more_flat/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
+                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
                 >
-                  <img src={ostrovokIcon} alt="Ostrovok" className="h-6 w-auto object-contain" />
+                  <img src={ostrovokIcon} alt="Ostrovok" className="h-6 w-6 object-contain" />
                 </a>
                 <a
                   href="https://cian.ru/rent/flat/300248141/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
+                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
                 >
-                  <img src={cianIcon} alt="Циан" className="h-6 w-auto object-contain" />
+                  <img src={cianIcon} alt="Циан" className="h-6 w-6 object-contain" />
+                </a>
+                <a
+                  href="https://yandex.ru"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
+                >
+                  <img src={yandexIcon} alt="Яндекс" className="h-6 w-6 object-contain" />
                 </a>
               </div>
             </div>
-            <span className="text-muted-foreground">{reviews.length} отзывов из 4 источников</span>
+            <span className="text-muted-foreground">{reviews.length} отзывов из 5 источников</span>
           </div>
 
           <Carousel
