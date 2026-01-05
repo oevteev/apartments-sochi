@@ -29,6 +29,13 @@ import apart10 from "@/assets/aparts/apart-10.jpg";
 import apart11 from "@/assets/aparts/apart-11.jpg";
 import apart12 from "@/assets/aparts/apart-12.jpg";
 
+// Import review platform icons
+import avitoIcon from "@/assets/icons/avito.png";
+import cianIcon from "@/assets/icons/cian.png";
+import ostrovokIcon from "@/assets/icons/ostrovok.png";
+import sutochnoIcon from "@/assets/icons/sutochno.png";
+import yandexIcon from "@/assets/icons/yandex.png";
+
 const initialImages = [apart1, apart2, apart4, apart5, apart6, apart7];
 const moreImages = [apart8, apart9, apart10, apart11, apart12, apart3];
 
@@ -319,9 +326,19 @@ const Index = () => {
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
               Отзывы наших гостей
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
               Узнайте, что говорят о нас наши клиенты
             </p>
+            <Link to="/reviews" className="inline-flex items-center gap-4 text-primary hover:text-primary/80 transition-colors group">
+              <span className="text-lg font-medium">Все отзывы</span>
+              <div className="flex items-center gap-2">
+                <img src={yandexIcon} alt="Яндекс" className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity" />
+                <img src={avitoIcon} alt="Авито" className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity" />
+                <img src={cianIcon} alt="Циан" className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity" />
+                <img src={sutochnoIcon} alt="Суточно" className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity" />
+                <img src={ostrovokIcon} alt="Островок" className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity" />
+              </div>
+            </Link>
           </div>
 
           <Carousel
@@ -356,13 +373,6 @@ const Index = () => {
             <CarouselNext className="hidden md:flex -right-12" />
           </Carousel>
 
-          <div className="text-center mt-8">
-            <Link to="/reviews">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                Все отзывы
-              </Button>
-            </Link>
-          </div>
         </div>
       </section>
 
