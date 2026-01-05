@@ -7,6 +7,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import avitoIcon from "@/assets/icons/avito.png";
+import sutochnoIcon from "@/assets/icons/sutochno.png";
+import ostrovokIcon from "@/assets/icons/ostrovok.png";
 
 const reviews = [
   {
@@ -111,14 +114,37 @@ const Reviews = () => {
                   на основе более 50 отзывов
                 </span>
               </div>
-              <a
-                href="https://t.me/posutochnosochi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:text-primary/80 font-medium transition-colors"
-              >
-                Все отзывы
-              </a>
+              <div className="flex items-center gap-4">
+                <span className="text-foreground font-medium">
+                  Все отзывы
+                </span>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://www.avito.ru/brands/i10778160"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-80 transition-opacity"
+                  >
+                    <img src={avitoIcon} alt="Avito" className="w-8 h-8 rounded" />
+                  </a>
+                  <a
+                    href="https://sutochno.ru/front/searchapp/detail/1734459?host_id=5448483&host_device=PC&guest_id=5448483"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-80 transition-opacity"
+                  >
+                    <img src={sutochnoIcon} alt="Суточно.ру" className="w-8 h-8 rounded" />
+                  </a>
+                  <a
+                    href="https://extranet.ostrovok.ru/v3/hotels/972703202/hotel/info"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-80 transition-opacity"
+                  >
+                    <img src={ostrovokIcon} alt="Ostrovok" className="w-8 h-8 rounded" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
