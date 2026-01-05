@@ -147,7 +147,7 @@ const Management = () => {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-8">Сколько можно с нами заработать?</h2>
 
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 mb-8">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 mb-8 py-[20px]">
               <div className="text-6xl md:text-7xl font-bold mb-4">75%</div>
               <p className="text-lg opacity-90 leading-relaxed md:text-lg">
                 Ваш доход — это 75% от чистой выручки за вычетом расходов на уборку, стирку, расходники для гостей,
