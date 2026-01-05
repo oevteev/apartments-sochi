@@ -35,6 +35,16 @@ const youtubeLinks = [
   { title: "Обзор апартаментов #1", url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=6" },
   { title: "Обзор апартаментов #2", url: "https://www.youtube.com/watch?v=bbqdhV1IZ9E&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=7" },
   { title: "Обзор апартаментов #3", url: "https://www.youtube.com/watch?v=Xz3mTWyJFXE&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=8" },
+  { title: "Обзор апартаментов #4", url: "https://www.youtube.com/watch?v=tJ1Bq4YLydo&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=4" },
+  { title: "Обзор апартаментов #5", url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM" },
+];
+
+const rutubeLinks = [
+  { title: "Обзор апартаментов #1", url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A&playlist=1161435" },
+  { title: "Обзор апартаментов #2", url: "https://rutube.ru/video/private/c737d7b4fa3b961088aa3c3e0d62da6f/?p=gqxpaLM9Iqobd27n3h09aw&playlist=1161435" },
+  { title: "Обзор апартаментов #3", url: "https://rutube.ru/video/private/8ccfee5a318e22499aeb86444a1d429e/?p=yztm3p6MyOpL6hYqcot2Iw&playlist=1161435" },
+  { title: "Обзор апартаментов #4", url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A" },
+  { title: "Обзор апартаментов #5", url: "https://rutube.ru/video/private/c737d7b4fa3b961088aa3c3e0d62da6f/?p=gqxpaLM9Iqobd27n3h09aw" },
 ];
 
 const faqData = [
@@ -238,23 +248,65 @@ const Index = () => {
           {/* Video Links */}
           <div className="max-w-2xl mx-auto">
             <h3 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">Видеообзоры</h3>
-            <div className="space-y-3">
-              {youtubeLinks.map((video, index) => (
-                <a
-                  key={index}
-                  href={video.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 bg-card rounded-xl shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1 group"
-                >
-                  <div className="w-10 h-10 bg-red-600/10 rounded-lg flex items-center justify-center group-hover:bg-red-600 transition-colors">
-                    <Play className="w-5 h-5 text-red-600 group-hover:text-white transition-colors" />
+            <Accordion type="single" collapsible className="space-y-3">
+              {/* YouTube Accordion */}
+              <AccordionItem value="youtube" className="bg-card rounded-xl border border-border shadow-sm">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+                      <Play className="w-4 h-4 text-white fill-white" />
+                    </div>
+                    <span className="font-semibold text-foreground">YouTube</span>
                   </div>
-                  <span className="flex-1 font-medium text-foreground">{video.title}</span>
-                  <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-red-600 transition-colors" />
-                </a>
-              ))}
-            </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-4">
+                  <div className="space-y-2">
+                    {youtubeLinks.map((video, index) => (
+                      <a
+                        key={index}
+                        href={video.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-secondary/50 rounded-lg hover:bg-secondary transition-colors group"
+                      >
+                        <Play className="w-4 h-4 text-red-600" />
+                        <span className="flex-1 text-sm text-foreground">{video.title}</span>
+                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-red-600 transition-colors" />
+                      </a>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* RuTube Accordion */}
+              <AccordionItem value="rutube" className="bg-card rounded-xl border border-border shadow-sm">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-[#00A8E1] rounded-lg flex items-center justify-center">
+                      <Play className="w-4 h-4 text-white fill-white" />
+                    </div>
+                    <span className="font-semibold text-foreground">RuTube</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-4">
+                  <div className="space-y-2">
+                    {rutubeLinks.map((video, index) => (
+                      <a
+                        key={index}
+                        href={video.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-secondary/50 rounded-lg hover:bg-secondary transition-colors group"
+                      >
+                        <Play className="w-4 h-4 text-[#00A8E1]" />
+                        <span className="flex-1 text-sm text-foreground">{video.title}</span>
+                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-[#00A8E1] transition-colors" />
+                      </a>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </section>
