@@ -174,7 +174,7 @@ const Management = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-background">
+      <section className="bg-background py-[10px]">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
