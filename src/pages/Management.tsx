@@ -54,15 +54,10 @@ const Management = () => {
                     <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-4 text-center md:text-left">
                       Меня зовут Евтеев Олег Владимирович
                     </h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      Я являюсь основателем компании по аренде апартаментов ВашСочи. Наша компания занимается сервисом
-                      по аренде и обслуживанию квартир и апартаментов с 2022 года.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      Мы работаем в сфере управления недвижимостью на территории Центрального Сочи. В нашем управлении
-                      квартиры разного уровня: от среднего до люкс апартаментов.
-                    </p>
-                    <p className="text-foreground font-medium leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed mb-4 text-justify">Я являюсь основателем компании по аренде апартаментов ВашСочи. 
+Наша компания занимается сервисом по аренде и обслуживанию квартир и апартаментов с 2022 года.</p>
+                    <p className="text-muted-foreground leading-relaxed mb-4 text-justify">Мы работаем в сфере управления недвижимостью на территории Центрального Сочи. В нашем управлении квартиры разного уровня: от среднего до люкс апартаментов.</p>
+                    <p className="text-foreground font-medium leading-relaxed text-justify">
                       Наша команда создает комфортные условия отдыха для гостей города Сочи, а также безопасные условия
                       пассивного дохода для собственников!
                     </p>
@@ -91,7 +86,7 @@ const Management = () => {
       </section>
 
       {/* 5 Reasons Section */}
-      <section className="py-20 bg-background">
+      <section className="bg-background py-[40px]">
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
@@ -114,7 +109,7 @@ const Management = () => {
       </section>
 
       {/* Offer Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-accent/5">
+      <section className="bg-gradient-to-br from-primary/5 via-background to-accent/5 py-[40px]">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground text-center mb-12">
