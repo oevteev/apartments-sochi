@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { X, Phone, Mail, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoHeader from "@/assets/logo-header.png";
+
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
@@ -26,11 +26,9 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-border">
-            <img 
-              src={logoHeader} 
-              alt="Аренда апартаментов в Сочи" 
-              className="h-8 w-auto"
-            />
+            <span className="text-xl font-serif font-bold text-primary">
+              ВашСочи
+            </span>
             <Button
               variant="ghost"
               size="icon"

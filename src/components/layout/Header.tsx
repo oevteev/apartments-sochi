@@ -3,10 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MobileMenu from "./MobileMenu";
-import logoHeader from "@/assets/logo-header.png";
 const navItems = [
   { name: "Каталог", path: "/catalog" },
-  { name: "Наши апартаменты", path: "/apartments" },
+  { name: "Апартаменты", path: "/apartments" },
   { name: "Вопросы", path: "/faq" },
   { name: "Отзывы", path: "/reviews" },
   { name: "О нас", path: "/about" },
@@ -46,11 +45,9 @@ const Header = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2">
-              <img 
-                src={logoHeader} 
-                alt="Аренда апартаментов в Сочи" 
-                className={`h-10 w-auto transition-all ${isHomePage && !isScrolled ? 'brightness-0 invert' : ''}`}
-              />
+              <span className={`text-2xl font-serif font-bold transition-colors ${logoColor}`}>
+                ВашСочи
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
