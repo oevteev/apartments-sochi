@@ -1,12 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import { Star, Quote } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import avitoIcon from "@/assets/icons/avito.png";
 import sutochnoIcon from "@/assets/icons/sutochno.png";
 import ostrovokIcon from "@/assets/icons/ostrovok.png";
@@ -91,9 +85,7 @@ const Reviews = () => {
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-              Отзывы гостей
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">Отзывы гостей</h1>
             <p className="text-lg text-muted-foreground mb-8">
               Читайте реальные отзывы наших гостей о проживании в апартаментах Сочи
             </p>
@@ -101,23 +93,14 @@ const Reviews = () => {
               <div className="inline-flex items-center gap-3 bg-card px-6 py-3 rounded-full shadow-soft">
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-6 h-6 text-accent fill-accent"
-                    />
+                    <Star key={i} className="w-6 h-6 text-accent fill-accent" />
                   ))}
                 </div>
-                <span className="text-2xl font-bold text-foreground">
-                  4.8
-                </span>
-                <span className="text-muted-foreground">
-                  на основе более 50 отзывов
-                </span>
+                <span className="text-2xl font-bold text-foreground">4.8</span>
+                <span className="text-muted-foreground">на основе более 50 отзывов</span>
               </div>
               <div className="flex items-center gap-4">
-                <span className="text-foreground font-medium">
-                  Все отзывы
-                </span>
+                <span className="text-foreground font-medium">Все отзывы</span>
                 <div className="flex items-center gap-3">
                   <a
                     href="https://www.avito.ru/brands/i10778160"
@@ -136,7 +119,7 @@ const Reviews = () => {
                     <img src={sutochnoIcon} alt="Суточно.ру" className="w-8 h-8 rounded" />
                   </a>
                   <a
-                    href="https://extranet.ostrovok.ru/v3/hotels/972703202/hotel/info"
+                    href="https://ostrovok.ru/hotel/russia/sochi/mid13111434/v_zhk_yuzhnoye_more_flat/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:opacity-80 transition-opacity"
@@ -173,24 +156,18 @@ const Reviews = () => {
                         <Star
                           key={i}
                           className={`w-5 h-5 ${
-                            i < review.rating
-                              ? "text-accent fill-accent"
-                              : "text-muted-foreground/30"
+                            i < review.rating ? "text-accent fill-accent" : "text-muted-foreground/30"
                           }`}
                         />
                       ))}
                     </div>
 
                     {/* Text */}
-                    <p className="text-foreground flex-1 mb-4 leading-relaxed">
-                      "{review.text}"
-                    </p>
+                    <p className="text-foreground flex-1 mb-4 leading-relaxed">"{review.text}"</p>
 
                     {/* Author */}
                     <div className="pt-4 border-t border-border">
-                      <div className="font-semibold text-foreground">
-                        {review.name}
-                      </div>
+                      <div className="font-semibold text-foreground">{review.name}</div>
                       <div className="text-sm text-muted-foreground">
                         {review.apartment} • {review.date}
                       </div>
@@ -210,9 +187,7 @@ const Reviews = () => {
       {/* CTA */}
       <section className="py-16 bg-primary text-primary-foreground">
         <div className="container-custom text-center">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold mb-4">
-            Хотите оставить свой отзыв?
-          </h2>
+          <h2 className="text-2xl md:text-3xl font-serif font-bold mb-4">Хотите оставить свой отзыв?</h2>
           <p className="text-primary-foreground/80 mb-6 max-w-lg mx-auto">
             Мы ценим обратную связь от каждого гостя. Напишите нам после вашего пребывания!
           </p>
