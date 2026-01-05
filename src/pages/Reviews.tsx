@@ -139,12 +139,16 @@ const reviews = [
     text: "Очень уютная, стильная, а главное ЧИСТАЯ квартира, с шикарным видом на море. Новый дом, интерьер, всё что нужно для проживания есть: посуда, кондиционер, чистое белье, техника и полотенца. Арендодатель доброжелательный и вежливый. Мы прекрасно провели свой отпуск.",
     apartment: "Квартира-студия, 45 м², 2 кровати",
   },
+  {
+    name: "Елена",
+    date: "9 июля 2024",
+    rating: 5,
+    text: "Проживали в данной квартире в начале июля! Шикарный вид, шикарная квартира, проживать в ней — одно удовольствие! Вид потрясающий! Все необходимое для проживания есть! Фото соответствует реальности! Кондиционер работает отлично! Шторы даже не понадобились! Район тихий, спокойный, чистый! Огромное спасибо хозяину квартиры! Олег очень внимательный, доброжелательный, все расскажет, покажет! Однозначно рекомендую!",
+    apartment: "Квартира-студия, 45 м², 2 кровати",
+  },
 ];
 
 const Reviews = () => {
-  const totalReviews = 45;
-  const sourcesCount = 3;
-
   return (
     <Layout>
       {/* Hero */}
@@ -165,6 +169,35 @@ const Reviews = () => {
                 <span className="text-2xl font-bold text-foreground">4.8</span>
                 <span className="text-muted-foreground">на основе более 50 отзывов</span>
               </div>
+              <div className="flex items-center gap-4">
+                <span className="text-foreground font-medium">Все отзывы</span>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://www.avito.ru/brands/i10778160"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-80 transition-opacity"
+                  >
+                    <img src={avitoIcon} alt="Avito" className="w-8 h-8 rounded" />
+                  </a>
+                  <a
+                    href="https://sutochno.ru/front/searchapp/detail/1734459?host_id=5448483&host_device=PC&guest_id=5448483"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-80 transition-opacity"
+                  >
+                    <img src={sutochnoIcon} alt="Суточно.ру" className="w-8 h-8 rounded" />
+                  </a>
+                  <a
+                    href="https://ostrovok.ru/hotel/russia/sochi/mid13111434/v_zhk_yuzhnoye_more_flat/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-80 transition-opacity"
+                  >
+                    <img src={ostrovokIcon} alt="Ostrovok" className="w-8 h-8 rounded" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -173,44 +206,6 @@ const Reviews = () => {
       {/* Reviews Carousel */}
       <section className="py-20 bg-background">
         <div className="container-custom">
-          {/* All reviews bar with sources */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <div className="inline-flex items-center gap-3 bg-card px-6 py-3 rounded-full shadow-soft">
-              <span className="text-foreground font-medium">Все отзывы</span>
-              <div className="flex items-center gap-3">
-                <a
-                  href="https://www.avito.ru/brands/i10778160"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
-                >
-                  <img src={avitoIcon} alt="Avito" className="w-8 h-8 rounded" />
-                </a>
-                <a
-                  href="https://sutochno.ru/front/searchapp/detail/1734459?host_id=5448483&host_device=PC&guest_id=5448483"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
-                >
-                  <img src={sutochnoIcon} alt="Суточно.ру" className="w-8 h-8 rounded" />
-                </a>
-                <a
-                  href="https://ostrovok.ru/hotel/russia/sochi/mid13111434/v_zhk_yuzhnoye_more_flat/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
-                >
-                  <img src={ostrovokIcon} alt="Ostrovok" className="w-8 h-8 rounded" />
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          {/* Reviews count */}
-          <p className="text-center text-muted-foreground mb-8">
-            {totalReviews} отзывов из {sourcesCount} источников
-          </p>
-
           <Carousel
             opts={{
               align: "start",
@@ -256,6 +251,24 @@ const Reviews = () => {
               <CarouselNext className="static translate-y-0" />
             </div>
           </Carousel>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 bg-primary text-primary-foreground">
+        <div className="container-custom text-center">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold mb-4">Хотите оставить свой отзыв?</h2>
+          <p className="text-primary-foreground/80 mb-6 max-w-lg mx-auto">
+            Мы ценим обратную связь от каждого гостя. Напишите нам после вашего пребывания!
+          </p>
+          <a
+            href="https://t.me/posutochnosochi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors"
+          >
+            Написать отзыв
+          </a>
         </div>
       </section>
     </Layout>
