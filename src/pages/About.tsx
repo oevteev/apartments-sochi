@@ -85,7 +85,7 @@ const About = () => {
             <h2 className="text-3xl font-serif font-bold text-foreground mb-8">
               Реквизиты
             </h2>
-            <div className="bg-card rounded-2xl p-6 md:p-8 shadow-soft space-y-3">
+            <div className="bg-card rounded-2xl p-6 md:p-8 shadow-soft space-y-3 py-[16px]">
               <p className="text-foreground font-semibold text-lg">
                 Индивидуальный предприниматель Евтеев Олег Владимирович
               </p>
