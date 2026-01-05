@@ -1,8 +1,64 @@
 import Layout from "@/components/layout/Layout";
 import BookingForm from "@/components/BookingForm";
 import RealtyCalendarWidget from "@/components/RealtyCalendarWidget";
-import { Shield, FileCheck, HeadphonesIcon, MessageCircle } from "lucide-react";
+import { Shield, FileCheck, HeadphonesIcon, MessageCircle, Play, ExternalLink, ChevronDown } from "lucide-react";
 import heroBackground from "@/assets/heroback.jpg";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+// Import apartment images
+import apart1 from "@/assets/aparts/apart-1.jpg";
+import apart2 from "@/assets/aparts/apart-2.jpg";
+import apart3 from "@/assets/aparts/apart-3.jpg";
+import apart4 from "@/assets/aparts/apart-4.jpg";
+import apart5 from "@/assets/aparts/apart-5.jpg";
+import apart6 from "@/assets/aparts/apart-6.jpg";
+import apart7 from "@/assets/aparts/apart-7.jpg";
+import apart8 from "@/assets/aparts/apart-8.jpg";
+import apart9 from "@/assets/aparts/apart-9.jpg";
+import apart10 from "@/assets/aparts/apart-10.jpg";
+import apart11 from "@/assets/aparts/apart-11.jpg";
+import apart12 from "@/assets/aparts/apart-12.jpg";
+
+const initialImages = [apart1, apart2, apart4, apart5, apart6, apart7];
+const moreImages = [apart8, apart9, apart10, apart11, apart12, apart3];
+
+const youtubeLinks = [
+  { title: "Обзор апартаментов #1", url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=6" },
+  { title: "Обзор апартаментов #2", url: "https://www.youtube.com/watch?v=bbqdhV1IZ9E&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=7" },
+  { title: "Обзор апартаментов #3", url: "https://www.youtube.com/watch?v=Xz3mTWyJFXE&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=8" },
+];
+
+const faqData = [
+  {
+    category: "Бронирование",
+    questions: [
+      { question: "Как забронировать квартиру?", answer: "Вы можете забронировать квартиру через наш каталог, заполнив форму на сайте, позвонив по телефону +7(995)228-28-74 или написав нам в Telegram." },
+      { question: "Можно ли отменить бронь и вернуть деньги?", answer: "За 2 недели до заезда – возврат 100%. За неделю – индивидуально по согласованию. Менее чем за 7 дней – бронь невозвратная." },
+    ],
+  },
+  {
+    category: "Заселение и выезд",
+    questions: [
+      { question: "Во сколько заезд и выезд?", answer: "Стандартный заезд – после 14:00, выезд – до 12:00. Возможен ранний заезд и поздний выезд – только по предварительной договоренности." },
+      { question: "Как проходит заселение?", answer: "Все квартиры оборудованы smart замками. Вы получаете видеоинструкцию и подробную информацию по заселению." },
+    ],
+  },
+  {
+    category: "Оплата",
+    questions: [
+      { question: "Какая предоплата?", answer: "Предоплата – 20% от стоимости проживания. Вносится при бронировании." },
+      { question: "Какой залог?", answer: "При заселении оплачивается залог от порчи имущества в размере 6000 руб. Залог возвращается при выезде." },
+    ],
+  },
+];
 
 const features = [
   {
@@ -28,6 +84,10 @@ const features = [
 ];
 
 const Index = () => {
+  const [showMore, setShowMore] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const displayedImages = showMore ? [...initialImages, ...moreImages] : initialImages;
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -96,6 +156,110 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Apartments Section */}
+      <section className="py-20 bg-secondary/30">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+              Наши апартаменты
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Роскошные апартаменты с панорамным видом на море
+            </p>
+          </div>
+
+          {/* Photo Gallery */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            {displayedImages.map((image, index) => (
+              <div
+                key={index}
+                className="aspect-[4/3] rounded-xl overflow-hidden cursor-pointer group relative"
+                onClick={() => setSelectedImage(image)}
+              >
+                <img
+                  src={image}
+                  alt={`Апартаменты - фото ${index + 1}`}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </div>
+            ))}
+          </div>
+
+          {!showMore && moreImages.length > 0 && (
+            <div className="text-center mb-12">
+              <Button onClick={() => setShowMore(true)} variant="outline" size="lg" className="gap-2">
+                <ChevronDown className="w-5 h-5" />
+                Показать ещё
+              </Button>
+            </div>
+          )}
+
+          {/* Video Links */}
+          <div className="max-w-2xl mx-auto">
+            <h3 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">Видеообзоры</h3>
+            <div className="space-y-3">
+              {youtubeLinks.map((video, index) => (
+                <a
+                  key={index}
+                  href={video.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-4 bg-card rounded-xl shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1 group"
+                >
+                  <div className="w-10 h-10 bg-red-600/10 rounded-lg flex items-center justify-center group-hover:bg-red-600 transition-colors">
+                    <Play className="w-5 h-5 text-red-600 group-hover:text-white transition-colors" />
+                  </div>
+                  <span className="flex-1 font-medium text-foreground">{video.title}</span>
+                  <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-red-600 transition-colors" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-background">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+              Частые вопросы
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Ответы на популярные вопросы о бронировании и проживании
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-10">
+            {faqData.map((category) => (
+              <div key={category.category}>
+                <h3 className="text-xl font-serif font-bold text-foreground mb-4 flex items-center gap-3">
+                  <span className="w-8 h-1 bg-primary rounded-full" />
+                  {category.category}
+                </h3>
+                <Accordion type="single" collapsible className="space-y-3">
+                  {category.questions.map((item, index) => (
+                    <AccordionItem
+                      key={index}
+                      value={`${category.category}-${index}`}
+                      className="bg-card rounded-xl px-6 border border-border shadow-sm"
+                    >
+                      <AccordionTrigger className="text-left text-foreground hover:text-primary hover:no-underline py-5">
+                        {item.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground pb-5">
+                        {item.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Widget Section */}
       <section className="py-20 bg-secondary/30">
         <div className="container-custom">
@@ -112,6 +276,15 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Lightbox Dialog */}
+      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <DialogContent className="max-w-4xl p-0 bg-transparent border-none">
+          {selectedImage && (
+            <img src={selectedImage} alt="Апартаменты - увеличенное фото" className="w-full h-auto rounded-lg" />
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* CTA Section */}
       <section className="py-20 bg-primary text-primary-foreground">
