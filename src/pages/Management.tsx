@@ -90,7 +90,7 @@ const Management = () => {
                     <reason.icon className="w-7 h-7 text-primary" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground mb-3">{reason.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed text-center">{reason.description}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed text-left">{reason.description}</p>
                 </CardContent>
               </Card>)}
           </div>
