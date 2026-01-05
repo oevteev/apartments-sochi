@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Menu, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MobileMenu from "./MobileMenu";
 const navItems = [
@@ -48,12 +48,12 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8">
+            <nav className="hidden lg:flex items-center gap-6">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                  className={`text-sm font-medium transition-colors hover:text-primary px-2 py-1 ${
                     location.pathname === item.path ? "text-primary" : textColor
                   }`}
                 >
@@ -63,14 +63,7 @@ const Header = () => {
             </nav>
 
             {/* Contact Info - Desktop */}
-            <div className={`hidden lg:flex items-center gap-6 ${textColor}`}>
-              <a
-                href="mailto:ArendaApartmentSochi@ya.ru"
-                className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                <span className="hidden xl:inline">ArendaApartmentSochi@ya.ru</span>
-              </a>
+            <div className={`hidden lg:flex items-center ${textColor}`}>
               <a
                 href="tel:+79952282874"
                 className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
