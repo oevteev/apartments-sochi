@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import BookingForm from "@/components/BookingForm";
 import RealtyCalendarWidget from "@/components/RealtyCalendarWidget";
@@ -354,6 +355,14 @@ const Index = () => {
             <CarouselPrevious className="hidden md:flex -left-12" />
             <CarouselNext className="hidden md:flex -right-12" />
           </Carousel>
+
+          <div className="text-center mt-8">
+            <Link to="/reviews">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                Все отзывы
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
