@@ -79,17 +79,8 @@ const Contacts = () => {
   };
   return <Layout>
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">
-        <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-              Контакты
-            </h1>
-            <p className="text-muted-foreground text-base">
-              Свяжитесь с нами любым удобным способом — мы всегда на связи и готовы помочь!
-            </p>
-          </div>
-        </div>
+      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10 py-[32px]">
+        
       </section>
 
       {/* Contact Section */}
