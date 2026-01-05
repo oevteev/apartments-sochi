@@ -8,6 +8,7 @@ const navItems = [
   { name: "Апартаменты", path: "/apartments" },
   { name: "Вопросы", path: "/faq" },
   { name: "Отзывы", path: "/reviews" },
+  { name: "Доверительное управление", path: "/management" },
   { name: "О нас", path: "/about" },
   { name: "Контакты", path: "/contacts" },
 ];
