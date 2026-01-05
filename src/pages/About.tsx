@@ -13,9 +13,7 @@ const About = () => {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <img src={logoAbout} alt="ArendaApartmentSochi.ru" className="mx-auto mb-8 max-w-xs md:max-w-sm" />
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-              О нас
-            </h1>
+            
             <p className="text-lg text-muted-foreground leading-relaxed">
               ВашСочи — ваш надёжный партнёр в поиске идеального жилья для отдыха в Сочи.
               Мы работаем, чтобы каждый гость чувствовал себя как дома.
