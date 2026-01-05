@@ -110,7 +110,7 @@ const About = () => {
               Контакты
             </h2>
             <div className="grid sm:grid-cols-2 gap-6">
-              <a href="tel:+79952282874" className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft hover:shadow-card transition-shadow">
+              <a href="tel:+79952282874" className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft hover:shadow-card transition-shadow py-[10px]">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                   <Phone className="w-6 h-6 text-primary" />
                 </div>
@@ -120,7 +120,7 @@ const About = () => {
                 </div>
               </a>
 
-              <a href="mailto:ArendaApartmentSochi@ya.ru" className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft hover:shadow-card transition-shadow">
+              <a href="mailto:ArendaApartmentSochi@ya.ru" className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft hover:shadow-card transition-shadow py-[10px]">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
@@ -152,21 +152,21 @@ const About = () => {
               Способы оплаты
             </h2>
             <div className="grid sm:grid-cols-3 gap-6">
-              <div className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft">
+              <div className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft py-[10px]">
                 <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
                   <Building2 className="w-6 h-6 text-accent" />
                 </div>
                 <div className="text-foreground font-medium">СБП</div>
               </div>
 
-              <div className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft">
+              <div className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft py-[10px]">
                 <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
                   <CreditCard className="w-6 h-6 text-accent" />
                 </div>
                 <div className="text-foreground font-medium">МИР / VISA / MASTER CARD</div>
               </div>
 
-              <div className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft">
+              <div className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft py-[10px]">
                 <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
                   <Banknote className="w-6 h-6 text-accent" />
                 </div>
