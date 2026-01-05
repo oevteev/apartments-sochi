@@ -105,7 +105,7 @@ const About = () => {
       </section>
 
       {/* Контакты */}
-      <section className="py-16 bg-background">
+      <section className="bg-background py-[16px]">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-serif font-bold text-foreground mb-8">
