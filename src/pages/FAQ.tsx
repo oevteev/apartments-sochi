@@ -64,10 +64,8 @@ const FAQ = () => {
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
               Частые вопросы
             </h1>
-            <p className="text-lg text-muted-foreground">
-              Ответы на популярные вопросы о бронировании, оплате и проживании. 
-              Не нашли ответ? Свяжитесь с нами!
-            </p>
+            <p className="text-lg text-muted-foreground">Ответы на популярные вопросы о бронировании, оплате и проживании. 
+Не нашли ответ? Свяжитесь с нами!</p>
           </div>
         </div>
       </section>
