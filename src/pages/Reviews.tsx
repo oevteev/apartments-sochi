@@ -248,7 +248,7 @@ const Reviews = () => {
                     <div className="pt-4 border-t border-border">
                       <div className="font-semibold text-foreground">{review.name}</div>
                       <div className="text-sm text-muted-foreground">
-                        {review.apartment}
+                        {review.apartment} <br />
                         {review.date}
                       </div>
                     </div>
