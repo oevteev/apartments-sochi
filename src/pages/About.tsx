@@ -1,6 +1,11 @@
 import Layout from "@/components/layout/Layout";
 import { Phone, Mail, CreditCard, Banknote, Building2, MessageCircle } from "lucide-react";
 import logoAbout from "@/assets/logo-about.png";
+import avitoIcon from "@/assets/icons/avito.png";
+import sutochnoIcon from "@/assets/icons/sutochno.png";
+import ostrovokIcon from "@/assets/icons/ostrovok.png";
+import cianIcon from "@/assets/icons/cian.png";
+import yandexIcon from "@/assets/icons/yandex.png";
 
 const About = () => {
   return (
@@ -46,6 +51,59 @@ const About = () => {
                 Сегодня сотни довольных клиентов выбирают нас для своего отдыха,
                 зная, что их ждёт только лучший сервис.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Площадки бронирования */}
+      <section className="py-16 bg-background">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-serif font-bold text-foreground mb-8">
+              Мы представлены на площадках бронирования
+            </h2>
+            <div className="flex flex-wrap items-center justify-center gap-8">
+              <a
+                href="https://www.avito.ru/brands/i10778160"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <img src={avitoIcon} alt="Avito" className="h-12 w-12 object-contain" />
+              </a>
+              <a
+                href="https://sutochno.ru/front/searchapp/detail/1734459?host_id=5448483&host_device=PC&guest_id=5448483"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <img src={sutochnoIcon} alt="Суточно.ру" className="h-12 w-12 object-contain" />
+              </a>
+              <a
+                href="https://ostrovok.ru/hotel/russia/sochi/mid13111434/v_zhk_yuzhnoye_more_flat/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <img src={ostrovokIcon} alt="Ostrovok" className="h-12 w-12 object-contain" />
+              </a>
+              <a
+                href="https://cian.ru/rent/flat/300248141/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <img src={cianIcon} alt="Циан" className="h-12 w-12 object-contain" />
+              </a>
+              <a
+                href="https://yandex.ru"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <img src={yandexIcon} alt="Яндекс" className="h-12 w-12 object-contain" />
+              </a>
             </div>
           </div>
         </div>
