@@ -15,20 +15,63 @@ import apart6 from "@/assets/aparts/apart-6.jpg";
 import apart7 from "@/assets/aparts/apart-7.jpg";
 import apart8 from "@/assets/aparts/apart-8.jpg";
 import apart9 from "@/assets/aparts/apart-9.jpg";
+import apart10 from "@/assets/aparts/apart-10.jpg";
+import apart11 from "@/assets/aparts/apart-11.jpg";
+import apart12 from "@/assets/aparts/apart-12.jpg";
+import apart13 from "@/assets/aparts/apart-13.jpg";
+import apart14 from "@/assets/aparts/apart-14.jpg";
+import apart15 from "@/assets/aparts/apart-15.jpg";
+import apart16 from "@/assets/aparts/apart-16.jpg";
+import apart17 from "@/assets/aparts/apart-17.jpg";
+import apart18 from "@/assets/aparts/apart-18.jpg";
+import apart19 from "@/assets/aparts/apart-19.jpg";
 
 const initialImages = [apart1, apart2, apart3, apart4, apart5, apart6];
-const moreImages = [apart7, apart8, apart9];
+const moreImages = [apart7, apart8, apart9, apart10, apart11, apart12, apart13, apart14, apart15, apart16, apart17, apart18, apart19];
 
-const videoLinks = [
+const youtubeLinks = [
   {
-    platform: "YouTube",
-    url: "https://youtube.com",
-    title: "Обзор апартаментов на YouTube",
+    title: "Обзор апартаментов #1",
+    url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=6",
   },
   {
-    platform: "Rutube",
-    url: "https://rutube.ru",
-    title: "Обзор апартаментов на Rutube",
+    title: "Обзор апартаментов #2",
+    url: "https://www.youtube.com/watch?v=bbqdhV1IZ9E&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=7",
+  },
+  {
+    title: "Обзор апартаментов #3",
+    url: "https://www.youtube.com/watch?v=Xz3mTWyJFXE&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=8",
+  },
+  {
+    title: "Обзор апартаментов #4",
+    url: "https://www.youtube.com/watch?v=tJ1Bq4YLydo&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=4",
+  },
+  {
+    title: "Обзор апартаментов #5",
+    url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM",
+  },
+];
+
+const rutubeLinks = [
+  {
+    title: "Обзор апартаментов #1",
+    url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A&playlist=1161435",
+  },
+  {
+    title: "Обзор апартаментов #2",
+    url: "https://rutube.ru/video/private/c737d7b4fa3b961088aa3c3e0d62da6f/?p=gqxpaLM9Iqobd27n3h09aw&playlist=1161435",
+  },
+  {
+    title: "Обзор апартаментов #3",
+    url: "https://rutube.ru/video/private/8ccfee5a318e22499aeb86444a1d429e/?p=yztm3p6MyOpL6hYqcot2Iw&playlist=1161435",
+  },
+  {
+    title: "Обзор апартаментов #4",
+    url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A",
+  },
+  {
+    title: "Обзор апартаментов #5",
+    url: "https://rutube.ru/video/private/c737d7b4fa3b961088aa3c3e0d62da6f/?p=gqxpaLM9Iqobd27n3h09aw",
   },
 ];
 
@@ -105,29 +148,60 @@ const Apartments = () => {
             <h2 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">
               Видеообзоры
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-              {videoLinks.map((video, index) => (
-                <a
-                  key={index}
-                  href={video.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-6 bg-card rounded-xl shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1 group"
-                >
-                  <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary transition-colors">
-                    <Play className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* YouTube */}
+              <div>
+                <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+                  <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+                    <Play className="w-4 h-4 text-white fill-white" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-foreground mb-1">
-                      {video.platform}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {video.title}
-                    </p>
+                  YouTube
+                </h3>
+                <div className="space-y-3">
+                  {youtubeLinks.map((video, index) => (
+                    <a
+                      key={index}
+                      href={video.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-4 bg-card rounded-xl shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1 group"
+                    >
+                      <div className="w-10 h-10 bg-red-600/10 rounded-lg flex items-center justify-center group-hover:bg-red-600 transition-colors">
+                        <Play className="w-5 h-5 text-red-600 group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="flex-1 font-medium text-foreground">{video.title}</span>
+                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-red-600 transition-colors" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Rutube */}
+              <div>
+                <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+                  <div className="w-8 h-8 bg-[#00A8E1] rounded-lg flex items-center justify-center">
+                    <Play className="w-4 h-4 text-white fill-white" />
                   </div>
-                  <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                </a>
-              ))}
+                  Rutube
+                </h3>
+                <div className="space-y-3">
+                  {rutubeLinks.map((video, index) => (
+                    <a
+                      key={index}
+                      href={video.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-4 bg-card rounded-xl shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1 group"
+                    >
+                      <div className="w-10 h-10 bg-[#00A8E1]/10 rounded-lg flex items-center justify-center group-hover:bg-[#00A8E1] transition-colors">
+                        <Play className="w-5 h-5 text-[#00A8E1] group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="flex-1 font-medium text-foreground">{video.title}</span>
+                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-[#00A8E1] transition-colors" />
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </section>
         </div>

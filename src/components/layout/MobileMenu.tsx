@@ -63,11 +63,11 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
           {/* Contact Info */}
           <div className="p-4 border-t border-border space-y-3">
             <a
-              href="mailto:posutochosochi@mail.ru"
+              href="mailto:ArendaApartmentSochi@ya.ru"
               className="flex items-center gap-3 px-4 py-3 rounded-lg text-foreground hover:bg-muted transition-colors"
             >
               <Mail className="w-5 h-5 text-primary" />
-              <span className="text-sm">posutochosochi@mail.ru</span>
+              <span className="text-sm">ArendaApartmentSochi@ya.ru</span>
             </a>
             <a
               href="tel:+79952282874"

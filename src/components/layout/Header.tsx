@@ -7,9 +7,9 @@ import MobileMenu from "./MobileMenu";
 const navItems = [
   { name: "Каталог", path: "/catalog" },
   { name: "Наши апартаменты", path: "/apartments" },
-  { name: "О нас", path: "/about" },
   { name: "Вопросы", path: "/faq" },
   { name: "Отзывы", path: "/reviews" },
+  { name: "О нас", path: "/about" },
   { name: "Контакты", path: "/contacts" },
 ];
 
