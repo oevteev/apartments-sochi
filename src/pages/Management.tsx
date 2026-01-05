@@ -103,7 +103,7 @@ const Management = () => {
       {/* Offer Section */}
       <section className="bg-gradient-to-br from-primary/5 via-background to-accent/5 py-px">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto py-[10px]">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground text-center mb-12">
               Наше предложение
             </h2>
