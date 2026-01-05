@@ -79,7 +79,7 @@ const About = () => {
       </section>
 
       {/* Реквизиты */}
-      <section className="py-16 bg-secondary/30">
+      <section className="bg-secondary/30 py-[32px]">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-serif font-bold text-foreground mb-8">
