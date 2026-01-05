@@ -8,13 +8,13 @@ import { Play, ExternalLink, ChevronDown } from "lucide-react";
 // Import apartment images
 import apart1 from "@/assets/aparts/apart-1.jpg";
 import apart2 from "@/assets/aparts/apart-2.jpg";
-import apart3 from "@/assets/aparts/apart-3.jpg";
 import apart4 from "@/assets/aparts/apart-4.jpg";
 import apart5 from "@/assets/aparts/apart-5.jpg";
 import apart6 from "@/assets/aparts/apart-6.jpg";
 import apart7 from "@/assets/aparts/apart-7.jpg";
 import apart8 from "@/assets/aparts/apart-8.jpg";
 import apart9 from "@/assets/aparts/apart-9.jpg";
+import apart3 from "@/assets/aparts/apart-3.jpg";
 import apart10 from "@/assets/aparts/apart-10.jpg";
 import apart11 from "@/assets/aparts/apart-11.jpg";
 import apart12 from "@/assets/aparts/apart-12.jpg";
@@ -27,7 +27,21 @@ import apart18 from "@/assets/aparts/apart-18.jpg";
 import apart19 from "@/assets/aparts/apart-19.jpg";
 
 const initialImages = [apart1, apart2, apart3, apart4, apart5, apart6];
-const moreImages = [apart7, apart8, apart9, apart10, apart11, apart12, apart13, apart14, apart15, apart16, apart17, apart18, apart19];
+const moreImages = [
+  apart7,
+  apart8,
+  apart9,
+  apart10,
+  apart11,
+  apart12,
+  apart13,
+  apart14,
+  apart15,
+  apart16,
+  apart17,
+  apart18,
+  apart19,
+];
 
 const youtubeLinks = [
   {
@@ -79,9 +93,7 @@ const Apartments = () => {
   const [showMore, setShowMore] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const displayedImages = showMore
-    ? [...initialImages, ...moreImages]
-    : initialImages;
+  const displayedImages = showMore ? [...initialImages, ...moreImages] : initialImages;
 
   return (
     <Layout>
@@ -89,9 +101,7 @@ const Apartments = () => {
         <div className="container-custom">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Наши апартаменты
-            </h1>
+            <h1 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Наши апартаменты</h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Роскошные апартаменты с панорамным видом на море. Комфорт и уют для вашего незабываемого отдыха в Сочи.
             </p>
@@ -107,9 +117,7 @@ const Apartments = () => {
 
           {/* Photo Gallery */}
           <section className="mb-16">
-            <h2 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">
-              Фотогалерея
-            </h2>
+            <h2 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">Фотогалерея</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {displayedImages.map((image, index) => (
                 <div
@@ -130,12 +138,7 @@ const Apartments = () => {
             {/* Show More Button */}
             {!showMore && moreImages.length > 0 && (
               <div className="text-center mt-8">
-                <Button
-                  onClick={() => setShowMore(true)}
-                  variant="outline"
-                  size="lg"
-                  className="gap-2"
-                >
+                <Button onClick={() => setShowMore(true)} variant="outline" size="lg" className="gap-2">
                   <ChevronDown className="w-5 h-5" />
                   Показать ещё
                 </Button>
@@ -145,9 +148,7 @@ const Apartments = () => {
 
           {/* Video Links */}
           <section className="mb-16">
-            <h2 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">
-              Видеообзоры
-            </h2>
+            <h2 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">Видеообзоры</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* YouTube */}
               <div>
@@ -211,11 +212,7 @@ const Apartments = () => {
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
         <DialogContent className="max-w-4xl p-0 bg-transparent border-none">
           {selectedImage && (
-            <img
-              src={selectedImage}
-              alt="Апартаменты - увеличенное фото"
-              className="w-full h-auto rounded-lg"
-            />
+            <img src={selectedImage} alt="Апартаменты - увеличенное фото" className="w-full h-auto rounded-lg" />
           )}
         </DialogContent>
       </Dialog>
