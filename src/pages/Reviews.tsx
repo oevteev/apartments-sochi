@@ -178,36 +178,44 @@ const Reviews = () => {
       <section className="py-20 bg-background">
         <div className="container-custom">
           {/* All Reviews Header */}
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <span className="text-foreground font-medium text-lg">Все отзывы</span>
-            <div className="flex items-center gap-3">
-              <a
-                href="https://www.avito.ru/brands/i10778160"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-80 transition-opacity"
-              >
-                <img src={avitoIcon} alt="Avito" className="w-8 h-8 rounded" />
-              </a>
-              <a
-                href="https://sutochno.ru/front/searchapp/detail/1734459?host_id=5448483&host_device=PC&guest_id=5448483"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-80 transition-opacity"
-              >
-                <img src={sutochnoIcon} alt="Суточно.ру" className="w-8 h-8 rounded" />
-              </a>
-              <a
-                href="https://ostrovok.ru/hotel/russia/sochi/mid13111434/v_zhk_yuzhnoye_more_flat/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-80 transition-opacity"
-              >
-                <img src={ostrovokIcon} alt="Ostrovok" className="w-8 h-8 rounded" />
-              </a>
-            </div>
-            <span className="text-muted-foreground">{reviews.length} отзывов из 3 источников</span>
-          </div>
+          {(() => {
+            const sources = [avitoIcon, sutochnoIcon, ostrovokIcon];
+            const sourcesCount = sources.length;
+            return (
+              <div className="flex flex-col items-center gap-2 mb-8">
+                <div className="flex items-center gap-4">
+                  <span className="text-foreground font-medium text-lg">Все отзывы</span>
+                  <div className="flex items-center gap-3">
+                    <a
+                      href="https://www.avito.ru/brands/i10778160"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:opacity-80 transition-opacity"
+                    >
+                      <img src={avitoIcon} alt="Avito" className="w-8 h-8 rounded" />
+                    </a>
+                    <a
+                      href="https://sutochno.ru/front/searchapp/detail/1734459?host_id=5448483&host_device=PC&guest_id=5448483"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:opacity-80 transition-opacity"
+                    >
+                      <img src={sutochnoIcon} alt="Суточно.ру" className="w-8 h-8 rounded" />
+                    </a>
+                    <a
+                      href="https://ostrovok.ru/hotel/russia/sochi/mid13111434/v_zhk_yuzhnoye_more_flat/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:opacity-80 transition-opacity"
+                    >
+                      <img src={ostrovokIcon} alt="Ostrovok" className="w-8 h-8 rounded" />
+                    </a>
+                  </div>
+                </div>
+                <span className="text-muted-foreground">{reviews.length} отзывов из {sourcesCount} источников</span>
+              </div>
+            );
+          })()}
           
           <Carousel
             opts={{
