@@ -241,6 +241,10 @@ const Reviews = () => {
             }}
             className="w-full"
           >
+            <div className="flex justify-center gap-4 mt-8">
+              <CarouselPrevious className="static translate-y-0" />
+              <CarouselNext className="static translate-y-0" />
+            </div>
             <CarouselContent className="-ml-4">
               {reviews.map((review, index) => (
                 <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
@@ -276,10 +280,6 @@ const Reviews = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-center gap-4 mt-8">
-              <CarouselPrevious className="static translate-y-0" />
-              <CarouselNext className="static translate-y-0" />
-            </div>
           </Carousel>
         </div>
       </section>
