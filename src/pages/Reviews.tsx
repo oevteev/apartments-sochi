@@ -1,56 +1,87 @@
 import Layout from "@/components/layout/Layout";
 import { Star, Quote } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const reviews = [
   {
-    name: "Анна М.",
-    date: "Декабрь 2025",
+    name: "Денис",
+    date: "13 ноября 2025",
     rating: 5,
-    text: "Отличные апартаменты в центре Сочи! Чисто, уютно, все как на фото. Хозяева очень отзывчивые, помогли с трансфером. Обязательно вернёмся!",
-    apartment: "Апартаменты у моря",
+    text: "Всё прекрасно! Олег приятный порядочный человек, пунктуальный, подсказал как лучше добраться до разных мест, так как мы первый раз в Сочи. Всё что на фото соответствует действительности. Никаких проблем не возникло. Однозначно рекомендую!",
+    apartment: "Квартира-студия, 45 м², 2 кровати",
   },
   {
-    name: "Дмитрий К.",
-    date: "Ноябрь 2025",
+    name: "Николай",
+    date: "7 ноября 2025",
     rating: 5,
-    text: "Бронировали на неделю, остались очень довольны. Квартира просторная, вид на море потрясающий. Поддержка отвечала на все вопросы мгновенно.",
-    apartment: "Студия с видом на море",
+    text: "Квартира супер! Очень здорово продуман интерьер - дизайнеру респект. Прекрасно отметили с супругой 25 лет совместной жизни. Даже в ресторан не ходили - не нашли с таким видом ни одного. Вид прекрасный, все рассветы и закаты были наши - просто фантастика. Олегу отдельно спасибо за всё. Рекомендую",
+    apartment: "Квартира-студия, 45 м², 2 кровати",
   },
   {
-    name: "Елена и Сергей",
-    date: "Октябрь 2025",
+    name: "Эльвира",
+    date: "22 октября 2025",
     rating: 5,
-    text: "Приезжали на отдых с детьми. Квартира полностью оборудована, есть всё необходимое. До пляжа 5 минут пешком. Спасибо за отличный отдых!",
-    apartment: "Семейные апартаменты",
+    text: "Обустроенная, комфортная квартира. Но главное: это шикарный вид из окон, и восход и закат! Просто можно не выходить из квартиры и релаксировать. Олег всегда на связи, все рассказал, подсказал где и как лучше пройти, прогуляться, что посмотреть. Все инструкции четкие и понятные. Рекомендую на сто процентов!",
+    apartment: "Квартира-студия, 45 м², 2 кровати",
   },
   {
-    name: "Михаил В.",
-    date: "Сентябрь 2025",
+    name: "Зарина",
+    date: "14 октября 2025",
+    rating: 5,
+    text: "Очень красивая и хорошая квартира, все соответствует фотографиям тут. Хозяин дома приятный человек, легко нашли общий язык. Вид из квартиры просто супер. Залог при выезде возвращается. Рекомендую!",
+    apartment: "Квартира-студия, 45 м², 2 кровати",
+  },
+  {
+    name: "el",
+    date: "25 сентября 2025",
+    rating: 5,
+    text: "Мы провели здесь несколько дней и остались в полном восторге! Квартира очень уютная, есть всё необходимое для комфортного отдыха. Но главное - это, конечно, вид. Просто потрясающий, панорама на море. До моря рукой подать, рядом есть магазины. Это то место, куда действительно хочется вернуться!",
+    apartment: "Квартира-студия, 45 м², 2 кровати",
+  },
+  {
+    name: "Игорь Александрович",
+    date: "21 сентября 2025",
+    rating: 5,
+    text: "Хороший вежливый пунктуальный хозяин, все рассказал показал, всегда на связи, рекомендую. Квартира хорошая уютная чистая",
+    apartment: "Квартира-студия, 45 м², 2 кровати",
+  },
+  {
+    name: "Ольга",
+    date: "5 июля 2025",
+    rating: 5,
+    text: "Еще раз хочу поблагодарить Олега и его супругу за отдых!!! Заселили раньше, все рассказал, показал, такой гостеприимный, добрый, отзывчивый человек!!!! 100 баллов однозначно!!!! Интерьер квартиры заслуживает отдельного внимания. А роскошный панорамный вид на море - это нужно видеть! ОДНОЗНАЧНО РЕКОМЕНДУЮ!",
+    apartment: "Квартира-студия, 45 м², 2 кровати",
+  },
+  {
+    name: "Денис",
+    date: "17 июня 2025",
+    rating: 5,
+    text: "Благодарим Вас Олег за гостеприимство!! Мы отлично провели время - от заката до рассвета все виды не описать на фото не передать надо видеть чувствовать - атмосфера уютная комфортная, созерцательная.",
+    apartment: "Квартира-студия, 45 м², 2 кровати",
+  },
+  {
+    name: "Татьяна",
+    date: "26 апреля 2025",
     rating: 4,
-    text: "Хорошее соотношение цены и качества. Заселение прошло быстро, квартира чистая. Единственное — хотелось бы парковку ближе.",
-    apartment: "Апартаменты в центре",
+    text: "Чудесная квартира, вид не передать словами, спишь на море, ешь на море, смотришь на море. Чувствуешь себя тоже очень классно в ней. Есть все необходимое. Все как на фото. Рядом есть пятерочка, WB, OZON, тропа здоровья. Район зеленый, птицы поют. В целом, нам очень понравилось, с удовольствием приедем еще.",
+    apartment: "Квартира-студия, 45 м², 2 кровати",
   },
   {
-    name: "Ольга П.",
-    date: "Август 2025",
+    name: "RUSSKAYA_BOLGARKA",
+    date: "19 апреля 2025",
     rating: 5,
-    text: "Уже третий раз бронируем через ВашСочи и всегда всё отлично! Надёжный сервис, честные описания, приятные цены.",
-    apartment: "Премиум апартаменты",
-  },
-  {
-    name: "Александр Н.",
-    date: "Июль 2025",
-    rating: 5,
-    text: "Отдыхали с друзьями, сняли большую квартиру. Всё супер — современный ремонт, быстрый Wi-Fi, кондиционер работает отлично. Рекомендую!",
-    apartment: "Апартаменты для компании",
+    text: "Отличная квартира, нереальный вид из окна. Просыпаешься и вся комната озарена солнцем, с кровати вид - будто тебя окружает одно море) уютно и эстетично) Хозяин очень добрый, веселый и вежливый! Все расскажет и покажет. Вернемся ещё обязательно, спасибо за теплый прием!",
+    apartment: "Квартира-студия, 45 м², 2 кровати",
   },
 ];
 
 const Reviews = () => {
-  const averageRating = (
-    reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length
-  ).toFixed(1);
-
   return (
     <Layout>
       {/* Hero */}
@@ -63,69 +94,90 @@ const Reviews = () => {
             <p className="text-lg text-muted-foreground mb-8">
               Читайте реальные отзывы наших гостей о проживании в апартаментах Сочи
             </p>
-            <div className="inline-flex items-center gap-3 bg-card px-6 py-3 rounded-full shadow-soft">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-6 h-6 text-accent fill-accent"
-                  />
-                ))}
+            <div className="flex flex-col items-center gap-2">
+              <div className="inline-flex items-center gap-3 bg-card px-6 py-3 rounded-full shadow-soft">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-6 h-6 text-accent fill-accent"
+                    />
+                  ))}
+                </div>
+                <span className="text-2xl font-bold text-foreground">
+                  4.8
+                </span>
+                <span className="text-muted-foreground">
+                  на основе более 50 отзывов
+                </span>
               </div>
-              <span className="text-2xl font-bold text-foreground">
-                {averageRating}
-              </span>
-              <span className="text-muted-foreground">
-                на основе {reviews.length} отзывов
-              </span>
+              <a
+                href="https://t.me/posutochnosochi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-primary/80 font-medium transition-colors"
+              >
+                Все отзывы
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Reviews Grid */}
+      {/* Reviews Carousel */}
       <section className="py-20 bg-background">
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reviews.map((review, index) => (
-              <div
-                key={index}
-                className="bg-card rounded-xl p-6 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col"
-              >
-                {/* Quote Icon */}
-                <Quote className="w-10 h-10 text-primary/20 mb-4" />
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {reviews.map((review, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="bg-card rounded-xl p-6 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col h-full">
+                    {/* Quote Icon */}
+                    <Quote className="w-10 h-10 text-primary/20 mb-4" />
 
-                {/* Rating */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-5 h-5 ${
-                        i < review.rating
-                          ? "text-accent fill-accent"
-                          : "text-muted-foreground/30"
-                      }`}
-                    />
-                  ))}
-                </div>
+                    {/* Rating */}
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-5 h-5 ${
+                            i < review.rating
+                              ? "text-accent fill-accent"
+                              : "text-muted-foreground/30"
+                          }`}
+                        />
+                      ))}
+                    </div>
 
-                {/* Text */}
-                <p className="text-foreground flex-1 mb-4 leading-relaxed">
-                  "{review.text}"
-                </p>
+                    {/* Text */}
+                    <p className="text-foreground flex-1 mb-4 leading-relaxed">
+                      "{review.text}"
+                    </p>
 
-                {/* Author */}
-                <div className="pt-4 border-t border-border">
-                  <div className="font-semibold text-foreground">
-                    {review.name}
+                    {/* Author */}
+                    <div className="pt-4 border-t border-border">
+                      <div className="font-semibold text-foreground">
+                        {review.name}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {review.apartment} • {review.date}
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-sm text-muted-foreground">
-                    {review.apartment} • {review.date}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center gap-4 mt-8">
+              <CarouselPrevious className="static translate-y-0" />
+              <CarouselNext className="static translate-y-0" />
+            </div>
+          </Carousel>
         </div>
       </section>
 
