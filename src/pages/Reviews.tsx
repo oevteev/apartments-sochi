@@ -249,11 +249,12 @@ const Reviews = () => {
                       <div className="font-semibold text-foreground">{review.name}</div>
                       <div className="text-sm text-muted-foreground">
                         {review.apartment} <br />
-                        {review.date} <br />
+                        {review.date}
                       </div>
                     </div>
 
                     {/* Text */}
+                    <br />
                     <p className="text-foreground flex-1 mb-4 leading-relaxed">"{review.text}"</p>
                   </div>
                 </CarouselItem>
