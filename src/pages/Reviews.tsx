@@ -253,24 +253,6 @@ const Reviews = () => {
           </Carousel>
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="py-16 bg-primary text-primary-foreground">
-        <div className="container-custom text-center">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold mb-4">Хотите оставить свой отзыв?</h2>
-          <p className="text-primary-foreground/80 mb-6 max-w-lg mx-auto">
-            Мы ценим обратную связь от каждого гостя. Напишите нам после вашего пребывания!
-          </p>
-          <a
-            href="https://t.me/posutochnosochi"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors"
-          >
-            Написать отзыв
-          </a>
-        </div>
-      </section>
     </Layout>
   );
 };
