@@ -262,7 +262,7 @@ const Reviews = () => {
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity"
                 >
-                  <img src={avitoIcon} alt="Avito" className="w-8 h-8 rounded" />
+                  <img src={avitoIcon} alt="Avito" className="h-6 w-auto object-contain" />
                 </a>
                 <a
                   href="https://sutochno.ru/front/searchapp/detail/1734459?host_id=5448483&host_device=PC&guest_id=5448483"
@@ -270,7 +270,7 @@ const Reviews = () => {
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity"
                 >
-                  <img src={sutochnoIcon} alt="Суточно.ру" className="w-8 h-8 rounded" />
+                  <img src={sutochnoIcon} alt="Суточно.ру" className="h-6 w-auto object-contain" />
                 </a>
                 <a
                   href="https://ostrovok.ru/hotel/russia/sochi/mid13111434/v_zhk_yuzhnoye_more_flat/"
@@ -278,11 +278,19 @@ const Reviews = () => {
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity"
                 >
-                  <img src={ostrovokIcon} alt="Ostrovok" className="w-8 h-8 rounded" />
+                  <img src={ostrovokIcon} alt="Ostrovok" className="h-6 w-auto object-contain" />
+                </a>
+                <a
+                  href="https://cian.ru/rent/flat/300248141/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  <img src={cianIcon} alt="Циан" className="h-6 w-auto object-contain" />
                 </a>
               </div>
             </div>
-            <span className="text-muted-foreground">{reviews.length} отзывов из 3 источников</span>
+            <span className="text-muted-foreground">{reviews.length} отзывов из 4 источников</span>
           </div>
 
           <Carousel
