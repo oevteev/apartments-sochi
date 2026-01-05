@@ -4,6 +4,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import avitoIcon from "@/assets/icons/avito.png";
 import sutochnoIcon from "@/assets/icons/sutochno.png";
 import ostrovokIcon from "@/assets/icons/ostrovok.png";
+import cianIcon from "@/assets/icons/cian.png";
 
 const reviews = [
   {
@@ -219,15 +220,6 @@ const reviews = [
       "Очень доброжелательный и вежливый человек, встретил возле дома, все досконально объяснил, рассказал. Подсказал куда лучше съездить и что посмотреть 💛. Отдыхом остались довольны, рекомендуем однозначно ✅",
     apartment: "Квартира-студия, 45 м², 2 кровати",
   },
-  {
-    name: "Максим",
-    date: "30 июля 2024 г.",
-    rating: 5,
-    text:
-      "Хозяин квартиры отличный, принял гостеприимно. Приехали чуть раньше, заселили без проблем — ранее чем договорились, в этом очень благодарны. Все рассказал, что где и как. " +
-      "Квартира очень понравилась, вид просто шикарный, фото это не передаёт как в живую. Всем рекомендуем!!! Все было очень классно и не забываемо.",
-    apartment: "Квартира-студия, 45 м², 2 кровати",
-  },
 ];
 
 const Reviews = () => {
@@ -288,9 +280,17 @@ const Reviews = () => {
                 >
                   <img src={ostrovokIcon} alt="Ostrovok" className="w-8 h-8 rounded" />
                 </a>
+                <a
+                  href="https://sochi.cian.ru/rent/flat/300248141/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  <img src={cianIcon} alt="Cian" className="w-8 h-8 rounded" />
+                </a>
               </div>
             </div>
-            <span className="text-muted-foreground">{reviews.length} отзывов из 3 источников</span>
+            <span className="text-muted-foreground">{reviews.length} отзывов из 4 источников</span>
           </div>
 
           <Carousel
