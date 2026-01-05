@@ -27,12 +27,11 @@ const reasons = [{
 const Management = () => {
   return <Layout>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-secondary via-background to-secondary/50">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-secondary via-background to-secondary/50 py-[80px]">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6 animate-fade-in">
-              Для собственников квартир и инвесторов
-            </h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6 animate-fade-in">Для собственников квартир
+и инвесторов</h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 animate-slide-up">
               Уважаемые собственники, приветствуем вас на нашем сайте
             </p>
@@ -113,7 +112,7 @@ const Management = () => {
                     <Home className="w-6 h-6 text-accent" />
                   </div>
                   <h3 className="text-xl font-serif font-bold text-foreground mb-4">Суть предложения</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-justify">
                     Рынок аренды — это целый отдельный бизнес, а для вас это пассивный доход. С нами вы будете
                     зарабатывать в среднем на <span className="text-primary font-semibold">10% выше рынка</span>{" "}
                     абсолютно не вникая в процессы, так как мы умеем правильно упаковать и презентовать вашу
