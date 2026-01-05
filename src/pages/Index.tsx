@@ -180,6 +180,23 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Widget Section */}
+      <section className="py-20 bg-secondary/30">
+        <div className="container-custom">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+              Найдите идеальное жильё
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Используйте наш удобный поиск для подбора апартаментов по вашим критериям
+            </p>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <RealtyCalendarWidget mode="search" />
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-20 bg-background">
         <div className="container-custom">
@@ -376,63 +393,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-background">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Частые вопросы
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Ответы на популярные вопросы о бронировании и проживании
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto space-y-10">
-            {faqData.map((category) => (
-              <div key={category.category}>
-                <h3 className="text-xl font-serif font-bold text-foreground mb-4 flex items-center gap-3">
-                  <span className="w-8 h-1 bg-primary rounded-full" />
-                  {category.category}
-                </h3>
-                <Accordion type="single" collapsible className="space-y-3">
-                  {category.questions.map((item, index) => (
-                    <AccordionItem
-                      key={index}
-                      value={`${category.category}-${index}`}
-                      className="bg-card rounded-xl px-6 border border-border shadow-sm"
-                    >
-                      <AccordionTrigger className="text-left text-foreground hover:text-primary hover:no-underline py-5">
-                        {item.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground pb-5">
-                        {item.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Widget Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container-custom">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Найдите идеальное жильё
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Используйте наш удобный поиск для подбора апартаментов по вашим критериям
-            </p>
-          </div>
-          <div className="max-w-4xl mx-auto">
-            <RealtyCalendarWidget mode="search" />
-          </div>
-        </div>
-      </section>
 
       {/* Lightbox Dialog */}
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
