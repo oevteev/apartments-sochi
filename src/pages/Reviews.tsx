@@ -174,7 +174,7 @@ const Reviews = () => {
                   ))}
                 </div>
                 <span className="text-2xl font-bold text-foreground">4.8</span>
-                <span className="text-muted-foreground">на основе более {reviews.length} отзывов</span>
+                <span className="text-muted-foreground">на основе более 70 отзывов</span>
               </div>
             </div>
           </div>
