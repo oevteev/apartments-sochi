@@ -383,8 +383,7 @@ const Reviews = () => {
                       <div className="font-semibold text-foreground">{review.name}</div>
                       <div className="text-sm text-muted-foreground">
                         {review.apartment} <br />
-                        {review.date} <br />
-                        {review.apartment}
+                        {review.date}
                       </div>
                     </div>
 
