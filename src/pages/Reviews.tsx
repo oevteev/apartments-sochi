@@ -215,9 +215,7 @@ const Reviews = () => {
                 </a>
               </div>
             </div>
-            <span className="text-muted-foreground">
-              {reviews.length} отзывов из 3 источников
-            </span>
+            <span className="text-muted-foreground">{reviews.length} отзывов из 3 источников</span>
           </div>
 
           <Carousel
@@ -246,7 +244,7 @@ const Reviews = () => {
                       ))}
                     </div>
 
-                     {/* Author */}
+                    {/* Author */}
                     <div className="pt-4 border-t border-border">
                       <div className="font-semibold text-foreground">{review.name}</div>
                       <div className="text-sm text-muted-foreground">
@@ -256,9 +254,6 @@ const Reviews = () => {
 
                     {/* Text */}
                     <p className="text-foreground flex-1 mb-4 leading-relaxed">"{review.text}"</p>
-
-                   
-                    </div>
                   </div>
                 </CarouselItem>
               ))}
