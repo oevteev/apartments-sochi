@@ -85,7 +85,7 @@ const Contacts = () => {
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
               Контакты
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-muted-foreground text-base">
               Свяжитесь с нами любым удобным способом — мы всегда на связи и готовы помочь!
             </p>
           </div>
