@@ -246,15 +246,18 @@ const Reviews = () => {
                       ))}
                     </div>
 
-                    {/* Text */}
-                    <p className="text-foreground flex-1 mb-4 leading-relaxed">"{review.text}"</p>
-
-                    {/* Author */}
+                     {/* Author */}
                     <div className="pt-4 border-t border-border">
                       <div className="font-semibold text-foreground">{review.name}</div>
                       <div className="text-sm text-muted-foreground">
                         {review.apartment} • {review.date}
                       </div>
+                    </div>
+
+                    {/* Text */}
+                    <p className="text-foreground flex-1 mb-4 leading-relaxed">"{review.text}"</p>
+
+                   
                     </div>
                   </div>
                 </CarouselItem>
