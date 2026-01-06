@@ -12,8 +12,8 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-xl font-serif font-bold">ВашСочи</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Бронируйте квартиры посуточно в Сочи с гарантией качества и
-              поддержкой 24/7. Лучшие апартаменты для вашего отдыха.
+              Бронируйте квартиры посуточно в Сочи с гарантией качества и поддержкой 24/7. Лучшие апартаменты для вашего
+              отдыха.
             </p>
           </div>
 
@@ -22,10 +22,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold">Навигация</h4>
             <ul className="space-y-2">
               <li>
-                <Link
-                  to="/catalog"
-                  className="text-muted-foreground hover:text-background transition-colors text-sm"
-                >
+                <Link to="/catalog" className="text-muted-foreground hover:text-background transition-colors text-sm">
                   Каталог
                 </Link>
               </li>
@@ -38,26 +35,17 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/about"
-                  className="text-muted-foreground hover:text-background transition-colors text-sm"
-                >
+                <Link to="/about" className="text-muted-foreground hover:text-background transition-colors text-sm">
                   О нас
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/faq"
-                  className="text-muted-foreground hover:text-background transition-colors text-sm"
-                >
+                <Link to="/faq" className="text-muted-foreground hover:text-background transition-colors text-sm">
                   Вопросы
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/reviews"
-                  className="text-muted-foreground hover:text-background transition-colors text-sm"
-                >
+                <Link to="/reviews" className="text-muted-foreground hover:text-background transition-colors text-sm">
                   Отзывы
                 </Link>
               </li>
@@ -100,7 +88,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold">Мы в соцсетях</h4>
             <div className="flex gap-3">
               <a
-                href="https://t.me/posutochnosochi"
+                href="https://t.me/vSochi"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-[#0088cc] flex items-center justify-center hover:opacity-80 transition-opacity"
