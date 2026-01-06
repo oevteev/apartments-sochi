@@ -16,25 +16,15 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
   return (
     <div className="fixed inset-0 z-50 lg:hidden">
       {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        onClick={onClose}
-      />
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
 
       {/* Menu Panel */}
       <div className="absolute right-0 top-0 bottom-0 w-80 max-w-full bg-white shadow-xl animate-slide-in-right">
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-border">
-            <span className="text-xl font-serif font-bold text-primary">
-              ВашСочи
-            </span>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              className="hover:bg-muted"
-            >
+            <span className="text-xl font-serif font-bold text-primary">ВашСочи</span>
+            <Button variant="ghost" size="icon" onClick={onClose} className="hover:bg-muted">
               <X className="w-6 h-6" />
             </Button>
           </div>
@@ -77,7 +67,7 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
               <span className="text-sm font-medium">+7 (995) 228-28-74</span>
             </a>
             <a
-              href="https://t.me/posutochnosochi"
+              href="https://t.me/vSochi"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#0088cc] text-white hover:bg-[#0077b5] transition-colors"
