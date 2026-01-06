@@ -439,6 +439,12 @@ const Index = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
+            {/* Mobile navigation - below carousel */}
+            <div className="flex md:hidden justify-center gap-4 mt-6">
+              <CarouselPrevious className="static translate-y-0" />
+              <CarouselNext className="static translate-y-0" />
+            </div>
+            {/* Desktop navigation - on sides */}
             <CarouselPrevious className="hidden md:flex -left-12" />
             <CarouselNext className="hidden md:flex -right-12" />
           </Carousel>
