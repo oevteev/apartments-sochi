@@ -9,6 +9,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, MessageCircle, Clock, Send } from "lucide-react";
 import InputMask from "react-input-mask";
+import useSpamProtection from "@/hooks/useSpamProtection";
+import HoneypotField from "@/components/HoneypotField";
+
 const contactInfo = [
   {
     icon: Phone,
@@ -35,6 +38,7 @@ const contactInfo = [
     href: null,
   },
 ];
+
 const Contacts = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -42,8 +46,45 @@ const Contacts = () => {
   const [agreedToPolicy, setAgreedToPolicy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  const {
+    honeypotValue,
+    setHoneypotValue,
+    honeypotFieldName,
+    isSpam,
+    getSpamReason,
+    resetTimer,
+  } = useSpamProtection();
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    // Spam protection check
+    if (isSpam()) {
+      const reason = getSpamReason();
+      console.warn("Spam detected:", reason);
+      
+      if (reason === "too_fast") {
+        toast({
+          title: "Подождите",
+          description: "Пожалуйста, заполните форму внимательнее",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      // Silent fail for honeypot (don't reveal detection)
+      toast({
+        title: "Сообщение отправлено!",
+        description: "Мы свяжемся с вами в ближайшее время",
+      });
+      setName("");
+      setPhone("");
+      setMessage("");
+      setAgreedToPolicy(false);
+      resetTimer();
+      return;
+    }
 
     // Validation
     if (!name.trim()) {
@@ -91,8 +132,10 @@ const Contacts = () => {
     setPhone("");
     setMessage("");
     setAgreedToPolicy(false);
+    resetTimer();
     setIsSubmitting(false);
   };
+
   return (
     <Layout>
       <SEO 
@@ -162,7 +205,14 @@ const Contacts = () => {
               <h2 className="text-2xl font-serif font-bold text-foreground mb-2">Напишите нам</h2>
               <p className="text-muted-foreground mb-8">Заполните форму, и мы свяжемся с вами в ближайшее время</p>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5 relative">
+                {/* Honeypot field - invisible to humans */}
+                <HoneypotField
+                  value={honeypotValue}
+                  onChange={setHoneypotValue}
+                  fieldName={honeypotFieldName}
+                />
+
                 <div>
                   <label className="text-sm font-medium text-foreground mb-2 block">Ваше имя</label>
                   <Input
@@ -234,4 +284,5 @@ const Contacts = () => {
     </Layout>
   );
 };
+
 export default Contacts;

@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
+import useSpamProtection from "@/hooks/useSpamProtection";
+import HoneypotField from "@/components/HoneypotField";
 
 const BookingForm = () => {
   const [name, setName] = useState("");
@@ -13,9 +15,44 @@ const BookingForm = () => {
   const [agreedToPolicy, setAgreedToPolicy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  
+  const {
+    honeypotValue,
+    setHoneypotValue,
+    honeypotFieldName,
+    isSpam,
+    getSpamReason,
+    resetTimer,
+  } = useSpamProtection();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    // Spam protection check
+    if (isSpam()) {
+      const reason = getSpamReason();
+      console.warn("Spam detected:", reason);
+      
+      if (reason === "too_fast") {
+        toast({
+          title: "Подождите",
+          description: "Пожалуйста, заполните форму внимательнее",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      // Silent fail for honeypot (don't reveal detection)
+      toast({
+        title: "Заявка принята!",
+        description: "Мы свяжемся с вами в ближайшее время",
+      });
+      setName("");
+      setPhone("");
+      setAgreedToPolicy(false);
+      resetTimer();
+      return;
+    }
 
     // Validation
     if (!name.trim()) {
@@ -64,11 +101,19 @@ const BookingForm = () => {
     setName("");
     setPhone("");
     setAgreedToPolicy(false);
+    resetTimer();
     setIsSubmitting(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
+    <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md relative">
+      {/* Honeypot field - invisible to humans */}
+      <HoneypotField
+        value={honeypotValue}
+        onChange={setHoneypotValue}
+        fieldName={honeypotFieldName}
+      />
+      
       <div>
         <Input
           type="text"
