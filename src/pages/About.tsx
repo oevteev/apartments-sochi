@@ -48,7 +48,7 @@ const About = () => {
       <section className="py-16 bg-background">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-serif font-bold text-foreground mb-8 text-center">
+            <h2 className="text-3xl font-serif font-bold text-foreground mb-8 text-left">
               Мы представлены на площадках бронирования
             </h2>
             <div className="flex flex-wrap items-center justify-center gap-8">
