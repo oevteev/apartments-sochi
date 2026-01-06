@@ -1,13 +1,16 @@
 import { useState, FormEvent } from "react";
+import { Link } from "react-router-dom";
 import InputMask from "react-input-mask";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
 
 const BookingForm = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [agreedToPolicy, setAgreedToPolicy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -34,18 +37,32 @@ const BookingForm = () => {
       return;
     }
 
+    if (!agreedToPolicy) {
+      toast({
+        title: "Ошибка",
+        description: "Пожалуйста, согласитесь с политикой конфиденциальности",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate submission (will be replaced with actual backend later)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Create message for Telegram
+    const message = `Запрос информации по аренде от ${name.trim()}, телефон ${phone}, необходимо связаться для уточнения деталей. Информация принята роботом сайта`;
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Open Telegram with pre-filled message
+    window.open(`https://t.me/vSochi?text=${encodedMessage}`, "_blank");
 
     toast({
       title: "Заявка принята!",
-      description: "Мы свяжемся с вами в ближайшее время",
+      description: "Сообщение отправлено в Telegram",
     });
 
     setName("");
     setPhone("");
+    setAgreedToPolicy(false);
     setIsSubmitting(false);
   };
 
@@ -76,6 +93,25 @@ const BookingForm = () => {
           )}
         </InputMask>
       </div>
+      
+      <div className="flex items-start space-x-3">
+        <Checkbox
+          id="booking-privacy-policy"
+          checked={agreedToPolicy}
+          onCheckedChange={(checked) => setAgreedToPolicy(checked as boolean)}
+          className="mt-0.5 border-white/50 data-[state=checked]:bg-accent data-[state=checked]:border-accent"
+        />
+        <label
+          htmlFor="booking-privacy-policy"
+          className="text-sm text-white/90 leading-tight cursor-pointer"
+        >
+          Отправляя данную форму, вы соглашаетесь{" "}
+          <Link to="/privacy-policy" className="text-accent hover:underline">
+            с политикой конфиденциальности
+          </Link>
+        </label>
+      </div>
+
       <Button
         type="submit"
         disabled={isSubmitting}
