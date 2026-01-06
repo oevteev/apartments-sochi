@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SEO from "@/components/SEO";
+import StructuredData from "@/components/StructuredData";
 import BookingForm from "@/components/BookingForm";
 import RealtyCalendarWidget from "@/components/RealtyCalendarWidget";
 import HeroSlider from "@/components/HeroSlider";
@@ -208,6 +209,7 @@ const Index = () => {
         title="Апартаменты посуточно в Сочи" 
         description="Аренда апартаментов посуточно в Сочи. Уютные квартиры у моря с видом на горы. Прямое бронирование без комиссий. Трансфер, поддержка 24/7."
       />
+      <StructuredData />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20">
         <HeroSlider />
