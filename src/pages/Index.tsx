@@ -2,18 +2,23 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import BookingForm from "@/components/BookingForm";
 import RealtyCalendarWidget from "@/components/RealtyCalendarWidget";
-import { Shield, FileCheck, HeadphonesIcon, MessageCircle, Play, ExternalLink, ChevronDown, Star, Quote } from "lucide-react";
+import {
+  Shield,
+  FileCheck,
+  HeadphonesIcon,
+  MessageCircle,
+  Play,
+  ExternalLink,
+  ChevronDown,
+  Star,
+  Quote,
+} from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import heroBackground from "@/assets/heroback.jpg";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 // Import apartment images
 import apart1 from "@/assets/aparts/apart-1.jpg";
@@ -40,41 +45,91 @@ const initialImages = [apart1, apart2, apart4, apart5, apart6, apart7];
 const moreImages = [apart8, apart9, apart10, apart11, apart12, apart3];
 
 const youtubeLinks = [
-  { title: "Обзор апартаментов #1", url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=6" },
-  { title: "Обзор апартаментов #2", url: "https://www.youtube.com/watch?v=bbqdhV1IZ9E&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=7" },
-  { title: "Обзор апартаментов #3", url: "https://www.youtube.com/watch?v=Xz3mTWyJFXE&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=8" },
-  { title: "Обзор апартаментов #4", url: "https://www.youtube.com/watch?v=tJ1Bq4YLydo&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=4" },
-  { title: "Обзор апартаментов #5", url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM" },
+  {
+    title: "Обзор апартаментов #1",
+    url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=6",
+  },
+  {
+    title: "Обзор апартаментов #2",
+    url: "https://www.youtube.com/watch?v=bbqdhV1IZ9E&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=7",
+  },
+  {
+    title: "Обзор апартаментов #3",
+    url: "https://www.youtube.com/watch?v=Xz3mTWyJFXE&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=8",
+  },
+  {
+    title: "Обзор апартаментов #4",
+    url: "https://www.youtube.com/watch?v=tJ1Bq4YLydo&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=4",
+  },
+  {
+    title: "Обзор апартаментов #5",
+    url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM",
+  },
 ];
 
 const rutubeLinks = [
-  { title: "Обзор апартаментов #1", url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A&playlist=1161435" },
-  { title: "Обзор апартаментов #2", url: "https://rutube.ru/video/private/c737d7b4fa3b961088aa3c3e0d62da6f/?p=gqxpaLM9Iqobd27n3h09aw&playlist=1161435" },
-  { title: "Обзор апартаментов #3", url: "https://rutube.ru/video/private/8ccfee5a318e22499aeb86444a1d429e/?p=yztm3p6MyOpL6hYqcot2Iw&playlist=1161435" },
-  { title: "Обзор апартаментов #4", url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A" },
-  { title: "Обзор апартаментов #5", url: "https://rutube.ru/video/private/c737d7b4fa3b961088aa3c3e0d62da6f/?p=gqxpaLM9Iqobd27n3h09aw" },
+  {
+    title: "Обзор апартаментов #1",
+    url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A&playlist=1161435",
+  },
+  {
+    title: "Обзор апартаментов #2",
+    url: "https://rutube.ru/video/private/c737d7b4fa3b961088aa3c3e0d62da6f/?p=gqxpaLM9Iqobd27n3h09aw&playlist=1161435",
+  },
+  {
+    title: "Обзор апартаментов #3",
+    url: "https://rutube.ru/video/private/8ccfee5a318e22499aeb86444a1d429e/?p=yztm3p6MyOpL6hYqcot2Iw&playlist=1161435",
+  },
+  {
+    title: "Обзор апартаментов #4",
+    url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A",
+  },
+  {
+    title: "Обзор апартаментов #5",
+    url: "https://rutube.ru/video/private/c737d7b4fa3b961088aa3c3e0d62da6f/?p=gqxpaLM9Iqobd27n3h09aw",
+  },
 ];
 
 const faqData = [
   {
     category: "Бронирование",
     questions: [
-      { question: "Как забронировать квартиру?", answer: "Вы можете забронировать квартиру через наш каталог, заполнив форму на сайте, позвонив по телефону +7(995)228-28-74 или написав нам в Telegram." },
-      { question: "Можно ли отменить бронь и вернуть деньги?", answer: "За 2 недели до заезда – возврат 100%. За неделю – индивидуально по согласованию. Менее чем за 7 дней – бронь невозвратная." },
+      {
+        question: "Как забронировать квартиру?",
+        answer:
+          "Вы можете забронировать квартиру через наш каталог, заполнив форму на сайте, позвонив по телефону +7(995)228-28-74 или написав нам в Telegram.",
+      },
+      {
+        question: "Можно ли отменить бронь и вернуть деньги?",
+        answer:
+          "За 2 недели до заезда – возврат 100%. За неделю – индивидуально по согласованию. Менее чем за 7 дней – бронь невозвратная.",
+      },
     ],
   },
   {
     category: "Заселение и выезд",
     questions: [
-      { question: "Во сколько заезд и выезд?", answer: "Стандартный заезд – после 14:00, выезд – до 12:00. Возможен ранний заезд и поздний выезд – только по предварительной договоренности." },
-      { question: "Как проходит заселение?", answer: "Все квартиры оборудованы smart замками. Вы получаете видеоинструкцию и подробную информацию по заселению." },
+      {
+        question: "Во сколько заезд и выезд?",
+        answer:
+          "Стандартный заезд – после 14:00, выезд – до 12:00. Возможен ранний заезд и поздний выезд – только по предварительной договоренности.",
+      },
+      {
+        question: "Как проходит заселение?",
+        answer:
+          "Все квартиры оборудованы smart замками. Вы получаете видеоинструкцию и подробную информацию по заселению.",
+      },
     ],
   },
   {
     category: "Оплата",
     questions: [
       { question: "Какая предоплата?", answer: "Предоплата – 20% от стоимости проживания. Вносится при бронировании." },
-      { question: "Какой залог?", answer: "При заселении оплачивается залог от порчи имущества в размере 6000 руб. Залог возвращается при выезде." },
+      {
+        question: "Какой залог?",
+        answer:
+          "При заселении оплачивается залог от порчи имущества в размере 6000 руб. Залог возвращается при выезде.",
+      },
     ],
   },
 ];
@@ -184,9 +239,7 @@ const Index = () => {
       <section className="py-20 bg-secondary/30">
         <div className="container-custom">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Найдите идеальное жильё
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Найдите идеальное жильё</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Используйте наш удобный поиск для подбора апартаментов по вашим критериям
             </p>
@@ -201,9 +254,7 @@ const Index = () => {
       <section className="py-20 bg-background">
         <div className="container-custom">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Почему выбирают нас
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Почему выбирают нас</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Мы делаем всё, чтобы ваш отдых в Сочи был незабываемым
             </p>
@@ -219,12 +270,8 @@ const Index = () => {
                 <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
                   <feature.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {feature.description}
-                </p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -235,12 +282,8 @@ const Index = () => {
       <section className="py-20 bg-secondary/30">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Наши апартаменты
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Роскошные апартаменты с панорамным видом на море
-            </p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Наши апартаменты</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">Роскошные апартаменты с панорамным видом на море</p>
           </div>
 
           {/* Photo Gallery */}
@@ -340,20 +383,39 @@ const Index = () => {
       <section className="py-20 bg-background">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-              Отзывы наших гостей
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
-              Узнайте, что говорят о нас наши клиенты
-            </p>
-            <Link to="/reviews" className="inline-flex items-center gap-4 text-primary hover:text-primary/80 transition-colors group">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Отзывы наших гостей</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-6">Узнайте, что говорят о нас наши клиенты</p>
+            <Link
+              to="/reviews"
+              className="inline-flex items-center gap-4 text-primary hover:text-primary/80 transition-colors group"
+            >
               <span className="text-lg font-medium">Все отзывы</span>
               <div className="flex items-center gap-2">
-                <img src={yandexIcon} alt="Яндекс" className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity" />
-                <img src={avitoIcon} alt="Авито" className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity" />
-                <img src={cianIcon} alt="Циан" className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity" />
-                <img src={sutochnoIcon} alt="Суточно" className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity" />
-                <img src={ostrovokIcon} alt="Островок" className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity" />
+                <img
+                  src={yandexIcon}
+                  alt="Яндекс"
+                  className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
+                />
+                <img
+                  src={avitoIcon}
+                  alt="Авито"
+                  className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
+                />
+                <img
+                  src={cianIcon}
+                  alt="Циан"
+                  className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
+                />
+                <img
+                  src={sutochnoIcon}
+                  alt="Суточно"
+                  className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
+                />
+                <img
+                  src={ostrovokIcon}
+                  alt="Островок"
+                  className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
+                />
               </div>
             </Link>
           </div>
@@ -375,9 +437,7 @@ const Index = () => {
                       ))}
                     </div>
                     <Quote className="w-8 h-8 text-primary/20 mb-3" />
-                    <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-4">
-                      {review.text}
-                    </p>
+                    <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-4">{review.text}</p>
                     <div className="border-t border-border pt-4">
                       <p className="font-semibold text-foreground">{review.name}</p>
                       <p className="text-xs text-muted-foreground">{review.date}</p>
@@ -389,10 +449,8 @@ const Index = () => {
             <CarouselPrevious className="hidden md:flex -left-12" />
             <CarouselNext className="hidden md:flex -right-12" />
           </Carousel>
-
         </div>
       </section>
-
 
       {/* Lightbox Dialog */}
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
@@ -406,9 +464,7 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
-            Готовы забронировать?
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Готовы забронировать?</h2>
           <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">
             Свяжитесь с нами прямо сейчас, и мы поможем подобрать идеальный вариант для вашего отдыха
           </p>
@@ -420,7 +476,7 @@ const Index = () => {
               Позвонить нам
             </a>
             <a
-              href="https://t.me/posutochnosochi"
+              href="https://t.me/vSochi"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors"
