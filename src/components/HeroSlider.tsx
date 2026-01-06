@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import hero1 from "@/assets/hero/hero-1.jpg";
 import hero2 from "@/assets/hero/hero-2.jpg";
@@ -69,6 +70,22 @@ const HeroSlider = () => {
           background: "linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%)",
         }}
       />
+
+      {/* Navigation arrows */}
+      <button
+        onClick={() => setCurrentIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length)}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition-all duration-300 backdrop-blur-sm"
+        aria-label="Предыдущий слайд"
+      >
+        <ChevronLeft size={32} />
+      </button>
+      <button
+        onClick={() => setCurrentIndex((prev) => (prev + 1) % heroImages.length)}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition-all duration-300 backdrop-blur-sm"
+        aria-label="Следующий слайд"
+      >
+        <ChevronRight size={32} />
+      </button>
 
       {/* Slide indicators */}
       <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-2 z-10">
