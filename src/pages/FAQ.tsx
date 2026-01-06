@@ -1,71 +1,102 @@
 import Layout from "@/components/layout/Layout";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-const faqData = [{
-  category: "Бронирование",
-  questions: [{
-    question: "Как забронировать квартиру?",
-    answer: "Вы можете забронировать квартиру через наш каталог, заполнив форму на сайте, позвонив по телефону +7(995)228-28-74 или написав нам в Telegram."
-  }, {
-    question: "Можно ли отменить бронь и вернуть деньги?",
-    answer: "За 2 недели до заезда – возврат 100%. За неделю – индивидуально по согласованию. Менее чем за 7 дней – бронь невозвратная. Мы держим квартиру под вашу дату и несем убытки при отмене."
-  }, {
-    question: "С кем заключается договор?",
-    answer: "Договор оформляется с нашей управляющей компанией (ИП). Вы бронируете напрямую – без посредников и собственников."
-  }]
-}, {
-  category: "Заселение и выезд",
-  questions: [{
-    question: "Какие документы нужны для заселения?",
-    answer: "Для заселения необходим паспорт РФ. Для иностранных граждан - загранпаспорт и миграционная карта."
-  }, {
-    question: "Во сколько заезд и выезд?",
-    answer: "Стандартный заезд – после 14:00, выезд – до 12:00. Возможен ранний заезд и поздний выезд – только по предварительной договоренности с администратором и за доплату."
-  }, {
-    question: "Возможно ли заехать пораньше?",
-    answer: "Да, если апартамент свободен и не занят другими гостями. Обязательно уточняйте заранее."
-  }, {
-    question: "Как проходит заселение?",
-    answer: "Все квартиры оборудованы smart замками. Вы получаете видеоинструкцию и подробную информацию по заселению."
-  }]
-}, {
-  category: "Оплата",
-  questions: [{
-    question: "Какая предоплата?",
-    answer: "Предоплата – 20% от стоимости проживания. Вносится при бронировании."
-  }, {
-    question: "Какой залог?",
-    answer: "При заселении оплачивается залог (депозит) от порчи имущества в размере 6000 руб. Залог возвращается при выезде, если в апартаменте ничего не сломано и не разбито."
-  }]
-}, {
-  category: "Проживание",
-  questions: [{
-    question: "Что входит в стоимость проживания?",
-    answer: "Кухня с посудой; WI-FI; Полотенца (кроме пляжных); Постельное белье; Техника (телевизор, кондиционер, бойлер, фен, утюг/отпариватель)"
-  }, {
-    question: "Заселение с детьми разрешено?",
-    answer: "Разрешено, если ребенок старше 12 лет."
-  }, {
-    question: "Можно ли с животными?",
-    answer: "Нет, запрещено."
-  }, {
-    question: "В квартирах можно курить?",
-    answer: "Нет, строго запрещено. Курение в апартаментах не допускается. Штраф за курение в апартаментах - 6000 руб."
-  }, {
-    question: "Возможна ли длительная аренда?",
-    answer: "Да, возможна длительная аренда сроком до 11 месяцев. Цену и сроки аренды уточняйте у администратора."
-  }]
-}];
+const faqData = [
+  {
+    category: "Бронирование",
+    questions: [
+      {
+        question: "Как забронировать квартиру?",
+        answer:
+          "Вы можете забронировать квартиру через наш каталог, заполнив форму на сайте, позвонив по телефону +7(995)228-28-74 или написав нам в Telegram.",
+      },
+      {
+        question: "Можно ли отменить бронь и вернуть деньги?",
+        answer:
+          "За 2 недели до заезда – возврат 100%. За неделю – индивидуально по согласованию. Менее чем за 7 дней – бронь невозвратная. Мы держим квартиру под вашу дату и несем убытки при отмене.",
+      },
+      {
+        question: "С кем заключается договор?",
+        answer:
+          "Договор оформляется с нашей управляющей компанией (ИП). Вы бронируете напрямую – без посредников и собственников.",
+      },
+    ],
+  },
+  {
+    category: "Заселение и выезд",
+    questions: [
+      {
+        question: "Какие документы нужны для заселения?",
+        answer: "Для заселения необходим паспорт РФ. Для иностранных граждан - загранпаспорт и миграционная карта.",
+      },
+      {
+        question: "Во сколько заезд и выезд?",
+        answer:
+          "Стандартный заезд – после 14:00, выезд – до 12:00. Возможен ранний заезд и поздний выезд – только по предварительной договоренности с администратором и за доплату.",
+      },
+      {
+        question: "Возможно ли заехать пораньше?",
+        answer: "Да, если апартамент свободен и не занят другими гостями. Обязательно уточняйте заранее.",
+      },
+      {
+        question: "Как проходит заселение?",
+        answer:
+          "Все квартиры оборудованы smart замками. Вы получаете видеоинструкцию и подробную информацию по заселению.",
+      },
+    ],
+  },
+  {
+    category: "Оплата",
+    questions: [
+      {
+        question: "Какая предоплата?",
+        answer: "Предоплата – 20% от стоимости проживания. Вносится при бронировании.",
+      },
+      {
+        question: "Какой залог?",
+        answer:
+          "При заселении оплачивается залог (депозит) от порчи имущества в размере 6000 руб. Залог возвращается при выезде, если в апартаменте ничего не сломано и не разбито.",
+      },
+    ],
+  },
+  {
+    category: "Проживание",
+    questions: [
+      {
+        question: "Что входит в стоимость проживания?",
+        answer:
+          "Кухня с посудой; WI-FI; Полотенца (кроме пляжных); Постельное белье; Техника (телевизор, кондиционер, бойлер, фен, утюг/отпариватель)",
+      },
+      {
+        question: "Заселение с детьми разрешено?",
+        answer: "Разрешено, если ребенок старше 12 лет.",
+      },
+      {
+        question: "Можно ли с животными?",
+        answer: "Нет, запрещено.",
+      },
+      {
+        question: "В квартирах можно курить?",
+        answer:
+          "Нет, строго запрещено. Курение в апартаментах не допускается. Штраф за курение в апартаментах - 6000 руб.",
+      },
+      {
+        question: "Возможна ли длительная аренда?",
+        answer: "Да, возможна длительная аренда сроком до 11 месяцев. Цену и сроки аренды уточняйте у администратора.",
+      },
+    ],
+  },
+];
 const FAQ = () => {
-  return <Layout>
+  return (
+    <Layout>
       {/* Hero */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-              Частые вопросы
-            </h1>
-            <p className="text-lg text-muted-foreground">Ответы на популярные вопросы о бронировании, оплате и проживании.
-Не нашли ответ? Свяжитесь с нами!</p>
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">Частые вопросы</h1>
+            <p className="text-lg text-muted-foreground">
+              Ответы на популярные вопросы о бронировании, оплате и проживании. Не нашли ответ? Свяжитесь с нами!
+            </p>
           </div>
         </div>
       </section>
@@ -74,22 +105,28 @@ const FAQ = () => {
       <section className="bg-background py-[10px]">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto space-y-12">
-            {faqData.map(category => <div key={category.category}>
+            {faqData.map((category) => (
+              <div key={category.category}>
                 <h2 className="text-2xl font-serif font-bold text-foreground mb-6 flex items-center gap-3">
                   <span className="w-10 h-1 bg-primary rounded-full" />
                   {category.category}
                 </h2>
                 <Accordion type="single" collapsible className="space-y-3">
-                  {category.questions.map((item, index) => <AccordionItem key={index} value={`${category.category}-${index}`} className="bg-card rounded-xl px-6 border border-border shadow-sm">
+                  {category.questions.map((item, index) => (
+                    <AccordionItem
+                      key={index}
+                      value={`${category.category}-${index}`}
+                      className="bg-card rounded-xl px-6 border border-border shadow-sm"
+                    >
                       <AccordionTrigger className="text-left text-foreground hover:text-primary hover:no-underline py-5">
                         {item.question}
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground pb-5">
-                        {item.answer}
-                      </AccordionContent>
-                    </AccordionItem>)}
+                      <AccordionContent className="text-muted-foreground pb-5">{item.answer}</AccordionContent>
+                    </AccordionItem>
+                  ))}
                 </Accordion>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -97,22 +134,27 @@ const FAQ = () => {
       {/* CTA */}
       <section className="py-16 bg-secondary/50">
         <div className="container-custom text-center">
-          <h2 className="text-2xl font-serif font-bold text-foreground mb-4">
-            Остались вопросы?
-          </h2>
-          <p className="text-muted-foreground mb-6">
-            Мы с радостью ответим на все ваши вопросы
-          </p>
+          <h2 className="text-2xl font-serif font-bold text-foreground mb-4">Остались вопросы?</h2>
+          <p className="text-muted-foreground mb-6">Мы с радостью ответим на все ваши вопросы</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+79952282874" className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors">
+            <a
+              href="tel:+79952282874"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+            >
               Позвонить
             </a>
-            <a href="https://t.me/posutochnosochi" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors">
+            <a
+              href="https://t.me/vSochi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors"
+            >
               Написать в Telegram
             </a>
           </div>
         </div>
       </section>
-    </Layout>;
+    </Layout>
+  );
 };
 export default FAQ;
