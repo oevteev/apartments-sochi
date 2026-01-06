@@ -34,14 +34,22 @@ const HeroSlider = () => {
       {heroImages.map((image, index) => (
         <div
           key={index}
-          className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            index === currentIndex ? "animate-ken-burns" : ""
+          }`}
           style={{
             opacity: index === currentIndex ? 1 : 0,
-            backgroundImage: `url('${image}')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
           }}
-        />
+        >
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url('${image}')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        </div>
       ))}
       {/* Gradient overlay */}
       <div
