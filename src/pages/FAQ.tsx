@@ -144,7 +144,7 @@ const FAQ = () => {
               Позвонить
             </a>
             <a
-              href="https://t.me/vSochi"
+              href="https://t.me/SochiWaits"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors"
