@@ -162,7 +162,7 @@ const About = () => {
               </a>
 
               <a
-                href="https://t.me/vSochi"
+                href="https://t.me/SochiWaits"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-5 bg-[#0088cc] text-white rounded-xl shadow-soft hover:opacity-90 transition-opacity sm:col-span-2"
