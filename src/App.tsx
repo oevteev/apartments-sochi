@@ -11,6 +11,7 @@ import FAQ from "./pages/FAQ";
 import Reviews from "./pages/Reviews";
 import Contacts from "./pages/Contacts";
 import Management from "./pages/Management";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/management" element={<Management />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
