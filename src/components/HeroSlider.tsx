@@ -17,7 +17,7 @@ const HeroSlider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-    }, 4000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, []);
@@ -37,13 +37,13 @@ const HeroSlider = () => {
         />
       ))}
       {/* Gradient overlay */}
-      <div 
+      <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%)"
+          background: "linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%)",
         }}
       />
-      
+
       {/* Slide indicators */}
       <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {heroImages.map((_, index) => (
@@ -51,9 +51,7 @@ const HeroSlider = () => {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex 
-                ? "bg-white w-6" 
-                : "bg-white/50 hover:bg-white/70"
+              index === currentIndex ? "bg-white w-6" : "bg-white/50 hover:bg-white/70"
             }`}
             aria-label={`Перейти к слайду ${index + 1}`}
           />
