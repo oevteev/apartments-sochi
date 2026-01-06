@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { Phone, Mail, CreditCard, Banknote, Building2, MessageCircle } from "lucide-react";
 import logoAbout from "@/assets/logo-about.png";
 import avitoIcon from "@/assets/icons/avito.png";
@@ -6,9 +7,14 @@ import sutochnoIcon from "@/assets/icons/sutochno.png";
 import ostrovokIcon from "@/assets/icons/ostrovok.png";
 import cianIcon from "@/assets/icons/cian.png";
 import yandexIcon from "@/assets/icons/yandex.png";
+
 const About = () => {
   return (
     <Layout>
+      <SEO 
+        title="О нас" 
+        description="ВашСочи — ваш надёжный партнёр в поиске идеального жилья для отдыха в Сочи. История компании, контакты и реквизиты."
+      />
       {/* Hero with Logo */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">
         <div className="container-custom">

@@ -1,8 +1,13 @@
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 
 const PrivacyPolicy = () => {
   return (
     <Layout>
+      <SEO 
+        title="Политика конфиденциальности" 
+        description="Политика в отношении обработки персональных данных. Информация о защите ваших данных."
+      />
       <section className="pt-20 pb-16 bg-gradient-to-br from-primary/10 to-accent/10 py-[32px]"></section>
 
       <section className="bg-background py-12">

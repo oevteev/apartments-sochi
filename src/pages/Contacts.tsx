@@ -1,6 +1,7 @@
 import { useState, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -94,6 +95,10 @@ const Contacts = () => {
   };
   return (
     <Layout>
+      <SEO 
+        title="Контакты" 
+        description="Свяжитесь с нами для бронирования апартаментов в Сочи. Телефон, email, Telegram. Работаем 9:00-19:00 по московскому времени."
+      />
       {/* Hero */}
       <section className="pt-20 pb-16 bg-gradient-to-br from-primary/10 to-accent/10 py-[32px]"></section>
 

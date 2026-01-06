@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import RealtyCalendarWidget from "@/components/RealtyCalendarWidget";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -97,6 +98,10 @@ const Apartments = () => {
 
   return (
     <Layout>
+      <SEO 
+        title="Апартаменты" 
+        description="Уютные апартаменты с панорамным видом на море в Сочи. Фотогалерея, видеообзоры и онлайн-бронирование."
+      />
       <div className="pt-24 pb-12">
         <div className="container-custom">
           {/* Header */}
