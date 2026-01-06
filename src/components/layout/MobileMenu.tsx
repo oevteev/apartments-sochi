@@ -67,7 +67,7 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
               <span className="text-sm font-medium">+7 (995) 228-28-74</span>
             </a>
             <a
-              href="https://t.me/vSochi"
+              href="https://t.me/SochiWaits"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#0088cc] text-white hover:bg-[#0077b5] transition-colors"
