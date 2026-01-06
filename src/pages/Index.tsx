@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import BookingForm from "@/components/BookingForm";
 import RealtyCalendarWidget from "@/components/RealtyCalendarWidget";
+import HeroSlider from "@/components/HeroSlider";
 import {
   Shield,
   FileCheck,
@@ -14,7 +15,6 @@ import {
   Quote,
 } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import heroBackground from "@/assets/heroback.jpg";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -204,15 +204,8 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section
-        className="relative min-h-screen flex items-center justify-center pt-20"
-        style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%), url('${heroBackground}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
-      >
+      <section className="relative min-h-screen flex items-center justify-center pt-20">
+        <HeroSlider />
         <div className="container-custom relative z-10 py-20">
           <div className="max-w-2xl mx-auto text-center text-white">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 animate-fade-in">
