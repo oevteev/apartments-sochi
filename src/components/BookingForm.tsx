@@ -51,9 +51,9 @@ const BookingForm = () => {
     // Create message for Telegram
     const message = `Запрос информации по аренде от ${name.trim()}, телефон ${phone}, необходимо связаться для уточнения деталей. Информация принята роботом сайта`;
     const encodedMessage = encodeURIComponent(message);
-    
+
     // Open Telegram with pre-filled message
-    window.open(`https://t.me/vSochi?text=${encodedMessage}`, "_blank");
+    window.open(`https://t.me/SochiWaits?text=${encodedMessage}`, "_blank");
 
     toast({
       title: "Заявка принята!",
@@ -78,11 +78,7 @@ const BookingForm = () => {
         />
       </div>
       <div>
-        <InputMask
-          mask="+7 (999) 999-99-99"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        >
+        <InputMask mask="+7 (999) 999-99-99" value={phone} onChange={(e) => setPhone(e.target.value)}>
           {(inputProps: any) => (
             <Input
               {...inputProps}
@@ -93,7 +89,7 @@ const BookingForm = () => {
           )}
         </InputMask>
       </div>
-      
+
       <div className="flex items-start space-x-3">
         <Checkbox
           id="booking-privacy-policy"
@@ -101,10 +97,7 @@ const BookingForm = () => {
           onCheckedChange={(checked) => setAgreedToPolicy(checked as boolean)}
           className="mt-0.5 border-white/50 data-[state=checked]:bg-accent data-[state=checked]:border-accent"
         />
-        <label
-          htmlFor="booking-privacy-policy"
-          className="text-sm text-white/90 leading-tight cursor-pointer"
-        >
+        <label htmlFor="booking-privacy-policy" className="text-sm text-white/90 leading-tight cursor-pointer">
           Отправляя данную форму, вы соглашаетесь{" "}
           <Link to="/privacy-policy" className="text-accent hover:underline">
             с политикой конфиденциальности
