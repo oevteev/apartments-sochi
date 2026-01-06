@@ -1,8 +1,10 @@
 import { useState, FormEvent } from "react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, MessageCircle, Clock, Send } from "lucide-react";
 import InputMask from "react-input-mask";
@@ -36,6 +38,7 @@ const Contacts = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [agreedToPolicy, setAgreedToPolicy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const handleSubmit = async (e: FormEvent) => {
@@ -67,6 +70,14 @@ const Contacts = () => {
       });
       return;
     }
+    if (!agreedToPolicy) {
+      toast({
+        title: "Ошибка",
+        description: "Пожалуйста, согласитесь с политикой конфиденциальности",
+        variant: "destructive",
+      });
+      return;
+    }
     setIsSubmitting(true);
 
     // Simulate submission
@@ -78,6 +89,7 @@ const Contacts = () => {
     setName("");
     setPhone("");
     setMessage("");
+    setAgreedToPolicy(false);
     setIsSubmitting(false);
   };
   return (
@@ -173,6 +185,21 @@ const Contacts = () => {
                     rows={5}
                     className="resize-none"
                   />
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <Checkbox
+                    id="privacy-policy"
+                    checked={agreedToPolicy}
+                    onCheckedChange={(checked) => setAgreedToPolicy(checked as boolean)}
+                    className="mt-0.5"
+                  />
+                  <label htmlFor="privacy-policy" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+                    Отправляя данную форму, вы соглашаетесь{" "}
+                    <Link to="/privacy-policy" className="text-primary hover:underline">
+                      с политикой конфиденциальности
+                    </Link>
+                  </label>
                 </div>
 
                 <Button
