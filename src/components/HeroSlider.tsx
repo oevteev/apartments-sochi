@@ -20,6 +20,7 @@ const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8, hero
 
 const HeroSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,20 +30,30 @@ const HeroSlider = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const parallaxOffset = scrollY * 0.4;
+
   return (
     <div className="absolute inset-0 overflow-hidden">
       {heroImages.map((image, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentIndex ? "animate-ken-burns" : ""
-          }`}
+          className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
           style={{
             opacity: index === currentIndex ? 1 : 0,
+            transform: `translateY(${parallaxOffset}px) scale(1.1)`,
           }}
         >
           <div
-            className="absolute inset-0"
+            className="absolute inset-[-10%] w-[120%] h-[120%]"
             style={{
               backgroundImage: `url('${image}')`,
               backgroundSize: "cover",
