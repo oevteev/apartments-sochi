@@ -49,8 +49,7 @@ const BookingForm = () => {
     setIsSubmitting(true);
 
     // Create message for Telegram
-    const message =
-      "Запрос информации по аренде апартаментов в Сочи от ${name.trim()}, телефон ${phone}, пожалуйста, свяжитесь со мной для уточнения деталей. С уважением, ${name.trim()}";
+    const message = `Запрос информации по аренде апартаментов в Сочи от ${name.trim()}, телефон ${phone}, пожалуйста, свяжитесь со мной для уточнения деталей. С уважением, ${name.trim()}`;
 
     const encodedMessage = encodeURIComponent(message);
 
