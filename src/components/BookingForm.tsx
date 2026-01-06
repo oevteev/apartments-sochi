@@ -52,7 +52,7 @@ const BookingForm = () => {
     // const message2 = "Запрос информации по аренде апартаментов в Сочи от ${name.trim()}, телефон ${phone}, пожалуйста, " +
     //             "свяжитесь со мной для уточнения деталей. С уважением, ${name.trim()}";
 
-    const message = "Запрос информации";
+    const message = "Запрос информации по аренде апартаментов в Сочи от ${name.trim()}, телефон ${phone}, пожалуйста,";
 
     const encodedMessage = encodeURIComponent(message);
 
