@@ -51,13 +51,10 @@ const HeroSlider = () => {
             transform: `translateY(${parallaxOffset}px) scale(1.1)`,
           }}
         >
-          <div
-            className="absolute inset-[-10%] w-[120%] h-[120%]"
-            style={{
-              backgroundImage: `url('${image}')`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
+          <img
+            src={image}
+            alt={`Апартаменты в Сочи - интерьер ${index + 1}`}
+            className="absolute inset-[-10%] w-[120%] h-[120%] object-cover"
           />
         </div>
       ))}
