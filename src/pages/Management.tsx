@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { CheckCircle, Sparkles, Shield, FileText, Clock, Star, Users, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -36,6 +37,10 @@ const reasons = [
 const Management = () => {
   return (
     <Layout>
+      <SEO 
+        title="Управление недвижимостью" 
+        description="Услуги управления недвижимостью в Сочи для собственников квартир и инвесторов. Сдача квартир в посуточную аренду с гарантией дохода."
+      />
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-secondary via-background to-secondary/50 py-[90px]">
         <div className="container-custom">

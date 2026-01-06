@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { Star, Quote } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import avitoIcon from "@/assets/icons/avito.png";
@@ -230,7 +231,12 @@ const reviews = [{
   apartment: "Квартира-студия, 45 м², 2 кровати"
 }];
 const Reviews = () => {
-  return <Layout>
+  return (
+    <Layout>
+      <SEO 
+        title="Отзывы гостей" 
+        description="Реальные отзывы гостей о проживании в апартаментах Сочи. Рейтинг 4.8 на основе более 70 отзывов."
+      />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">
         <div className="container-custom">
@@ -317,6 +323,7 @@ const Reviews = () => {
           </Carousel>
         </div>
       </section>
-    </Layout>;
+    </Layout>
+  );
 };
 export default Reviews;

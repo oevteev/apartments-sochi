@@ -1,5 +1,7 @@
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+
 const faqData = [
   {
     category: "Бронирование",
@@ -89,6 +91,10 @@ const faqData = [
 const FAQ = () => {
   return (
     <Layout>
+      <SEO 
+        title="Частые вопросы" 
+        description="Ответы на популярные вопросы о бронировании апартаментов в Сочи. Информация об оплате, заселении и проживании."
+      />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">
         <div className="container-custom">
