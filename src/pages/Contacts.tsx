@@ -141,7 +141,7 @@ const Contacts = () => {
                   Напишите нам в Telegram — ответим в течение нескольких минут!
                 </p>
                 <a
-                  href="https://t.me/vSochi"
+                  href="https://t.me/SochiWaits"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-white text-[#0088cc] font-semibold rounded-lg hover:bg-white/90 transition-colors"
