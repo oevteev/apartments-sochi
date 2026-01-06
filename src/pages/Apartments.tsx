@@ -3,7 +3,6 @@ import Layout from "@/components/layout/Layout";
 import RealtyCalendarWidget from "@/components/RealtyCalendarWidget";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Play, ExternalLink, ChevronDown } from "lucide-react";
 
 // Import apartment images
@@ -46,7 +45,7 @@ const moreImages = [
 
 const youtubeLinks = [
   {
-    title: "Обзор апартаментов #1",
+    title: "Обзор апартаментов ЖК 'Южное море', корпус 1.",
     url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=6",
   },
   {
@@ -150,70 +149,60 @@ const Apartments = () => {
           {/* Video Links */}
           <section className="mb-16">
             <h2 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">Видеообзоры</h2>
-            <div className="max-w-2xl mx-auto">
-              <Accordion type="single" collapsible className="space-y-4">
-                {/* YouTube Accordion */}
-                <AccordionItem value="youtube" className="border rounded-xl bg-card shadow-soft overflow-hidden">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center">
-                        <Play className="w-5 h-5 text-white fill-white" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* YouTube */}
+              <div>
+                <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+                  <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+                    <Play className="w-4 h-4 text-white fill-white" />
+                  </div>
+                  YouTube
+                </h3>
+                <div className="space-y-3">
+                  {youtubeLinks.map((video, index) => (
+                    <a
+                      key={index}
+                      href={video.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-4 bg-card rounded-xl shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1 group"
+                    >
+                      <div className="w-10 h-10 bg-red-600/10 rounded-lg flex items-center justify-center group-hover:bg-red-600 transition-colors">
+                        <Play className="w-5 h-5 text-red-600 group-hover:text-white transition-colors" />
                       </div>
-                      <span className="text-xl font-semibold text-foreground">YouTube</span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-4">
-                    <div className="space-y-3">
-                      {youtubeLinks.map((video, index) => (
-                        <a
-                          key={index}
-                          href={video.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-3 p-4 bg-muted/50 rounded-xl hover:bg-muted transition-all duration-300 group"
-                        >
-                          <div className="w-10 h-10 bg-red-600/10 rounded-lg flex items-center justify-center group-hover:bg-red-600 transition-colors">
-                            <Play className="w-5 h-5 text-red-600 group-hover:text-white transition-colors" />
-                          </div>
-                          <span className="flex-1 font-medium text-foreground">{video.title}</span>
-                          <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-red-600 transition-colors" />
-                        </a>
-                      ))}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+                      <span className="flex-1 font-medium text-foreground">{video.title}</span>
+                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-red-600 transition-colors" />
+                    </a>
+                  ))}
+                </div>
+              </div>
 
-                {/* RuTube Accordion */}
-                <AccordionItem value="rutube" className="border rounded-xl bg-card shadow-soft overflow-hidden">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-[#00A8E1] rounded-lg flex items-center justify-center">
-                        <Play className="w-5 h-5 text-white fill-white" />
+              {/* Rutube */}
+              <div>
+                <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+                  <div className="w-8 h-8 bg-[#00A8E1] rounded-lg flex items-center justify-center">
+                    <Play className="w-4 h-4 text-white fill-white" />
+                  </div>
+                  Rutube
+                </h3>
+                <div className="space-y-3">
+                  {rutubeLinks.map((video, index) => (
+                    <a
+                      key={index}
+                      href={video.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-4 bg-card rounded-xl shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1 group"
+                    >
+                      <div className="w-10 h-10 bg-[#00A8E1]/10 rounded-lg flex items-center justify-center group-hover:bg-[#00A8E1] transition-colors">
+                        <Play className="w-5 h-5 text-[#00A8E1] group-hover:text-white transition-colors" />
                       </div>
-                      <span className="text-xl font-semibold text-foreground">RuTube</span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-4">
-                    <div className="space-y-3">
-                      {rutubeLinks.map((video, index) => (
-                        <a
-                          key={index}
-                          href={video.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-3 p-4 bg-muted/50 rounded-xl hover:bg-muted transition-all duration-300 group"
-                        >
-                          <div className="w-10 h-10 bg-[#00A8E1]/10 rounded-lg flex items-center justify-center group-hover:bg-[#00A8E1] transition-colors">
-                            <Play className="w-5 h-5 text-[#00A8E1] group-hover:text-white transition-colors" />
-                          </div>
-                          <span className="flex-1 font-medium text-foreground">{video.title}</span>
-                          <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-[#00A8E1] transition-colors" />
-                        </a>
-                      ))}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+                      <span className="flex-1 font-medium text-foreground">{video.title}</span>
+                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-[#00A8E1] transition-colors" />
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </section>
         </div>
