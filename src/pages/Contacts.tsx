@@ -60,7 +60,7 @@ const Contacts = () => {
   } = useSpamProtection();
 
   const { containerRef, execute: executeCaptcha, reset: resetCaptcha, isReady: captchaReady } = useSmartCaptcha();
-  const { checkLimit, recordAttempt } = useRateLimiter('contact');
+  const { checkLimit, recordAttempt, remaining } = useRateLimiter('contact');
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -324,7 +324,7 @@ const Contacts = () => {
 
                 <Button
                   type="submit"
-                  disabled={isSubmitting || !captchaReady}
+                  disabled={isSubmitting || !captchaReady || remaining === 0}
                   className="w-full h-12 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold text-base"
                 >
                   {isSubmitting ? (
@@ -336,6 +336,15 @@ const Contacts = () => {
                     </>
                   )}
                 </Button>
+
+                {/* Remaining attempts indicator */}
+                {remaining < 5 && (
+                  <p className={`text-xs text-center ${remaining === 0 ? 'text-destructive' : 'text-muted-foreground'}`}>
+                    {remaining === 0 
+                      ? "Лимит исчерпан. Попробуйте через час." 
+                      : `Осталось попыток: ${remaining} из 5`}
+                  </p>
+                )}
                 
                 {/* SmartCaptcha invisible container */}
                 <div ref={containerRef} />
