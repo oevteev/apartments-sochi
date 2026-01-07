@@ -2,6 +2,7 @@ import React from 'react';
 import cianIcon from '@/assets/icons/cian.png';
 import ostrovokIcon from '@/assets/icons/ostrovok.png';
 import yandexIcon from '@/assets/icons/yandex.png';
+import otelloIcon from '@/assets/icons/otello.png';
 
 // Avito - официальный логотип
 const AvitoIcon = ({ className = "" }: { className?: string }) => (
@@ -33,6 +34,11 @@ const CianIcon = ({ className = "" }: { className?: string }) => (
 // Яндекс Путешествия - изображение
 const YandexIcon = ({ className = "" }: { className?: string }) => (
   <img src={yandexIcon} alt="Яндекс Путешествия" className={`${className} object-contain`} />
+);
+
+// Отелло - изображение
+const OtelloIcon = ({ className = "" }: { className?: string }) => (
+  <img src={otelloIcon} alt="Отелло" className={`${className} object-contain`} />
 );
 
 interface BookingPlatformProps {
@@ -80,6 +86,11 @@ const bookingPlatforms = [
     icon: <YandexIcon className="w-full h-full" />,
     label: "Яндекс Путешествия",
     href: "https://yandex.ru"
+  },
+  {
+    icon: <OtelloIcon className="w-full h-full" />,
+    label: "Отелло",
+    href: "https://otello.ru/"
   }
 ];
 
