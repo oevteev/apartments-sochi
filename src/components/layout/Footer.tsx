@@ -106,7 +106,13 @@ const Footer = () => {
         <div className="mt-10 pt-6 border-t border-muted-foreground/20">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <p>© {currentYear} ВашСочи. Все права защищены.</p>
-            <p>Сделано с ❤️ для лучшего отдыха</p>
+            <div className="flex items-center gap-4">
+              <Link to="/privacy" className="hover:text-background transition-colors">
+                Политика конфиденциальности
+              </Link>
+              <span>•</span>
+              <span>Сделано с ❤️ для лучшего отдыха</span>
+            </div>
           </div>
         </div>
       </div>
