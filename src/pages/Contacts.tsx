@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
-import { Phone, Mail, MapPin, MessageCircle, Clock, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import InputMask from "react-input-mask";
 import useSpamProtection from "@/hooks/useSpamProtection";
 import useSmartCaptcha from "@/hooks/useSmartCaptcha";
@@ -213,10 +213,10 @@ const Contacts = () => {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Info */}
-            <div>
+            <div className="bg-card rounded-2xl p-8 shadow-card h-fit">
               <h2 className="text-2xl font-serif font-bold text-foreground mb-8">Наши контакты</h2>
 
-              <div className="space-y-6 mb-10">
+              <div className="space-y-6">
                 {contactInfo.map((item) => (
                   <div key={item.label} className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -237,29 +237,6 @@ const Contacts = () => {
                     </div>
                   </div>
                 ))}
-              </div>
-
-              {/* Telegram CTA */}
-              <div className="bg-[#0088cc] text-white rounded-2xl p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <MessageCircle className="w-10 h-10" />
-                  <div>
-                    <h3 className="text-lg font-semibold">Telegram</h3>
-                    <p className="text-white/80 text-sm">Самый быстрый способ связи</p>
-                  </div>
-                </div>
-                <p className="text-white/90 mb-4 text-sm">
-                  Напишите нам в Telegram — ответим в течение нескольких минут!
-                </p>
-                <a
-                  href="https://t.me/SochiWaits"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-white text-[#0088cc] font-semibold rounded-lg hover:bg-white/90 transition-colors"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  Написать в Telegram
-                </a>
               </div>
             </div>
 
