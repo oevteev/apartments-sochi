@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SEO from "@/components/SEO";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -142,21 +143,13 @@ const FAQ = () => {
         <div className="container-custom text-center">
           <h2 className="text-2xl font-serif font-bold text-foreground mb-4">Остались вопросы?</h2>
           <p className="text-muted-foreground mb-6">Мы с радостью ответим на все ваши вопросы</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:+79952282874"
+          <div className="flex justify-center">
+            <Link
+              to="/contacts"
               className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
             >
-              Позвонить
-            </a>
-            <a
-              href="https://t.me/SochiWaits"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors"
-            >
-              Написать в Telegram
-            </a>
+              Связаться с нами
+            </Link>
           </div>
         </div>
       </section>
