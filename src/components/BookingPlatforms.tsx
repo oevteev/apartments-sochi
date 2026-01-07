@@ -77,7 +77,7 @@ const bookingPlatforms = [
   },
   {
     icon: <OstrovokIcon className="w-full h-full" />,
-    label: "Ostrovok",
+    label: "Островок",
     href: "https://ostrovok.ru/hotel/russia/sochi/mid13111434/v_zhk_yuzhnoye_more_flat/",
   },
   {
