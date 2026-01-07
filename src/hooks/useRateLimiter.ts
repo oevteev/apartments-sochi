@@ -1,12 +1,12 @@
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect } from "react";
 
-const STORAGE_KEY = 'form_submissions';
-const MAX_ATTEMPTS = 5;
+const STORAGE_KEY = "form_submissions";
+const MAX_ATTEMPTS = 15;
 const WINDOW_MS = 60 * 60 * 1000; // 1 hour
 
 export const useRateLimiter = (formType: string) => {
   const [remaining, setRemaining] = useState(MAX_ATTEMPTS);
-  
+
   const getStorageKey = useCallback(() => `${STORAGE_KEY}_${formType}`, [formType]);
 
   const getCleanedAttempts = useCallback((): number[] => {
@@ -14,10 +14,10 @@ export const useRateLimiter = (formType: string) => {
       const key = getStorageKey();
       const stored = localStorage.getItem(key);
       const now = Date.now();
-      
+
       let attempts: number[] = stored ? JSON.parse(stored) : [];
-      attempts = attempts.filter(time => now - time < WINDOW_MS);
-      
+      attempts = attempts.filter((time) => now - time < WINDOW_MS);
+
       localStorage.setItem(key, JSON.stringify(attempts));
       return attempts;
     } catch {
@@ -41,11 +41,11 @@ export const useRateLimiter = (formType: string) => {
     const attempts = getCleanedAttempts();
     const currentRemaining = MAX_ATTEMPTS - attempts.length;
     setRemaining(Math.max(0, currentRemaining));
-    
+
     if (attempts.length >= MAX_ATTEMPTS) {
       return { allowed: false, remaining: 0 };
     }
-    
+
     return { allowed: true, remaining: currentRemaining };
   }, [getCleanedAttempts]);
 
@@ -54,11 +54,11 @@ export const useRateLimiter = (formType: string) => {
       const key = getStorageKey();
       const stored = localStorage.getItem(key);
       const now = Date.now();
-      
+
       let attempts: number[] = stored ? JSON.parse(stored) : [];
-      attempts = attempts.filter(time => now - time < WINDOW_MS);
+      attempts = attempts.filter((time) => now - time < WINDOW_MS);
       attempts.push(now);
-      
+
       localStorage.setItem(key, JSON.stringify(attempts));
       setRemaining(Math.max(0, MAX_ATTEMPTS - attempts.length));
     } catch {
