@@ -120,6 +120,10 @@ serve(async (req) => {
     const body: RequestBody = await req.json();
     const { name, phone, message, formType, captchaToken } = body;
 
+    // Check if request is from preview domain
+    const origin = req.headers.get("origin") || "";
+    const isPreviewDomain = origin.includes("preview--") && origin.includes(".lovable.app");
+
     // Validate captcha token
     if (!captchaToken || typeof captchaToken !== "string") {
       console.warn("Missing captcha token");
@@ -130,20 +134,24 @@ serve(async (req) => {
     }
 
     // Get client IP from headers
-    const clientIP =
+    const captchaClientIP =
       req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("cf-connecting-ip") || "";
 
-    // Validate SmartCaptcha
-    const isCaptchaValid = await validateCaptcha(captchaToken, clientIP);
-    if (!isCaptchaValid) {
-      console.warn("Captcha validation failed");
-      return new Response(JSON.stringify({ error: "Captcha verification failed" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+    // Bypass captcha validation for preview domains with bypass token
+    if (captchaToken === "preview-bypass" && isPreviewDomain) {
+      console.log("Preview domain detected, bypassing captcha validation");
+    } else {
+      // Validate SmartCaptcha
+      const isCaptchaValid = await validateCaptcha(captchaToken, captchaClientIP);
+      if (!isCaptchaValid) {
+        console.warn("Captcha validation failed");
+        return new Response(JSON.stringify({ error: "Captcha verification failed" }), {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      console.log("Captcha validated successfully");
     }
-
-    console.log("Captcha validated successfully");
 
     // Validate required fields
     if (!name || typeof name !== "string" || name.trim().length === 0) {
