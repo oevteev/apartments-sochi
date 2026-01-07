@@ -188,7 +188,7 @@ serve(async (req) => {
 
 🕐 _${timestamp}_`;
     } else if (formType === "quick-contact") {
-      telegramMessage = `💬 *Быстрое сообщение с сайта*
+      telegramMessage = `💬 *Быстрое сообщение с сайта броирования*
 
 👤 *Имя:* ${name.trim()}
 📞 *Телефон:* ${phone.trim()}
