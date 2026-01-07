@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, MessageCircle, Clock, Send } from "lucide-react";
 import InputMask from "react-input-mask";
 import useSpamProtection from "@/hooks/useSpamProtection";
+import useSmartCaptcha from "@/hooks/useSmartCaptcha";
 import HoneypotField from "@/components/HoneypotField";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -56,6 +57,8 @@ const Contacts = () => {
     getSpamReason,
     resetTimer,
   } = useSpamProtection();
+
+  const { containerRef, execute: executeCaptcha, reset: resetCaptcha, isReady: captchaReady } = useSmartCaptcha();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -124,12 +127,28 @@ const Contacts = () => {
     setIsSubmitting(true);
 
     try {
+      // Execute SmartCaptcha
+      let captchaToken = "";
+      try {
+        captchaToken = await executeCaptcha();
+      } catch (captchaError) {
+        console.error("Captcha error:", captchaError);
+        toast({
+          title: "Ошибка",
+          description: "Не удалось пройти проверку. Попробуйте снова",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       const { error } = await supabase.functions.invoke('send-to-telegram', {
         body: {
           name: name.trim(),
           phone: phone.trim(),
           message: message.trim(),
           formType: 'contact',
+          captchaToken,
         },
       });
 
@@ -147,6 +166,7 @@ const Contacts = () => {
       setMessage("");
       setAgreedToPolicy(false);
       resetTimer();
+      resetCaptcha();
     } catch (error) {
       console.error('Error sending contact message:', error);
       toast({
@@ -154,6 +174,7 @@ const Contacts = () => {
         description: "Не удалось отправить сообщение. Попробуйте позже или напишите в Telegram",
         variant: "destructive",
       });
+      resetCaptcha();
     } finally {
       setIsSubmitting(false);
     }
@@ -287,7 +308,7 @@ const Contacts = () => {
 
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !captchaReady}
                   className="w-full h-12 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold text-base"
                 >
                   {isSubmitting ? (
@@ -299,6 +320,9 @@ const Contacts = () => {
                     </>
                   )}
                 </Button>
+                
+                {/* SmartCaptcha invisible container */}
+                <div ref={containerRef} />
               </form>
             </div>
           </div>

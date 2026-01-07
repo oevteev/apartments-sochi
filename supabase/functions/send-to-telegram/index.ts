@@ -11,6 +11,37 @@ interface RequestBody {
   phone: string;
   message?: string;
   formType: "booking" | "contact";
+  captchaToken: string;
+}
+
+// Validate SmartCaptcha token
+async function validateCaptcha(token: string, ip?: string): Promise<boolean> {
+  const SMARTCAPTCHA_SERVER_KEY = Deno.env.get("SMARTCAPTCHA_SERVER_KEY");
+  
+  if (!SMARTCAPTCHA_SERVER_KEY) {
+    console.error("SMARTCAPTCHA_SERVER_KEY not configured");
+    return false;
+  }
+
+  try {
+    const response = await fetch("https://smartcaptcha.yandexcloud.net/validate", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret: SMARTCAPTCHA_SERVER_KEY,
+        token: token,
+        ip: ip || "",
+      }),
+    });
+
+    const result = await response.json();
+    console.log("SmartCaptcha validation result:", result);
+    
+    return result.status === "ok";
+  } catch (error) {
+    console.error("SmartCaptcha validation error:", error);
+    return false;
+  }
 }
 
 serve(async (req) => {
@@ -32,7 +63,33 @@ serve(async (req) => {
     }
 
     const body: RequestBody = await req.json();
-    const { name, phone, message, formType } = body;
+    const { name, phone, message, formType, captchaToken } = body;
+
+    // Validate captcha token
+    if (!captchaToken || typeof captchaToken !== "string") {
+      console.warn("Missing captcha token");
+      return new Response(JSON.stringify({ error: "Captcha verification required" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Get client IP from headers
+    const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                     req.headers.get("cf-connecting-ip") || 
+                     "";
+
+    // Validate SmartCaptcha
+    const isCaptchaValid = await validateCaptcha(captchaToken, clientIP);
+    if (!isCaptchaValid) {
+      console.warn("Captcha validation failed");
+      return new Response(JSON.stringify({ error: "Captcha verification failed" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    console.log("Captcha validated successfully");
 
     // Validate required fields
     if (!name || typeof name !== "string" || name.trim().length === 0) {
