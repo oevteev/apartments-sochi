@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SEO from "@/components/SEO";
-import { Phone, Mail, CreditCard, Banknote, Building2 } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import logoAbout from "@/assets/logo-about.png";
+import { PaymentMethods } from "@/components/PaymentIcons";
 import avitoIcon from "@/assets/icons/avito.png";
 import sutochnoIcon from "@/assets/icons/sutochno.png";
 import ostrovokIcon from "@/assets/icons/ostrovok.png";
@@ -184,28 +185,7 @@ const About = () => {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-serif font-bold text-foreground mb-8">Способы оплаты</h2>
-            <div className="grid sm:grid-cols-3 gap-6">
-              <div className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft py-[10px]">
-                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
-                  <Building2 className="w-6 h-6 text-accent" />
-                </div>
-                <div className="text-foreground font-medium">СБП</div>
-              </div>
-
-              <div className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft py-[10px]">
-                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
-                  <CreditCard className="w-6 h-6 text-accent" />
-                </div>
-                <div className="text-foreground font-medium">МИР / VISA / MASTER CARD</div>
-              </div>
-
-              <div className="flex items-center gap-4 p-5 bg-card rounded-xl shadow-soft py-[10px]">
-                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
-                  <Banknote className="w-6 h-6 text-accent" />
-                </div>
-                <div className="text-foreground font-medium">Наличные</div>
-              </div>
-            </div>
+            <PaymentMethods />
           </div>
         </div>
       </section>
