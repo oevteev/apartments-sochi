@@ -242,7 +242,7 @@ ${message ? `\n💬 *Сообщение:*\n${message.trim()}` : ""}
           emailSubject = "Запрос информации по аренде";
           emailBody = `Запрос информации по аренде от ${name.trim()}, телефон ${phone.trim()}, свяжитесь для уточнения деталей по указанному телефону.`;
         } else if (formType === "quick-contact") {
-          emailSubject = "Быстрое сообщение с сайта";
+          emailSubject = "Быстрое сообщение с сайта бронирования";
           emailBody = `Быстрое сообщение от ${name.trim()}, телефон ${phone.trim()}.${message ? `<br><br>Сообщение: ${message.trim()}` : ""}`;
         } else {
           emailSubject = "Сообщение с сайта (контакты)";
