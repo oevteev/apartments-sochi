@@ -22,17 +22,17 @@ const SutochnoIcon = ({ className = "" }: { className?: string }) => (
 
 // Ostrovok - изображение
 const OstrovokIcon = ({ className = "" }: { className?: string }) => (
-  <img src={ostrovokIcon} alt="Ostrovok" className={className} />
+  <img src={ostrovokIcon} alt="Ostrovok" className={`${className} object-contain`} />
 );
 
 // Циан - изображение
 const CianIcon = ({ className = "" }: { className?: string }) => (
-  <img src={cianIcon} alt="Циан" className={className} />
+  <img src={cianIcon} alt="Циан" className={`${className} object-contain`} />
 );
 
 // Яндекс Путешествия - изображение
 const YandexIcon = ({ className = "" }: { className?: string }) => (
-  <img src={yandexIcon} alt="Яндекс Путешествия" className={className} />
+  <img src={yandexIcon} alt="Яндекс Путешествия" className={`${className} object-contain`} />
 );
 
 interface BookingPlatformProps {
