@@ -1,5 +1,6 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { Resend } from "https://esm.sh/resend@2.0.0";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -101,7 +102,41 @@ ${message ? `\n💬 *Сообщение:*\n${message.trim()}` : ""}
       });
     }
 
-    console.log("Message sent successfully, form type:", formType);
+    console.log("Telegram message sent successfully, form type:", formType);
+
+    // Send email notification
+    try {
+      const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+      
+      if (RESEND_API_KEY) {
+        const resend = new Resend(RESEND_API_KEY);
+        
+        let emailSubject: string;
+        let emailBody: string;
+
+        if (formType === "booking") {
+          emailSubject = "Запрос информации по аренде";
+          emailBody = `Запрос информации по аренде от ${name.trim()}, телефон ${phone.trim()}, свяжитесь для уточнения деталей по указанному телефону.`;
+        } else {
+          emailSubject = "Сообщение с сайта (контакты)";
+          emailBody = `Сообщение от ${name.trim()}, телефон ${phone.trim()}.${message ? `\n\nСообщение: ${message.trim()}` : ""}`;
+        }
+
+        const emailResult = await resend.emails.send({
+          from: "Бронирование <onboarding@resend.dev>",
+          to: ["arendaapartmentsochi@ya.ru", "oevt@mail.ru"],
+          subject: emailSubject,
+          html: emailBody.replace(/\n/g, "<br>"),
+        });
+
+        console.log("Email sent successfully:", emailResult);
+      } else {
+        console.log("RESEND_API_KEY not configured, skipping email");
+      }
+    } catch (emailError) {
+      console.error("Email sending failed (non-critical):", emailError);
+      // Email failure doesn't affect the overall success
+    }
 
     return new Response(JSON.stringify({ success: true }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
