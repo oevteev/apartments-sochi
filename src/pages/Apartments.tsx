@@ -46,15 +46,15 @@ const moreImages = [
 
 const youtubeLinks = [
   {
-    title: "Обзор апартаментов ЖК 'Южное море', корпус 1.",
+    title: "Обзор апартаментов ЖК 'Южное море', корпус 1",
     url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=6",
   },
   {
-    title: "Обзор апартаментов #2",
+    title: "Обзор апартаментов ЖК 'Южное море', корпус 1",
     url: "https://www.youtube.com/watch?v=bbqdhV1IZ9E&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=7",
   },
   {
-    title: "Обзор апартаментов #3",
+    title: "Обзор апартаментов ЖК 'Южное море', корпус 1",
     url: "https://www.youtube.com/watch?v=Xz3mTWyJFXE&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=8",
   },
   {
@@ -98,8 +98,8 @@ const Apartments = () => {
 
   return (
     <Layout>
-      <SEO 
-        title="Апартаменты" 
+      <SEO
+        title="Апартаменты"
         description="Уютные апартаменты с панорамным видом на море в Сочи. Фотогалерея, видеообзоры и онлайн-бронирование."
       />
       <div className="pt-24 pb-12">
