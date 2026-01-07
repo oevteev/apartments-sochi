@@ -62,7 +62,7 @@ serve(async (req) => {
     const timestamp = new Date().toLocaleString("ru-RU", { timeZone: "Europe/Moscow" });
 
     if (formType === "booking") {
-      telegramMessage = `🏠 *Сообщение с сайта бронирования*
+      telegramMessage = `🏠 *Запрос информации по аренде с сайта бронирования*
 
 👤 *Имя:* ${name.trim()}
 📞 *Телефон:* ${phone.trim()}
