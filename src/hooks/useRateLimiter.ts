@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from "react";
 
 const STORAGE_KEY = "form_submissions";
-const MAX_ATTEMPTS = 15;
+const MAX_ATTEMPTS = 5;
 const WINDOW_MS = 60 * 60 * 1000; // 1 hour
 
 export const useRateLimiter = (formType: string) => {
