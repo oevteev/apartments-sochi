@@ -69,23 +69,23 @@ const youtubeLinks = [
 
 const rutubeLinks = [
   {
-    title: "Обзор апартаментов #1",
+    title: "Обзор апартаментов ЖК 'Южное море', корпус 1",
     url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A&playlist=1161435",
   },
   {
-    title: "Обзор апартаментов #2",
+    title: "Обзор апартаментов ЖК 'Южное море', корпус 1",
     url: "https://rutube.ru/video/private/c737d7b4fa3b961088aa3c3e0d62da6f/?p=gqxpaLM9Iqobd27n3h09aw&playlist=1161435",
   },
   {
-    title: "Обзор апартаментов #3",
+    title: "Обзор апартаментов ЖК 'Южное море', корпус 1",
     url: "https://rutube.ru/video/private/8ccfee5a318e22499aeb86444a1d429e/?p=yztm3p6MyOpL6hYqcot2Iw&playlist=1161435",
   },
   {
-    title: "Обзор апартаментов #4",
+    title: "Обзор апартаментов ЖК 'Южное море', корпус 1",
     url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A",
   },
   {
-    title: "Обзор апартаментов #5",
+    title: "Обзор апартаментов ЖК 'Южное море', корпус 2",
     url: "https://rutube.ru/video/private/c737d7b4fa3b961088aa3c3e0d62da6f/?p=gqxpaLM9Iqobd27n3h09aw",
   },
 ];
