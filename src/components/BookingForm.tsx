@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
 import useSpamProtection from "@/hooks/useSpamProtection";
+import useSmartCaptcha from "@/hooks/useSmartCaptcha";
 import HoneypotField from "@/components/HoneypotField";
 import { supabase } from "@/integrations/supabase/client";
 const BookingForm = () => {
@@ -24,6 +25,8 @@ const BookingForm = () => {
     getSpamReason,
     resetTimer,
   } = useSpamProtection();
+
+  const { containerRef, execute: executeCaptcha, reset: resetCaptcha, isReady: captchaReady } = useSmartCaptcha();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -86,11 +89,27 @@ const BookingForm = () => {
     setIsSubmitting(true);
 
     try {
+      // Execute SmartCaptcha
+      let captchaToken = "";
+      try {
+        captchaToken = await executeCaptcha();
+      } catch (captchaError) {
+        console.error("Captcha error:", captchaError);
+        toast({
+          title: "Ошибка",
+          description: "Не удалось пройти проверку. Попробуйте снова",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       const { error } = await supabase.functions.invoke('send-to-telegram', {
         body: {
           name: name.trim(),
           phone: phone.trim(),
           formType: 'booking',
+          captchaToken,
         },
       });
 
@@ -107,6 +126,7 @@ const BookingForm = () => {
       setPhone("");
       setAgreedToPolicy(false);
       resetTimer();
+      resetCaptcha();
     } catch (error) {
       console.error('Error sending booking:', error);
       toast({
@@ -114,6 +134,7 @@ const BookingForm = () => {
         description: "Не удалось отправить заявку. Попробуйте позже или напишите в Telegram",
         variant: "destructive",
       });
+      resetCaptcha();
     } finally {
       setIsSubmitting(false);
     }
@@ -167,7 +188,7 @@ const BookingForm = () => {
 
       <Button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !captchaReady}
         className="w-full h-12 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold text-base shadow-lg hover:shadow-xl transition-all"
       >
         {isSubmitting ? (
@@ -179,6 +200,9 @@ const BookingForm = () => {
           </>
         )}
       </Button>
+      
+      {/* SmartCaptcha invisible container */}
+      <div ref={containerRef} />
     </form>
   );
 };
