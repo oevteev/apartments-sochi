@@ -40,7 +40,7 @@ interface RequestBody {
   name: string;
   phone: string;
   message?: string;
-  formType: "booking" | "contact";
+  formType: "booking" | "contact" | "quick-contact";
   captchaToken: string;
 }
 
@@ -181,6 +181,14 @@ serve(async (req) => {
 📞 *Телефон:* ${phone.trim()}
 
 🕐 _${timestamp}_`;
+    } else if (formType === "quick-contact") {
+      telegramMessage = `💬 *Быстрое сообщение с сайта*
+
+👤 *Имя:* ${name.trim()}
+📞 *Телефон:* ${phone.trim()}
+${message ? `\n💬 *Сообщение:*\n${message.trim()}` : ""}
+
+🕐 _${timestamp}_`;
     } else {
       telegramMessage = `✉️ *Сообщение с сайта бронирования (через контакты)*
 
@@ -227,6 +235,9 @@ ${message ? `\n💬 *Сообщение:*\n${message.trim()}` : ""}
         if (formType === "booking") {
           emailSubject = "Запрос информации по аренде";
           emailBody = `Запрос информации по аренде от ${name.trim()}, телефон ${phone.trim()}, свяжитесь для уточнения деталей по указанному телефону.`;
+        } else if (formType === "quick-contact") {
+          emailSubject = "Быстрое сообщение с сайта";
+          emailBody = `Быстрое сообщение от ${name.trim()}, телефон ${phone.trim()}.${message ? `<br><br>Сообщение: ${message.trim()}` : ""}`;
         } else {
           emailSubject = "Сообщение с сайта (контакты)";
           emailBody = `Сообщение от ${name.trim()}, телефон ${phone.trim()}.${message ? `<br><br>Сообщение: ${message.trim()}` : ""}`;
