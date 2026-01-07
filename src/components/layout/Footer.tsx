@@ -118,7 +118,7 @@ const Footer = () => {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <p>© {currentYear} ВашСочи. Все права защищены.</p>
             <div className="flex items-center gap-4">
-              <Link to="/privacy" className="hover:text-background transition-colors">
+              <Link to="/privacy-policy" className="hover:text-background transition-colors">
                 Политика конфиденциальности
               </Link>
               <span>•</span>
