@@ -1,6 +1,12 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
+// Check if running on Lovable preview domain
+const isPreviewDomain = (): boolean => {
+  const hostname = window.location.hostname;
+  return hostname.includes('preview--') && hostname.endsWith('.lovable.app');
+};
+
 declare global {
   interface Window {
     smartCaptcha?: {
@@ -35,8 +41,15 @@ export const useSmartCaptcha = (options: UseSmartCaptchaOptions = {}) => {
   const [clientKey, setClientKey] = useState<string | null>(null);
   const initAttemptedRef = useRef(false);
 
-  // Fetch client key from edge function
+  // Fetch client key from edge function (skip for preview domains)
   useEffect(() => {
+    // Skip captcha for preview domains
+    if (isPreviewDomain()) {
+      console.log("Preview domain detected, skipping SmartCaptcha");
+      setIsReady(true);
+      return;
+    }
+
     const fetchClientKey = async () => {
       try {
         const { data, error } = await supabase.functions.invoke("get-captcha-key");
@@ -124,6 +137,13 @@ export const useSmartCaptcha = (options: UseSmartCaptchaOptions = {}) => {
 
   const execute = useCallback((): Promise<string> => {
     return new Promise((resolve, reject) => {
+      // Bypass for preview domains
+      if (isPreviewDomain()) {
+        console.log("Preview domain: bypassing captcha with preview token");
+        resolve("preview-bypass");
+        return;
+      }
+
       if (!window.smartCaptcha || widgetIdRef.current === null) {
         reject(new Error("SmartCaptcha not initialized"));
         return;
@@ -158,7 +178,7 @@ export const useSmartCaptcha = (options: UseSmartCaptchaOptions = {}) => {
     containerRef,
     execute,
     reset,
-    isReady: isReady && clientKey !== null && widgetIdRef.current !== null,
+    isReady: isPreviewDomain() || (isReady && clientKey !== null && widgetIdRef.current !== null),
     isLoading,
   };
 };
