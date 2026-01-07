@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
 import useSpamProtection from "@/hooks/useSpamProtection";
 import useSmartCaptcha from "@/hooks/useSmartCaptcha";
+import useRateLimiter from "@/hooks/useRateLimiter";
 import HoneypotField from "@/components/HoneypotField";
 import { supabase } from "@/integrations/supabase/client";
 const BookingForm = () => {
@@ -27,8 +28,21 @@ const BookingForm = () => {
   } = useSpamProtection();
 
   const { containerRef, execute: executeCaptcha, reset: resetCaptcha, isReady: captchaReady } = useSmartCaptcha();
+  const { checkLimit, recordAttempt } = useRateLimiter('booking');
 
   const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    // Check rate limit first
+    const limitCheck = checkLimit();
+    if (!limitCheck.allowed) {
+      toast({
+        title: "Превышен лимит",
+        description: "Вы отправили слишком много заявок. Попробуйте через час.",
+        variant: "destructive",
+      });
+      return;
+    }
     e.preventDefault();
 
     // Spam protection check
@@ -116,6 +130,9 @@ const BookingForm = () => {
       if (error) {
         throw error;
       }
+
+      // Record successful attempt for rate limiting
+      recordAttempt();
 
       toast({
         title: "Заявка принята!",

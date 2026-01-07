@@ -6,6 +6,36 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// Rate limiting configuration
+const RATE_LIMIT = 5;
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+
+function checkRateLimit(ip: string): { allowed: boolean; remaining: number; resetIn: number } {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  
+  // Clean up expired record
+  if (record && now > record.resetTime) {
+    rateLimitMap.delete(ip);
+  }
+  
+  const current = rateLimitMap.get(ip);
+  
+  if (!current) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return { allowed: true, remaining: RATE_LIMIT - 1, resetIn: RATE_LIMIT_WINDOW };
+  }
+  
+  if (current.count >= RATE_LIMIT) {
+    const resetIn = Math.max(0, current.resetTime - now);
+    return { allowed: false, remaining: 0, resetIn };
+  }
+  
+  current.count++;
+  return { allowed: true, remaining: RATE_LIMIT - current.count, resetIn: current.resetTime - now };
+}
+
 interface RequestBody {
   name: string;
   phone: string;
@@ -48,6 +78,32 @@ serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Get client IP for rate limiting
+  const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                   req.headers.get("cf-connecting-ip") || 
+                   "unknown";
+
+  // Check rate limit
+  const rateCheck = checkRateLimit(clientIP);
+  if (!rateCheck.allowed) {
+    console.warn(`Rate limit exceeded for IP: ${clientIP}`);
+    const retryAfter = Math.ceil(rateCheck.resetIn / 1000);
+    return new Response(
+      JSON.stringify({ 
+        error: "Превышен лимит отправок. Попробуйте позже.",
+        retryAfter 
+      }),
+      { 
+        status: 429, 
+        headers: { 
+          ...corsHeaders, 
+          "Content-Type": "application/json",
+          "Retry-After": String(retryAfter)
+        } 
+      }
+    );
   }
 
   try {
