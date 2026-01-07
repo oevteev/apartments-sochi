@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SEO from "@/components/SEO";
-import { Phone, Mail, CreditCard, Banknote, Building2, MessageCircle } from "lucide-react";
+import { Phone, Mail, CreditCard, Banknote, Building2 } from "lucide-react";
 import logoAbout from "@/assets/logo-about.png";
 import avitoIcon from "@/assets/icons/avito.png";
 import sutochnoIcon from "@/assets/icons/sutochno.png";
@@ -167,20 +168,12 @@ const About = () => {
                 </div>
               </a>
 
-              <a
-                href="https://t.me/SochiWaits"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 p-5 bg-[#0088cc] text-white rounded-xl shadow-soft hover:opacity-90 transition-opacity sm:col-span-2"
+              <Link
+                to="/contacts"
+                className="flex items-center justify-center gap-4 p-5 bg-primary text-primary-foreground rounded-xl shadow-soft hover:bg-primary/90 transition-colors sm:col-span-2"
               >
-                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                  <MessageCircle className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="text-white/80 text-sm">Telegram</div>
-                  <div className="font-semibold">Написать в Telegram</div>
-                </div>
-              </a>
+                <div className="font-semibold">Связаться с нами</div>
+              </Link>
             </div>
           </div>
         </div>
