@@ -7,31 +7,31 @@ const corsHeaders = {
 };
 
 // Rate limiting configuration
-const RATE_LIMIT = 5;
+const RATE_LIMIT = 15;
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 
 function checkRateLimit(ip: string): { allowed: boolean; remaining: number; resetIn: number } {
   const now = Date.now();
   const record = rateLimitMap.get(ip);
-  
+
   // Clean up expired record
   if (record && now > record.resetTime) {
     rateLimitMap.delete(ip);
   }
-  
+
   const current = rateLimitMap.get(ip);
-  
+
   if (!current) {
     rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
     return { allowed: true, remaining: RATE_LIMIT - 1, resetIn: RATE_LIMIT_WINDOW };
   }
-  
+
   if (current.count >= RATE_LIMIT) {
     const resetIn = Math.max(0, current.resetTime - now);
     return { allowed: false, remaining: 0, resetIn };
   }
-  
+
   current.count++;
   return { allowed: true, remaining: RATE_LIMIT - current.count, resetIn: current.resetTime - now };
 }
@@ -47,7 +47,7 @@ interface RequestBody {
 // Validate SmartCaptcha token
 async function validateCaptcha(token: string, ip?: string): Promise<boolean> {
   const SMARTCAPTCHA_SERVER_KEY = Deno.env.get("SMARTCAPTCHA_SERVER_KEY");
-  
+
   if (!SMARTCAPTCHA_SERVER_KEY) {
     console.error("SMARTCAPTCHA_SERVER_KEY not configured");
     return false;
@@ -66,7 +66,7 @@ async function validateCaptcha(token: string, ip?: string): Promise<boolean> {
 
     const result = await response.json();
     console.log("SmartCaptcha validation result:", result);
-    
+
     return result.status === "ok";
   } catch (error) {
     console.error("SmartCaptcha validation error:", error);
@@ -81,9 +81,8 @@ serve(async (req) => {
   }
 
   // Get client IP for rate limiting
-  const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
-                   req.headers.get("cf-connecting-ip") || 
-                   "unknown";
+  const clientIP =
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("cf-connecting-ip") || "unknown";
 
   // Check rate limit
   const rateCheck = checkRateLimit(clientIP);
@@ -91,18 +90,18 @@ serve(async (req) => {
     console.warn(`Rate limit exceeded for IP: ${clientIP}`);
     const retryAfter = Math.ceil(rateCheck.resetIn / 1000);
     return new Response(
-      JSON.stringify({ 
+      JSON.stringify({
         error: "Превышен лимит отправок. Попробуйте позже.",
-        retryAfter 
+        retryAfter,
       }),
-      { 
-        status: 429, 
-        headers: { 
-          ...corsHeaders, 
+      {
+        status: 429,
+        headers: {
+          ...corsHeaders,
           "Content-Type": "application/json",
-          "Retry-After": String(retryAfter)
-        } 
-      }
+          "Retry-After": String(retryAfter),
+        },
+      },
     );
   }
 
@@ -131,9 +130,8 @@ serve(async (req) => {
     }
 
     // Get client IP from headers
-    const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
-                     req.headers.get("cf-connecting-ip") || 
-                     "";
+    const clientIP =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("cf-connecting-ip") || "";
 
     // Validate SmartCaptcha
     const isCaptchaValid = await validateCaptcha(captchaToken, clientIP);
@@ -227,7 +225,7 @@ ${message ? `\n💬 *Сообщение:*\n${message.trim()}` : ""}
     // Send email notification via Notisend.ru
     try {
       const NOTISEND_API_KEY = Deno.env.get("NOTISEND_API_KEY");
-      
+
       if (NOTISEND_API_KEY) {
         let emailSubject: string;
         let emailBody: string;
@@ -244,23 +242,23 @@ ${message ? `\n💬 *Сообщение:*\n${message.trim()}` : ""}
         }
 
         const recipients = ["arendaapartmentsochi@ya.ru", "oevt@mail.ru"];
-        
+
         for (const recipient of recipients) {
           const response = await fetch("https://api.notisend.ru/v1/email/messages", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "Authorization": `Bearer ${NOTISEND_API_KEY}`
+              Authorization: `Bearer ${NOTISEND_API_KEY}`,
             },
             body: JSON.stringify({
               from_email: "info@arendaapartmentsochi.ru",
               from_name: "Бронирование",
               to: recipient,
               subject: emailSubject,
-              html: emailBody
-            })
+              html: emailBody,
+            }),
           });
-          
+
           const result = await response.json();
           console.log(`Notisend email to ${recipient}:`, response.ok ? "success" : "failed", result);
         }
