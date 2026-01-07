@@ -475,22 +475,13 @@ const Index = () => {
           <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">
             Свяжитесь с нами прямо сейчас, и мы поможем подобрать идеальный вариант для вашего отдыха
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:+79952282874"
+          <div className="flex justify-center">
+            <Link
+              to="/contacts"
               className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white text-primary font-semibold rounded-lg hover:bg-white/90 transition-colors"
             >
-              Позвонить нам
-            </a>
-            <a
-              href="https://t.me/SochiWaits"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Написать в Telegram
-            </a>
+              Связаться с нами
+            </Link>
           </div>
         </div>
       </section>
