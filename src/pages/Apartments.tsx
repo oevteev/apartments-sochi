@@ -58,11 +58,11 @@ const youtubeLinks = [
     url: "https://www.youtube.com/watch?v=Xz3mTWyJFXE&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=8",
   },
   {
-    title: "Обзор апартаментов #4",
+    title: "Обзор апартаментов ЖК 'Южное море', корпус 1",
     url: "https://www.youtube.com/watch?v=tJ1Bq4YLydo&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=4",
   },
   {
-    title: "Обзор апартаментов #5",
+    title: "Обзор апартаментов ЖК 'Южное море', корпус 2",
     url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM",
   },
 ];
