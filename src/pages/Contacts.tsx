@@ -104,10 +104,12 @@ const Contacts = () => {
     }
 
     // Validation
-    if (!name.trim()) {
+    const trimmedName = name.trim();
+    const uniqueChars = new Set(trimmedName.toLowerCase().replace(/\s/g, '')).size;
+    if (!trimmedName || uniqueChars < 5) {
       toast({
         title: "Ошибка",
-        description: "Пожалуйста, введите ваше имя",
+        description: "Имя должно содержать минимум 5 различных символов",
         variant: "destructive",
       });
       return;
@@ -121,10 +123,11 @@ const Contacts = () => {
       });
       return;
     }
-    if (!message.trim()) {
+    const trimmedMessage = message.trim();
+    if (trimmedMessage.length < 10) {
       toast({
         title: "Ошибка",
-        description: "Пожалуйста, введите сообщение",
+        description: "Сообщение должно содержать минимум 10 символов",
         variant: "destructive",
       });
       return;

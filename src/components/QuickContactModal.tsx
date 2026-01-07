@@ -42,14 +42,23 @@ const QuickContactModal = ({ open, onOpenChange }: QuickContactModalProps) => {
     e.preventDefault();
 
     // Validate form
-    if (!name.trim()) {
-      toast.error("Пожалуйста, введите ваше имя");
+    const trimmedName = name.trim();
+    const uniqueChars = new Set(trimmedName.toLowerCase().replace(/\s/g, '')).size;
+    if (!trimmedName || uniqueChars < 5) {
+      toast.error("Имя должно содержать минимум 5 различных символов");
       return;
     }
 
     const cleanPhone = phone.replace(/[^0-9+]/g, "");
     if (cleanPhone.length < 11) {
       toast.error("Пожалуйста, введите корректный номер телефона");
+      return;
+    }
+
+    // Validate message if provided
+    const trimmedMessage = message.trim();
+    if (trimmedMessage.length > 0 && trimmedMessage.length < 10) {
+      toast.error("Сообщение должно содержать минимум 10 символов");
       return;
     }
 
