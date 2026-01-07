@@ -2,9 +2,11 @@ import React from 'react';
 
 // Avito - зелёный логотип
 const AvitoIcon = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 120 40" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="5" y="5" width="110" height="30" rx="6" fill="#00AAFF"/>
-    <text x="60" y="26" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold" fontFamily="Arial">Avito</text>
+  <svg viewBox="0 0 30 30" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="10.595" cy="5.225" fill="#965EEB" r="3.325"/>
+    <circle cx="22.245" cy="7.235" fill="#0AF" r="7.235"/>
+    <circle cx="8.9" cy="18.6" fill="#04E061" r="8.9"/>
+    <circle cx="24.325" cy="21.005" fill="#FF4053" r="5.375"/>
   </svg>
 );
 
