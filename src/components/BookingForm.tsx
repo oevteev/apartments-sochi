@@ -8,7 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
 import useSpamProtection from "@/hooks/useSpamProtection";
 import HoneypotField from "@/components/HoneypotField";
-
+import { supabase } from "@/integrations/supabase/client";
 const BookingForm = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -85,24 +85,38 @@ const BookingForm = () => {
 
     setIsSubmitting(true);
 
-    // Create message for Telegram
-    const message = `Запрос информации по аренде апартаментов в Сочи от ${name.trim()}, пожалуйста, свяжитесь со мной по тел. ${phone} для уточнения деталей. С уважением, ${name.trim()}`;
+    try {
+      const { error } = await supabase.functions.invoke('send-to-telegram', {
+        body: {
+          name: name.trim(),
+          phone: phone.trim(),
+          formType: 'booking',
+        },
+      });
 
-    const encodedMessage = encodeURIComponent(message);
+      if (error) {
+        throw error;
+      }
 
-    // Open Telegram with pre-filled message
-    window.open(`https://t.me/SochiWaits?text=${encodedMessage}`, "_blank");
+      toast({
+        title: "Заявка принята!",
+        description: "Мы свяжемся с вами в ближайшее время",
+      });
 
-    toast({
-      title: "Заявка принята!",
-      description: "Сообщение отправлено в Telegram",
-    });
-
-    setName("");
-    setPhone("");
-    setAgreedToPolicy(false);
-    resetTimer();
-    setIsSubmitting(false);
+      setName("");
+      setPhone("");
+      setAgreedToPolicy(false);
+      resetTimer();
+    } catch (error) {
+      console.error('Error sending booking:', error);
+      toast({
+        title: "Ошибка",
+        description: "Не удалось отправить заявку. Попробуйте позже или напишите в Telegram",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

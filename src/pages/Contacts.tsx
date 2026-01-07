@@ -11,6 +11,7 @@ import { Phone, Mail, MapPin, MessageCircle, Clock, Send } from "lucide-react";
 import InputMask from "react-input-mask";
 import useSpamProtection from "@/hooks/useSpamProtection";
 import HoneypotField from "@/components/HoneypotField";
+import { supabase } from "@/integrations/supabase/client";
 
 const contactInfo = [
   {
@@ -122,18 +123,40 @@ const Contacts = () => {
     }
     setIsSubmitting(true);
 
-    // Simulate submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    toast({
-      title: "Сообщение отправлено!",
-      description: "Мы свяжемся с вами в ближайшее время",
-    });
-    setName("");
-    setPhone("");
-    setMessage("");
-    setAgreedToPolicy(false);
-    resetTimer();
-    setIsSubmitting(false);
+    try {
+      const { error } = await supabase.functions.invoke('send-to-telegram', {
+        body: {
+          name: name.trim(),
+          phone: phone.trim(),
+          message: message.trim(),
+          formType: 'contact',
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Сообщение отправлено!",
+        description: "Мы свяжемся с вами в ближайшее время",
+      });
+
+      setName("");
+      setPhone("");
+      setMessage("");
+      setAgreedToPolicy(false);
+      resetTimer();
+    } catch (error) {
+      console.error('Error sending contact message:', error);
+      toast({
+        title: "Ошибка",
+        description: "Не удалось отправить сообщение. Попробуйте позже или напишите в Telegram",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
