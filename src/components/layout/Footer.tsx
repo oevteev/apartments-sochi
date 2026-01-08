@@ -99,7 +99,7 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="https://t.me/SochiWaits"
+                href="https://t.me/WeInSochi"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-[#0088cc] flex items-center justify-center hover:opacity-80 transition-opacity"
