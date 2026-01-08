@@ -88,7 +88,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold">Мы в соцсетях</h4>
             <div className="flex gap-3">
               <a
-                href="https://vk.com/club235222408"
+                href="https://vk.com/ArendaApartmentSochi"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-[#0077FF] flex items-center justify-center hover:opacity-80 transition-opacity"
