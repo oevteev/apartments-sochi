@@ -43,9 +43,9 @@ const QuickContactModal = ({ open, onOpenChange }: QuickContactModalProps) => {
 
     // Validate form
     const trimmedName = name.trim();
-    const uniqueChars = new Set(trimmedName.toLowerCase().replace(/\s/g, '')).size;
-    if (!trimmedName || uniqueChars < 5) {
-      toast.error("Имя должно содержать минимум 5 различных символов");
+    const uniqueChars = new Set(trimmedName.toLowerCase().replace(/\s/g, "")).size;
+    if (!trimmedName || uniqueChars < 4) {
+      toast.error("Имя должно содержать минимум 4 различных символов");
       return;
     }
 
@@ -134,17 +134,11 @@ const QuickContactModal = ({ open, onOpenChange }: QuickContactModalProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold text-foreground">
-            Быстрая связь
-          </DialogTitle>
+          <DialogTitle className="text-xl font-semibold text-foreground">Быстрая связь</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 mt-2">
-          <HoneypotField
-            value={honeypotValue}
-            onChange={setHoneypotValue}
-            fieldName={honeypotFieldName}
-          />
+          <HoneypotField value={honeypotValue} onChange={setHoneypotValue} fieldName={honeypotFieldName} />
 
           <div>
             <Input
@@ -166,12 +160,7 @@ const QuickContactModal = ({ open, onOpenChange }: QuickContactModalProps) => {
               disabled={isSubmitting}
             >
               {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
-                <Input
-                  {...inputProps}
-                  type="tel"
-                  placeholder="Телефон *"
-                  className="w-full"
-                />
+                <Input {...inputProps} type="tel" placeholder="Телефон *" className="w-full" />
               )}
             </InputMask>
           </div>
@@ -197,11 +186,7 @@ const QuickContactModal = ({ open, onOpenChange }: QuickContactModalProps) => {
             />
             <label htmlFor="policy-quick" className="text-sm text-muted-foreground leading-tight">
               Я согласен с{" "}
-              <Link
-                to="/privacy-policy"
-                target="_blank"
-                className="text-primary hover:underline"
-              >
+              <Link to="/privacy-policy" target="_blank" className="text-primary hover:underline">
                 политикой обработки данных
               </Link>
             </label>
@@ -210,11 +195,7 @@ const QuickContactModal = ({ open, onOpenChange }: QuickContactModalProps) => {
           {/* Invisible SmartCaptcha container */}
           <div ref={containerRef} className="hidden" />
 
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={isSubmitting || !isCaptchaReady}
-          >
+          <Button type="submit" className="w-full" disabled={isSubmitting || !isCaptchaReady}>
             {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
