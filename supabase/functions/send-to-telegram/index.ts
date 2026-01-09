@@ -188,7 +188,7 @@ serve(async (req) => {
 
 🕐 _${timestamp}_`;
     } else if (formType === "quick-contact") {
-      telegramMessage = `💬 *Быстрое сообщение с сайта броирования*
+      telegramMessage = `💬 *Запрос информации с сайта бронирования*
 
 👤 *Имя:* ${name.trim()}
 📞 *Телефон:* ${phone.trim()}
@@ -196,7 +196,7 @@ ${message ? `\n💬 *Сообщение:*\n${message.trim()}` : ""}
 
 🕐 _${timestamp}_`;
     } else {
-      telegramMessage = `✉️ *Сообщение с сайта бронирования (через контакты)*
+      telegramMessage = `✉️ *Запрос информации с сайта бронирования (через контакты)*
 
 👤 *Имя:* ${name.trim()}
 📞 *Телефон:* ${phone.trim()}
