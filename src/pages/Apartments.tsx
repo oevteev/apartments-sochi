@@ -52,7 +52,7 @@ const moreImages = [
 
 const youtubeLinks = [
   {
-    title: "Квартира 45 м2, ЖК 'Южное море', корпус 1",
+    title: "Квартира 47 м2, ЖК 'Южное море', корпус 1",
     url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=6",
   },
   {
