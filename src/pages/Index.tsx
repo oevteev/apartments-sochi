@@ -35,6 +35,9 @@ import apart9 from "@/assets/aparts/apart-9.jpg";
 import apart10 from "@/assets/aparts/apart-10.jpg";
 import apart11 from "@/assets/aparts/apart-11.jpg";
 import apart12 from "@/assets/aparts/apart-12.jpg";
+import apart20 from "@/assets/aparts/apart-20.jpg";
+import apart21 from "@/assets/aparts/apart-21.jpg";
+import apart22 from "@/assets/aparts/apart-22.jpg";
 
 // Import review platform icons
 import avitoIcon from "@/assets/icons/avito.png";
@@ -44,7 +47,7 @@ import sutochnoIcon from "@/assets/icons/sutochno.png";
 import yandexIcon from "@/assets/icons/yandex.png";
 
 const initialImages = [apart1, apart2, apart4, apart5, apart6, apart7];
-const moreImages = [apart8, apart9, apart10, apart11, apart12, apart3];
+const moreImages = [apart8, apart9, apart10, apart11, apart12, apart3, apart20, apart21, apart22];
 
 const youtubeLinks = [
   {
