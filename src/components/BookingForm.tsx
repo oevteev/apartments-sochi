@@ -76,7 +76,7 @@ const BookingForm = () => {
     if (!trimmedName || uniqueChars < 5) {
       toast({
         title: "Ошибка",
-        description: "Имя должно содержать минимум 5 различных символов",
+        description: "Имя должно содержать минимум 4 различных символа",
         variant: "destructive",
       });
       return;
