@@ -26,6 +26,9 @@ import apart16 from "@/assets/aparts/apart-16.jpg";
 import apart17 from "@/assets/aparts/apart-17.jpg";
 import apart18 from "@/assets/aparts/apart-18.jpg";
 import apart19 from "@/assets/aparts/apart-19.jpg";
+import apart19 from "@/assets/aparts/apart-20.jpg";
+import apart19 from "@/assets/aparts/apart-21.jpg";
+import apart19 from "@/assets/aparts/apart-22.jpg";
 
 const initialImages = [apart1, apart2, apart4, apart5, apart6, apart7];
 const moreImages = [
@@ -42,6 +45,9 @@ const moreImages = [
   apart17,
   apart18,
   apart19,
+  apart20,
+  apart21,
+  apart22,
 ];
 
 const youtubeLinks = [
