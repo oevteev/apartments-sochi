@@ -45,7 +45,7 @@ const QuickContactModal = ({ open, onOpenChange }: QuickContactModalProps) => {
     const trimmedName = name.trim();
     const uniqueChars = new Set(trimmedName.toLowerCase().replace(/\s/g, "")).size;
     if (!trimmedName || uniqueChars < 4) {
-      toast.error("Имя должно содержать минимум 4 различных символов");
+      toast.error("Имя должно содержать минимум 4 различных символа");
       return;
     }
 
