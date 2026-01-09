@@ -48,46 +48,46 @@ const moreImages = [apart8, apart9, apart10, apart11, apart12, apart3];
 
 const youtubeLinks = [
   {
-    title: "Обзор апартаментов #1",
+    title: "Квартира 45 м2 в ЖК 'Южное море', корпус 1",
     url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=6",
   },
   {
-    title: "Обзор апартаментов #2",
+    title: "Квартира 45 м2 в ЖК 'Южное море', корпус 1",
     url: "https://www.youtube.com/watch?v=bbqdhV1IZ9E&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=7",
   },
   {
-    title: "Обзор апартаментов #3",
+    title: "Квартира 45 м2 в ЖК 'Южное море', корпус 1",
     url: "https://www.youtube.com/watch?v=Xz3mTWyJFXE&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=8",
   },
   {
-    title: "Обзор апартаментов #4",
+    title: "Квартира 45 м2 в ЖК 'Южное море', корпус 1",
     url: "https://www.youtube.com/watch?v=tJ1Bq4YLydo&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=4",
   },
   {
-    title: "Обзор апартаментов #5",
+    title: "Квартира 49 м2 в ЖК 'Южное море', корпус 2",
     url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM",
   },
 ];
 
 const rutubeLinks = [
   {
-    title: "Обзор апартаментов #1",
+    title: "Квартира 45 м2 в ЖК 'Южное море', корпус 1",
     url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A&playlist=1161435",
   },
   {
-    title: "Обзор апартаментов #2",
+    title: "Квартира 45 м2 в ЖК 'Южное море', корпус 1",
     url: "https://rutube.ru/video/private/c737d7b4fa3b961088aa3c3e0d62da6f/?p=gqxpaLM9Iqobd27n3h09aw&playlist=1161435",
   },
   {
-    title: "Обзор апартаментов #3",
+    title: "Квартира 45 м2 в ЖК 'Южное море', корпус 1",
     url: "https://rutube.ru/video/private/8ccfee5a318e22499aeb86444a1d429e/?p=yztm3p6MyOpL6hYqcot2Iw&playlist=1161435",
   },
   {
-    title: "Обзор апартаментов #4",
+    title: "Квартира 45 м2 в ЖК 'Южное море', корпус 1",
     url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A",
   },
   {
-    title: "Обзор апартаментов #5",
+    title: "Квартира 49 м2 в ЖК 'Южное море', корпус 2",
     url: "https://rutube.ru/video/private/c737d7b4fa3b961088aa3c3e0d62da6f/?p=gqxpaLM9Iqobd27n3h09aw",
   },
 ];
@@ -205,8 +205,8 @@ const Index = () => {
 
   return (
     <Layout>
-      <SEO 
-        title="Апартаменты посуточно в Сочи" 
+      <SEO
+        title="Апартаменты посуточно в Сочи"
         description="Аренда апартаментов посуточно в Сочи. Уютные квартиры у моря с видом на горы. Прямое бронирование без комиссий. Трансфер, поддержка 24/7."
       />
       <StructuredData />
