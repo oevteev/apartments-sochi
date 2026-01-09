@@ -242,10 +242,10 @@ ${message ? `\n💬 *Сообщение:*\n${message.trim()}` : ""}
           emailSubject = "Запрос информации по аренде";
           emailBody = `Запрос информации по аренде от ${name.trim()}, телефон ${phone.trim()}, свяжитесь для уточнения деталей по указанному телефону.`;
         } else if (formType === "quick-contact") {
-          emailSubject = "Быстрое сообщение с сайта бронирования";
-          emailBody = `Быстрое сообщение от ${name.trim()}, телефон ${phone.trim()}.${message ? `<br><br>Сообщение: ${message.trim()}` : ""}`;
+          emailSubject = "Запрос информации с сайта бронирования";
+          emailBody = `Сообщение от ${name.trim()}, телефон ${phone.trim()}.${message ? `<br><br>Сообщение: ${message.trim()}` : ""}`;
         } else {
-          emailSubject = "Сообщение с сайта (контакты)";
+          emailSubject = "Запрос информации с сайта бронирования (контакты)";
           emailBody = `Сообщение от ${name.trim()}, телефон ${phone.trim()}.${message ? `<br><br>Сообщение: ${message.trim()}` : ""}`;
         }
 
