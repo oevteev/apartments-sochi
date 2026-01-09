@@ -17,18 +17,11 @@ const BookingForm = () => {
   const [agreedToPolicy, setAgreedToPolicy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  
-  const {
-    honeypotValue,
-    setHoneypotValue,
-    honeypotFieldName,
-    isSpam,
-    getSpamReason,
-    resetTimer,
-  } = useSpamProtection();
+
+  const { honeypotValue, setHoneypotValue, honeypotFieldName, isSpam, getSpamReason, resetTimer } = useSpamProtection();
 
   const { containerRef, execute: executeCaptcha, reset: resetCaptcha, isReady: captchaReady } = useSmartCaptcha();
-  const { checkLimit, recordAttempt, remaining } = useRateLimiter('booking');
+  const { checkLimit, recordAttempt, remaining } = useRateLimiter("booking");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -48,7 +41,7 @@ const BookingForm = () => {
     if (isSpam()) {
       const reason = getSpamReason();
       console.warn("Spam detected:", reason);
-      
+
       if (reason === "too_fast") {
         toast({
           title: "Подождите",
@@ -57,7 +50,7 @@ const BookingForm = () => {
         });
         return;
       }
-      
+
       // Silent fail for honeypot (don't reveal detection)
       toast({
         title: "Заявка принята!",
@@ -72,8 +65,8 @@ const BookingForm = () => {
 
     // Validation
     const trimmedName = name.trim();
-    const uniqueChars = new Set(trimmedName.toLowerCase().replace(/\s/g, '')).size;
-    if (!trimmedName || uniqueChars < 5) {
+    const uniqueChars = new Set(trimmedName.toLowerCase().replace(/\s/g, "")).size;
+    if (!trimmedName || uniqueChars < 4) {
       toast({
         title: "Ошибка",
         description: "Имя должно содержать минимум 4 различных символа",
@@ -119,11 +112,11 @@ const BookingForm = () => {
         return;
       }
 
-      const { error } = await supabase.functions.invoke('send-to-telegram', {
+      const { error } = await supabase.functions.invoke("send-to-telegram", {
         body: {
           name: name.trim(),
           phone: phone.trim(),
-          formType: 'booking',
+          formType: "booking",
           captchaToken,
         },
       });
@@ -146,7 +139,7 @@ const BookingForm = () => {
       resetTimer();
       resetCaptcha();
     } catch (error) {
-      console.error('Error sending booking:', error);
+      console.error("Error sending booking:", error);
       toast({
         title: "Ошибка",
         description: "Не удалось отправить заявку. Попробуйте позже или напишите в Telegram",
@@ -161,12 +154,8 @@ const BookingForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md relative">
       {/* Honeypot field - invisible to humans */}
-      <HoneypotField
-        value={honeypotValue}
-        onChange={setHoneypotValue}
-        fieldName={honeypotFieldName}
-      />
-      
+      <HoneypotField value={honeypotValue} onChange={setHoneypotValue} fieldName={honeypotFieldName} />
+
       <div>
         <Input
           type="text"
@@ -221,13 +210,11 @@ const BookingForm = () => {
 
       {/* Remaining attempts indicator */}
       {remaining < 5 && (
-        <p className={`text-xs text-center ${remaining === 0 ? 'text-destructive' : 'text-white/70'}`}>
-          {remaining === 0 
-            ? "Лимит исчерпан. Попробуйте через час." 
-            : `Осталось попыток: ${remaining} из 5`}
+        <p className={`text-xs text-center ${remaining === 0 ? "text-destructive" : "text-white/70"}`}>
+          {remaining === 0 ? "Лимит исчерпан. Попробуйте через час." : `Осталось попыток: ${remaining} из 5`}
         </p>
       )}
-      
+
       {/* SmartCaptcha invisible container */}
       <div ref={containerRef} />
     </form>
