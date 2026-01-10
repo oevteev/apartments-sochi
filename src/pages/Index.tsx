@@ -397,7 +397,7 @@ const Index = () => {
               <div className="flex items-center gap-2">
                 <img
                   src={yandexIcon}
-                  alt="Яндекс"
+                  alt="Яндекс путешествия"
                   className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
                 />
                 <img
@@ -412,7 +412,7 @@ const Index = () => {
                 />
                 <img
                   src={sutochnoIcon}
-                  alt="Суточно"
+                  alt="Суточно.ру"
                   className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
                 />
                 <img
