@@ -259,7 +259,7 @@ ${message ? `\n💬 *Сообщение:*\n${message.trim()}` : ""}
               Authorization: `Bearer ${NOTISEND_API_KEY}`,
             },
             body: JSON.stringify({
-              from_email: "info@arendaapartmentsochi.ru",
+              from_email: "info@arendaapartmentssochi.ru",
               from_name: "Бронирование",
               to: recipient,
               subject: emailSubject,
