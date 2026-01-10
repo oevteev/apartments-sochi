@@ -401,7 +401,6 @@ const Index = () => {
                   className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
                 />
                 <img
-                  href="https://www.avito.ru/brands/i10778160"
                   src={avitoIcon}
                   alt="Авито"
                   className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
