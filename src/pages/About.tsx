@@ -9,15 +9,15 @@ import { BookingPlatforms } from "@/components/BookingPlatforms";
 const About = () => {
   return (
     <Layout>
-      <SEO 
-        title="О нас" 
+      <SEO
+        title="О нас"
         description="ВашСочи — ваш надёжный партнёр в поиске идеального жилья для отдыха в Сочи. История компании, контакты и реквизиты."
       />
       {/* Hero with Logo */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <img src={logoAbout} alt="ArendaApartmentSochi.ru" className="mx-auto mb-8 max-w-xs md:max-w-sm" />
+            <img src={logoAbout} alt="ArendaApartmentsSochi.ru" className="mx-auto mb-8 max-w-xs md:max-w-sm" />
 
             <p className="text-lg text-muted-foreground leading-relaxed">
               ВашСочи — ваш надёжный партнёр в поиске идеального жилья для отдыха в Сочи. Мы работаем, чтобы каждый
