@@ -235,6 +235,30 @@ ${message ? `\n💬 *Сообщение:*\n${message.trim()}` : ""}
       const NOTISEND_API_KEY = Deno.env.get("NOTISEND_API_KEY");
 
       if (NOTISEND_API_KEY) {
+        // Check Notisend account balance first
+        console.log("Checking Notisend account balance...");
+        try {
+          const balanceResponse = await fetch("https://api.notisend.ru/v1/email/balance", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${NOTISEND_API_KEY}`,
+            },
+          });
+          const balanceData = await balanceResponse.json();
+          console.log("Notisend balance check:", JSON.stringify(balanceData));
+          
+          if (!balanceResponse.ok) {
+            console.error("Notisend balance check failed:", {
+              status: balanceResponse.status,
+              statusText: balanceResponse.statusText,
+              data: balanceData
+            });
+          }
+        } catch (balanceError) {
+          console.error("Failed to check Notisend balance:", balanceError);
+        }
+
         let emailSubject: string;
         let emailBody: string;
 
@@ -250,25 +274,84 @@ ${message ? `\n💬 *Сообщение:*\n${message.trim()}` : ""}
         }
 
         const recipients = ["arendaapartmentsochi@ya.ru", "oevt@mail.ru"];
+        const primaryUrl = "https://api.notisend.ru/v1/email/messages";
+        const fallbackUrl = "https://api-reserve.msndr.net/v1/email/messages";
 
         for (const recipient of recipients) {
-          const response = await fetch("https://api.notisend.ru/v1/email/messages", {
+          console.log(`Attempting to send email to ${recipient} from info@arendaapartmentssochi.ru`);
+          
+          const emailPayload = {
+            from_email: "info@arendaapartmentssochi.ru",
+            from_name: "Бронирование",
+            to: recipient,
+            subject: emailSubject,
+            html: emailBody,
+          };
+
+          // Try primary URL first
+          let response = await fetch(primaryUrl, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${NOTISEND_API_KEY}`,
             },
-            body: JSON.stringify({
-              from_email: "info@arendaapartmentssochi.ru",
-              from_name: "Бронирование",
-              to: recipient,
-              subject: emailSubject,
-              html: emailBody,
-            }),
+            body: JSON.stringify(emailPayload),
           });
 
-          const result = await response.json();
-          console.log(`Notisend email to ${recipient}:`, response.ok ? "success" : "failed", result);
+          let result = await response.json();
+
+          // If primary fails, try fallback URL
+          if (!response.ok) {
+            console.warn(`Primary Notisend URL failed for ${recipient}, trying fallback...`, {
+              status: response.status,
+              statusText: response.statusText,
+              result: JSON.stringify(result)
+            });
+
+            response = await fetch(fallbackUrl, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${NOTISEND_API_KEY}`,
+              },
+              body: JSON.stringify(emailPayload),
+            });
+
+            result = await response.json();
+            
+            if (response.ok) {
+              console.log(`Fallback URL succeeded for ${recipient}`);
+            }
+          }
+
+          // Enhanced logging for response
+          console.log(`Notisend response for ${recipient}:`, {
+            status: response.status,
+            statusText: response.statusText,
+            ok: response.ok,
+            result: JSON.stringify(result)
+          });
+
+          // Log specific errors with details
+          if (!response.ok) {
+            console.error(`Notisend error for ${recipient}:`, {
+              httpStatus: response.status,
+              errors: result.errors || result.error || result
+            });
+
+            // Specific error handling
+            if (response.status === 401) {
+              console.error("NOTISEND_API_KEY is invalid or expired");
+            } else if (response.status === 402) {
+              console.error("Notisend account has no balance or credits");
+            } else if (response.status === 422) {
+              console.error("Domain not verified or validation error - check domain settings in Notisend");
+            } else if (response.status === 429) {
+              console.error("Rate limit exceeded on Notisend");
+            }
+          } else if (result.status) {
+            console.log(`Email to ${recipient} status: ${result.status}, id: ${result.id || 'N/A'}`);
+          }
         }
       } else {
         console.log("NOTISEND_API_KEY not configured, skipping email");
