@@ -425,14 +425,14 @@ const Index = () => {
                   className="hover:opacity-80 transition-opacity flex items-center justify-center"
                 >
                   <img src={ostrovokIcon} alt="Островок" className="h-6 w-6 object-contain" />
-                  <a
-                    href="https://travel.yandex.ru/extranet/apartments/reviews/444290/?chainId=239daaba-372c-4d54-87b9-69e2b1320877"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:opacity-80 transition-opacity flex items-center justify-center"
-                  >
-                    <img src={yandexIcon} alt="Яндекс" className="h-6 w-6 object-contain" />
-                  </a>
+                </a>
+                <a
+                  href="https://travel.yandex.ru/extranet/apartments/reviews/444290/?chainId=239daaba-372c-4d54-87b9-69e2b1320877"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
+                >
+                  <img src={yandexIcon} alt="Яндекс" className="h-6 w-6 object-contain" />
                 </a>
               </div>
             </div>
