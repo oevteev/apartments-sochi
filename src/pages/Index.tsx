@@ -390,10 +390,7 @@ const Index = () => {
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Отзывы наших гостей</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-6">Узнайте, что говорят о нас наши клиенты</p>
             <div className="inline-flex items-center gap-4">
-              <Link
-                to="/reviews"
-                className="text-primary hover:text-primary/80 transition-colors"
-              >
+              <Link to="/reviews" className="text-primary hover:text-primary/80 transition-colors">
                 <span className="text-lg font-medium">Все отзывы</span>
               </Link>
               <div className="flex items-center gap-3">
@@ -430,7 +427,7 @@ const Index = () => {
                   <img src={sutochnoIcon} alt="Суточно.ру" className="h-6 w-6 object-contain" />
                 </a>
                 <a
-                  href="https://ostrovok.ru"
+                  href="https://ostrovok.ru/hotel/russia/sochi/mid13111434/v_zhk_yuzhnoye_more_flat/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity flex items-center justify-center"
