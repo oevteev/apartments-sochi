@@ -395,14 +395,6 @@ const Index = () => {
               </Link>
               <div className="flex items-center gap-3">
                 <a
-                  href="https://yandex.ru"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
-                >
-                  <img src={yandexIcon} alt="Яндекс" className="h-6 w-6 object-contain" />
-                </a>
-                <a
                   href="https://www.avito.ru/brands/i10778160"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -433,6 +425,14 @@ const Index = () => {
                   className="hover:opacity-80 transition-opacity flex items-center justify-center"
                 >
                   <img src={ostrovokIcon} alt="Островок" className="h-6 w-6 object-contain" />
+                  <a
+                    href="https://yandex.ru"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-80 transition-opacity flex items-center justify-center"
+                  >
+                    <img src={yandexIcon} alt="Яндекс" className="h-6 w-6 object-contain" />
+                  </a>
                 </a>
               </div>
             </div>
