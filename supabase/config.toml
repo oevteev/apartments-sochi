@@ -5,3 +5,12 @@ verify_jwt = false
 
 [functions.get-captcha-key]
 verify_jwt = false
+
+[functions.check-owner]
+verify_jwt = false
+
+[functions.track-pageview]
+verify_jwt = false
+
+[functions.get-statistics]
+verify_jwt = false

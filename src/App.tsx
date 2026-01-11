@@ -13,6 +13,7 @@ import Reviews from "./pages/Reviews";
 import Contacts from "./pages/Contacts";
 import Management from "./pages/Management";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Statistics from "./pages/Statistics";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/contacts" element={<Contacts />} />
             <Route path="/management" element={<Management />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/statistics" element={<Statistics />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
