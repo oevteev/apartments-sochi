@@ -88,7 +88,7 @@ const bookingPlatforms = [
   {
     icon: <YandexIcon className="w-full h-full" />,
     label: "Яндекс Путешествия",
-    href: "https://travel.yandex.ru/extranet/apartments/reviews/444290/?chainId=239daaba-372c-4d54-87b9-69e2b1320877",
+    href: "https://travel.yandex.ru/hotels/sochi/deluxe-apartment-na-esaulenko-45m2",
   },
   {
     icon: <OtelloIcon className="w-full h-full" />,
