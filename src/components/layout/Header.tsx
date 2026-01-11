@@ -3,7 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MobileMenu from "./MobileMenu";
-const navItems = [
+import { useOwnerCheck } from "@/hooks/useOwnerCheck";
+
+const baseNavItems = [
   { name: "Каталог", path: "/catalog" },
   { name: "Апартаменты", path: "/apartments" },
   { name: "Вопросы", path: "/faq" },
@@ -18,6 +20,12 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const { isOwner } = useOwnerCheck();
+
+  // Add Statistics item only for owner
+  const navItems = isOwner 
+    ? [...baseNavItems, { name: "Статистика", path: "/statistics" }]
+    : baseNavItems;
 
   useEffect(() => {
     const handleScroll = () => {
