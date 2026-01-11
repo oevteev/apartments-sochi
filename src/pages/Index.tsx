@@ -427,7 +427,7 @@ const Index = () => {
                   <img src={ostrovokIcon} alt="Островок" className="h-6 w-6 object-contain" />
                 </a>
                 <a
-                  href="https://travel.yandex.ru/extranet/apartments/reviews/444290/?chainId=239daaba-372c-4d54-87b9-69e2b1320877"
+                  href="https://travel.yandex.ru/hotels/sochi/deluxe-apartment-na-esaulenko-45m2/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity flex items-center justify-center"
