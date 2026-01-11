@@ -389,39 +389,56 @@ const Index = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Отзывы наших гостей</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-6">Узнайте, что говорят о нас наши клиенты</p>
-            <Link
-              to="/reviews"
-              className="inline-flex items-center gap-4 text-primary hover:text-primary/80 transition-colors group"
-            >
-              <span className="text-lg font-medium">Все отзывы</span>
-              <div className="flex items-center gap-2">
-                <img
-                  src={yandexIcon}
-                  alt="Яндекс путешествия"
-                  className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
-                />
-                <img
-                  src={avitoIcon}
-                  alt="Авито"
-                  className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
-                />
-                <img
-                  src={cianIcon}
-                  alt="Циан"
-                  className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
-                />
-                <img
-                  src={sutochnoIcon}
-                  alt="Суточно.ру"
-                  className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
-                />
-                <img
-                  src={ostrovokIcon}
-                  alt="Островок"
-                  className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity"
-                />
+            <div className="inline-flex items-center gap-4">
+              <Link
+                to="/reviews"
+                className="text-primary hover:text-primary/80 transition-colors"
+              >
+                <span className="text-lg font-medium">Все отзывы</span>
+              </Link>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://yandex.ru"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
+                >
+                  <img src={yandexIcon} alt="Яндекс" className="h-6 w-6 object-contain" />
+                </a>
+                <a
+                  href="https://www.avito.ru/brands/i10778160"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
+                >
+                  <img src={avitoIcon} alt="Avito" className="h-6 w-6 object-contain" />
+                </a>
+                <a
+                  href="https://cian.ru/rent/flat/300248141/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
+                >
+                  <img src={cianIcon} alt="Циан" className="h-6 w-6 object-contain" />
+                </a>
+                <a
+                  href="https://sutochno.ru/front/searchapp/detail/1734459?host_id=5448483&host_device=PC&guest_id=5448483"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
+                >
+                  <img src={sutochnoIcon} alt="Суточно.ру" className="h-6 w-6 object-contain" />
+                </a>
+                <a
+                  href="https://ostrovok.ru"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity flex items-center justify-center"
+                >
+                  <img src={ostrovokIcon} alt="Островок" className="h-6 w-6 object-contain" />
+                </a>
               </div>
-            </Link>
+            </div>
           </div>
 
           <Carousel
