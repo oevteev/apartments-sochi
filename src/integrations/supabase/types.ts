@@ -19,19 +19,16 @@ export type Database = {
           created_at: string | null
           id: string
           page_path: string
-          visitor_ip: string
         }
         Insert: {
           created_at?: string | null
           id?: string
           page_path: string
-          visitor_ip: string
         }
         Update: {
           created_at?: string | null
           id?: string
           page_path?: string
-          visitor_ip?: string
         }
         Relationships: []
       }
