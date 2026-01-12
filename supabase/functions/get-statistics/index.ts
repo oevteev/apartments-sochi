@@ -29,20 +29,24 @@ serve(async (req) => {
       );
     }
 
+    // Get days parameter from request body
+    const body = await req.json().catch(() => ({}));
+    const days = body.days === 14 ? 14 : 7;
+
     // Create Supabase client with service role key
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Get data for the last 7 days
-    const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-    sevenDaysAgo.setHours(0, 0, 0, 0);
+    // Get data for the specified period
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - days);
+    startDate.setHours(0, 0, 0, 0);
 
     const { data, error } = await supabase
       .from("page_views")
       .select("page_path, created_at")
-      .gte("created_at", sevenDaysAgo.toISOString())
+      .gte("created_at", startDate.toISOString())
       .order("created_at", { ascending: true });
 
     if (error) {
@@ -58,7 +62,7 @@ serve(async (req) => {
     const stats: Record<string, Record<string, number>> = {};
 
     // Initialize all days with zero values
-    for (let i = 6; i >= 0; i--) {
+    for (let i = days - 1; i >= 0; i--) {
       const date = new Date();
       date.setDate(date.getDate() - i);
       const dateKey = `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}`;

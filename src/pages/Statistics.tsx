@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { supabase } from "@/integrations/supabase/client";
@@ -6,6 +6,8 @@ import Layout from "@/components/layout/Layout";
 import SEO from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 interface ChartDataItem {
   date: string;
@@ -20,36 +22,40 @@ const Statistics = () => {
   const [data, setData] = useState<ChartDataItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedDays, setSelectedDays] = useState<number>(7);
+
+  const fetchStatistics = useCallback(async (days: number) => {
+    setIsLoading(true);
+    try {
+      const { data: responseData, error: invokeError } = await supabase.functions.invoke("get-statistics", {
+        body: { days }
+      });
+      
+      if (invokeError) {
+        console.error("Error fetching statistics:", invokeError);
+        setError("Ошибка загрузки данных");
+        return;
+      }
+
+      if (responseData?.error === "Forbidden") {
+        navigate("/");
+        return;
+      }
+
+      if (responseData?.data) {
+        setData(responseData.data);
+      }
+    } catch (err) {
+      console.error("Error fetching statistics:", err);
+      setError("Ошибка загрузки данных");
+    } finally {
+      setIsLoading(false);
+    }
+  }, [navigate]);
 
   useEffect(() => {
-    const fetchStatistics = async () => {
-      try {
-        const { data: responseData, error: invokeError } = await supabase.functions.invoke("get-statistics");
-        
-        if (invokeError) {
-          console.error("Error fetching statistics:", invokeError);
-          setError("Ошибка загрузки данных");
-          return;
-        }
-
-        if (responseData?.error === "Forbidden") {
-          navigate("/");
-          return;
-        }
-
-        if (responseData?.data) {
-          setData(responseData.data);
-        }
-      } catch (err) {
-        console.error("Error fetching statistics:", err);
-        setError("Ошибка загрузки данных");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchStatistics();
-  }, [navigate]);
+    fetchStatistics(selectedDays);
+  }, [selectedDays, fetchStatistics]);
 
   const renderChart = (title: string, dataKey: keyof ChartDataItem, color: string) => (
     <Card className="w-full">
@@ -116,9 +122,23 @@ const Statistics = () => {
           <h1 className="text-3xl md:text-4xl font-serif font-bold text-center mb-4">
             Статистика просмотров
           </h1>
-          <p className="text-muted-foreground text-center mb-12">
-            Данные за последние 7 дней
-          </p>
+          
+          <div className="flex flex-col items-center gap-4 mb-12">
+            <RadioGroup
+              defaultValue="7"
+              onValueChange={(value) => setSelectedDays(Number(value))}
+              className="flex gap-6"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="7" id="days-7" />
+                <Label htmlFor="days-7" className="cursor-pointer">7 дней</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="14" id="days-14" />
+                <Label htmlFor="days-14" className="cursor-pointer">14 дней</Label>
+              </div>
+            </RadioGroup>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {renderChart("Главная страница", "main", "hsl(var(--primary))")}

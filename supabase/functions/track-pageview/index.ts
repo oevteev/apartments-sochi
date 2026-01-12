@@ -43,12 +43,11 @@ serve(async (req) => {
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Insert page view
+    // Insert page view (without storing IP for privacy)
     const { error } = await supabase
       .from("page_views")
       .insert({
-        page_path: pagePath,
-        visitor_ip: visitorIp
+        page_path: pagePath
       });
 
     if (error) {
@@ -59,7 +58,7 @@ serve(async (req) => {
       );
     }
 
-    console.log(`Tracked page view: ${pagePath} from ${visitorIp}`);
+    console.log(`Tracked page view: ${pagePath}`);
 
     return new Response(
       JSON.stringify({ tracked: true }),
