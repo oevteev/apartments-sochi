@@ -15,6 +15,7 @@ import hero11 from "@/assets/hero/hero-11.jpg";
 import hero12 from "@/assets/hero/hero-12.jpg";
 import hero13 from "@/assets/hero/hero-13.jpg";
 import hero14 from "@/assets/hero/hero-14.jpg";
+
 const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8, hero9, hero10, hero11, hero12, hero13, hero14];
 
 const HeroSlider = () => {
@@ -54,6 +55,11 @@ const HeroSlider = () => {
           <img
             src={image}
             alt={`Апартаменты в Сочи - интерьер ${index + 1}`}
+            width={1920}
+            height={1080}
+            loading={index === 0 ? "eager" : "lazy"}
+            decoding={index === 0 ? "sync" : "async"}
+            fetchPriority={index === 0 ? "high" : "auto"}
             className="absolute inset-[-10%] w-[120%] h-[120%] object-cover"
           />
         </div>
