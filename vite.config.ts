@@ -58,7 +58,7 @@ function lovableSsgPostbuildPlugin(): Plugin {
         // Step 2: Run prerender script
         console.log("\n🔄 Running SSG prerender...\n");
 
-        return new Promise<void>((resolve) => {
+        await new Promise<void>((resolve) => {
           const child = spawn("node", ["prerender.js"], {
             stdio: "inherit",
             shell: true,
@@ -66,15 +66,39 @@ function lovableSsgPostbuildPlugin(): Plugin {
 
           child.on("close", (code) => {
             if (code === 0) {
-              resolve();
+              console.log("\n✓ SSG prerender completed\n");
             } else {
               console.warn(`\n⚠️ SSG prerender exited with code ${code}`);
-              resolve();
             }
+            resolve();
           });
 
           child.on("error", (error) => {
             console.warn(`\n⚠️ SSG prerender error: ${error.message}`);
+            resolve();
+          });
+        });
+
+        // Step 3: Generate sitemap
+        console.log("\n📄 Generating sitemap.xml...\n");
+
+        await new Promise<void>((resolve) => {
+          const generateSitemap = spawn("node", ["generate-sitemap.js"], {
+            stdio: "inherit",
+            shell: true,
+          });
+
+          generateSitemap.on("close", (code) => {
+            if (code === 0) {
+              console.log("\n✓ Sitemap generated successfully\n");
+            } else {
+              console.warn(`\n⚠️ Sitemap generation exited with code ${code}`);
+            }
+            resolve();
+          });
+
+          generateSitemap.on("error", (error) => {
+            console.warn(`\n⚠️ Sitemap generation error: ${error.message}`);
             resolve();
           });
         });
