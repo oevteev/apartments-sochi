@@ -48,6 +48,25 @@ if (typeof globalThis.window === "undefined") {
   globalThis.window = globalThis as unknown as Window & typeof globalThis;
 }
 
+// Mock window.location for SSR
+if (typeof globalThis.location === "undefined") {
+  globalThis.location = {
+    href: "https://booking-sochi.lovable.app/",
+    hostname: "booking-sochi.lovable.app",
+    pathname: "/",
+    protocol: "https:",
+    host: "booking-sochi.lovable.app",
+    origin: "https://booking-sochi.lovable.app",
+    search: "",
+    hash: "",
+    port: "",
+    assign: () => {},
+    reload: () => {},
+    replace: () => {},
+    toString: () => "https://booking-sochi.lovable.app/",
+  } as unknown as Location;
+}
+
 // Mock matchMedia for SSR
 if (typeof globalThis.matchMedia === "undefined") {
   globalThis.matchMedia = (query: string) => ({

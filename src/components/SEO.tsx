@@ -17,7 +17,7 @@ const SEO = ({
 }: SEOProps) => {
   const siteName = 'Апартаменты посуточно в Сочи';
   const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
-  const canonicalUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
+  const canonicalUrl = url || (typeof window !== 'undefined' && window.location ? window.location.href : '');
 
   return (
     <Helmet>
