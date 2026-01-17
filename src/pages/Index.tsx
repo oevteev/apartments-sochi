@@ -449,7 +449,7 @@ const Index = () => {
             <p className="text-muted-foreground max-w-2xl mx-auto mb-6">Узнайте, что говорят о нас наши клиенты</p>
             <div className="inline-flex items-center gap-4">
               <Link to="/reviews" className="text-primary hover:text-primary/80 transition-colors">
-                <span className="text-lg font-medium">Все отзывы</span>
+                <span className="text-lg font-medium">Читать все отзывы гостей</span>
               </Link>
               <div className="flex items-center gap-3">
                 <a
@@ -555,7 +555,7 @@ const Index = () => {
               to="/contacts"
               className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white text-primary font-semibold rounded-lg hover:bg-white/90 transition-colors"
             >
-              Связаться с нами
+              Забронировать апартаменты
             </Link>
           </div>
         </div>

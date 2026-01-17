@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SEO from "@/components/SEO";
 import RealtyCalendarWidget from "@/components/RealtyCalendarWidget";
@@ -118,8 +119,29 @@ const Apartments = () => {
             </p>
           </div>
 
+          {/* Anchor Navigation */}
+          <nav aria-label="Навигация по странице" className="mb-12">
+            <ul className="flex flex-wrap justify-center gap-4 text-sm">
+              <li>
+                <a href="#booking" className="px-4 py-2 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-colors shadow-sm">
+                  Бронирование
+                </a>
+              </li>
+              <li>
+                <a href="#gallery" className="px-4 py-2 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-colors shadow-sm">
+                  Фотогалерея
+                </a>
+              </li>
+              <li>
+                <a href="#videos" className="px-4 py-2 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-colors shadow-sm">
+                  Видеообзоры
+                </a>
+              </li>
+            </ul>
+          </nav>
+
           {/* RealtyCalendar Widget */}
-          <section className="mb-16">
+          <section id="booking" className="mb-16">
             <h2 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">
               Забронировать апартаменты
             </h2>
@@ -127,7 +149,7 @@ const Apartments = () => {
           </section>
 
           {/* Photo Gallery */}
-          <section className="mb-16">
+          <section id="gallery" className="mb-16">
             <h2 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">Фотогалерея</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {displayedImages.map((image, index) => (
@@ -155,14 +177,14 @@ const Apartments = () => {
               <div className="text-center mt-8">
                 <Button onClick={() => setShowMore(true)} variant="outline" size="lg" className="gap-2">
                   <ChevronDown className="w-5 h-5" />
-                  Показать ещё
+                  Показать ещё фотографии
                 </Button>
               </div>
             )}
           </section>
 
           {/* Video Links */}
-          <section className="mb-16">
+          <section id="videos" className="mb-16">
             <h2 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">Видеообзоры</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* YouTube */}
@@ -219,6 +241,39 @@ const Apartments = () => {
                 </div>
               </div>
             </div>
+          </section>
+
+          {/* CTA Section with Cross-links */}
+          <section className="bg-secondary/30 rounded-2xl p-8 md:p-12 text-center">
+            <h2 className="text-2xl font-serif font-bold text-foreground mb-4">Готовы забронировать?</h2>
+            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Выберите даты и забронируйте апартаменты онлайн или свяжитесь с нами для консультации
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
+              <Link
+                to="/catalog"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                Выбрать даты и забронировать
+              </Link>
+              <Link
+                to="/contacts"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-card text-foreground font-semibold rounded-lg hover:bg-secondary transition-colors border border-border"
+              >
+                Связаться с нами
+              </Link>
+            </div>
+            <p className="text-muted-foreground text-sm">
+              Есть вопросы? Загляните в раздел{" "}
+              <Link to="/faq" className="text-primary hover:underline font-medium">
+                частых вопросов
+              </Link>{" "}
+              или почитайте{" "}
+              <Link to="/reviews" className="text-primary hover:underline font-medium">
+                отзывы наших гостей
+              </Link>
+              .
+            </p>
           </section>
         </div>
       </div>

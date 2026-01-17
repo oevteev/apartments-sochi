@@ -238,6 +238,21 @@ const Contacts = () => {
                   </div>
                 ))}
               </div>
+
+              {/* Cross-links */}
+              <div className="mt-8 pt-6 border-t border-border">
+                <p className="text-muted-foreground text-sm">
+                  Перед обращением рекомендуем посмотреть раздел{" "}
+                  <Link to="/faq" className="text-primary hover:underline font-medium">
+                    частых вопросов
+                  </Link>
+                  . Также вы можете{" "}
+                  <Link to="/catalog" className="text-primary hover:underline font-medium">
+                    выбрать апартаменты
+                  </Link>{" "}
+                  самостоятельно.
+                </p>
+              </div>
             </div>
 
             {/* Contact Form */}

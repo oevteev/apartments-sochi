@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SEO from "@/components/SEO";
 import { Star, Quote } from "lucide-react";
@@ -400,6 +401,39 @@ const Reviews = () => {
               ))}
             </CarouselContent>
           </Carousel>
+        </div>
+      </section>
+
+      {/* CTA Section with Cross-links */}
+      <section className="py-16 bg-secondary/50">
+        <div className="container-custom text-center">
+          <h2 className="text-2xl font-serif font-bold text-foreground mb-4">
+            Готовы создать свои впечатления?
+          </h2>
+          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+            Забронируйте апартаменты и станьте нашим следующим довольным гостем
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+            <Link
+              to="/catalog"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              Выбрать апартаменты
+            </Link>
+            <Link
+              to="/faq"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-card text-foreground font-semibold rounded-lg hover:bg-secondary transition-colors border border-border"
+            >
+              Частые вопросы
+            </Link>
+          </div>
+          <p className="text-muted-foreground text-sm">
+            Посмотрите{" "}
+            <Link to="/apartments" className="text-primary hover:underline font-medium">
+              фотогалерею и видеообзоры
+            </Link>{" "}
+            наших апартаментов
+          </p>
         </div>
       </section>
     </Layout>
