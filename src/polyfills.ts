@@ -51,19 +51,19 @@ if (typeof globalThis.window === "undefined") {
 // Mock window.location for SSR
 if (typeof globalThis.location === "undefined") {
   globalThis.location = {
-    href: "https://booking-sochi.lovable.app/",
-    hostname: "booking-sochi.lovable.app",
+    href: "https://arendaapartmentssochi.ru/",
+    hostname: "arendaapartmentssochi.ru",
     pathname: "/",
     protocol: "https:",
-    host: "booking-sochi.lovable.app",
-    origin: "https://booking-sochi.lovable.app",
+    host: "arendaapartmentssochi.ru",
+    origin: "https://arendaapartmentssochi.ru",
     search: "",
     hash: "",
     port: "",
     assign: () => {},
     reload: () => {},
     replace: () => {},
-    toString: () => "https://booking-sochi.lovable.app/",
+    toString: () => "https://arendaapartmentssochi.ru/",
   } as unknown as Location;
 }
 
