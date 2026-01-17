@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:client && npm run build:server && npm run prerender",
+    "build:client": "vite build",
+    "build:server": "SSR_BUILD=true vite build --ssr src/entry-server.tsx --outDir dist/server",
     "build:dev": "vite build --mode development",
+    "prerender": "node prerender.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -41,6 +44,7 @@
     "@radix-ui/react-tooltip": "^1.2.7",
     "@supabase/supabase-js": "^2.89.0",
     "@tanstack/react-query": "^5.83.0",
+    "@types/react-input-mask": "^3.0.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
