@@ -24,10 +24,41 @@ function lovableSsgPostbuildPlugin(): Plugin {
         }
 
         const { spawn } = await import("child_process");
+
+        // Step 1: Build server entry for SSR
+        console.log("\n🔨 Building server entry for SSG...\n");
         
+        await new Promise<void>((resolve) => {
+          const buildServer = spawn(
+            "npx",
+            ["vite", "build", "--ssr", "src/entry-server.tsx", "--outDir", "dist/server"],
+            {
+              stdio: "inherit",
+              shell: true,
+              env: { ...process.env, SSR_BUILD: "true" },
+            }
+          );
+
+          buildServer.on("close", (code) => {
+            if (code === 0) {
+              console.log("\n✓ Server entry built successfully\n");
+              resolve();
+            } else {
+              console.warn(`\n⚠️ Server build exited with code ${code}`);
+              resolve(); // Don't fail, continue anyway
+            }
+          });
+
+          buildServer.on("error", (error) => {
+            console.warn(`\n⚠️ Server build error: ${error.message}`);
+            resolve();
+          });
+        });
+
+        // Step 2: Run prerender script
         console.log("\n🔄 Running SSG prerender...\n");
-        
-        return new Promise((resolve, reject) => {
+
+        return new Promise<void>((resolve) => {
           const child = spawn("node", ["prerender.js"], {
             stdio: "inherit",
             shell: true,
@@ -37,7 +68,6 @@ function lovableSsgPostbuildPlugin(): Plugin {
             if (code === 0) {
               resolve();
             } else {
-              // Don't fail the build, just warn
               console.warn(`\n⚠️ SSG prerender exited with code ${code}`);
               resolve();
             }
