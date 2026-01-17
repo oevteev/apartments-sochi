@@ -8,16 +8,18 @@ interface SEOProps {
   type?: string;
 }
 
+const DOMAIN = 'https://arendaapartmentssochi.ru';
+
 const SEO = ({ 
   title, 
   description, 
-  image = 'https://sochi-apart.lovable.app/og-image.jpg',
+  image = `${DOMAIN}/og-image.jpg`,
   url,
   type = 'website'
 }: SEOProps) => {
   const siteName = 'Апартаменты посуточно в Сочи';
   const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
-  const canonicalUrl = url || (typeof window !== 'undefined' && window.location ? window.location.href : '');
+  const canonicalUrl = url || (typeof window !== 'undefined' && window.location ? window.location.href : DOMAIN);
 
   return (
     <Helmet>
