@@ -1,3 +1,6 @@
+// Polyfills must be imported first for SSR environment
+import "./polyfills";
+
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import { HelmetProvider, HelmetServerState } from "react-helmet-async";

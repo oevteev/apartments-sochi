@@ -9,6 +9,37 @@
  * Usage: node prerender.js
  */
 
+// Setup polyfills BEFORE any imports - required for SSR environment
+// Some libraries (like Supabase) access localStorage on import
+if (typeof globalThis.localStorage === 'undefined') {
+  const storage = {};
+  globalThis.localStorage = {
+    getItem: (key) => storage[key] ?? null,
+    setItem: (key, value) => { storage[key] = String(value); },
+    removeItem: (key) => { delete storage[key]; },
+    clear: () => { Object.keys(storage).forEach(key => delete storage[key]); },
+    get length() { return Object.keys(storage).length; },
+    key: (index) => Object.keys(storage)[index] ?? null,
+  };
+}
+
+if (typeof globalThis.sessionStorage === 'undefined') {
+  const storage = {};
+  globalThis.sessionStorage = {
+    getItem: (key) => storage[key] ?? null,
+    setItem: (key, value) => { storage[key] = String(value); },
+    removeItem: (key) => { delete storage[key]; },
+    clear: () => { Object.keys(storage).forEach(key => delete storage[key]); },
+    get length() { return Object.keys(storage).length; },
+    key: (index) => Object.keys(storage)[index] ?? null,
+  };
+}
+
+// Mock window for SSR
+if (typeof globalThis.window === 'undefined') {
+  globalThis.window = globalThis;
+}
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
