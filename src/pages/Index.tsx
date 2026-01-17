@@ -26,22 +26,22 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-// Import apartment images
-import apart1 from "@/assets/aparts/apart-1.jpg";
-import apart2 from "@/assets/aparts/apart-2.jpg";
-import apart3 from "@/assets/aparts/apart-3.jpg";
-import apart4 from "@/assets/aparts/apart-4.jpg";
-import apart5 from "@/assets/aparts/apart-5.jpg";
-import apart6 from "@/assets/aparts/apart-6.jpg";
-import apart7 from "@/assets/aparts/apart-7.jpg";
-import apart8 from "@/assets/aparts/apart-8.jpg";
-import apart9 from "@/assets/aparts/apart-9.jpg";
-import apart10 from "@/assets/aparts/apart-10.jpg";
-import apart11 from "@/assets/aparts/apart-11.jpg";
-import apart12 from "@/assets/aparts/apart-12.jpg";
-import apart20 from "@/assets/aparts/apart-20.jpg";
-import apart21 from "@/assets/aparts/apart-21.jpg";
-import apart22 from "@/assets/aparts/apart-22.jpg";
+// Import apartment images with WebP optimization
+import apart1 from "@/assets/aparts/apart-1.jpg?format=webp";
+import apart2 from "@/assets/aparts/apart-2.jpg?format=webp";
+import apart3 from "@/assets/aparts/apart-3.jpg?format=webp";
+import apart4 from "@/assets/aparts/apart-4.jpg?format=webp";
+import apart5 from "@/assets/aparts/apart-5.jpg?format=webp";
+import apart6 from "@/assets/aparts/apart-6.jpg?format=webp";
+import apart7 from "@/assets/aparts/apart-7.jpg?format=webp";
+import apart8 from "@/assets/aparts/apart-8.jpg?format=webp";
+import apart9 from "@/assets/aparts/apart-9.jpg?format=webp";
+import apart10 from "@/assets/aparts/apart-10.jpg?format=webp";
+import apart11 from "@/assets/aparts/apart-11.jpg?format=webp";
+import apart12 from "@/assets/aparts/apart-12.jpg?format=webp";
+import apart20 from "@/assets/aparts/apart-20.jpg?format=webp";
+import apart21 from "@/assets/aparts/apart-21.jpg?format=webp";
+import apart22 from "@/assets/aparts/apart-22.jpg?format=webp";
 
 // Import review platform icons
 import avitoIcon from "@/assets/icons/avito.png";

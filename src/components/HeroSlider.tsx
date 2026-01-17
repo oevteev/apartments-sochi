@@ -1,27 +1,27 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// Eagerly load first 3 images for LCP
-import hero1 from "@/assets/hero/hero-1.jpg";
-import hero2 from "@/assets/hero/hero-2.jpg";
-import hero3 from "@/assets/hero/hero-3.jpg";
+// Eagerly load first 3 images for LCP with WebP optimization
+import hero1 from "@/assets/hero/hero-1.jpg?format=webp";
+import hero2 from "@/assets/hero/hero-2.jpg?format=webp";
+import hero3 from "@/assets/hero/hero-3.jpg?format=webp";
 
 // Initial images loaded immediately
 const initialHeroImages = [hero1, hero2, hero3];
 
-// Lazy load remaining images
+// Lazy load remaining images with WebP
 const lazyImageLoaders = [
-  () => import("@/assets/hero/hero-4.jpg"),
-  () => import("@/assets/hero/hero-5.jpg"),
-  () => import("@/assets/hero/hero-6.jpg"),
-  () => import("@/assets/hero/hero-7.jpg"),
-  () => import("@/assets/hero/hero-8.jpg"),
-  () => import("@/assets/hero/hero-9.jpg"),
-  () => import("@/assets/hero/hero-10.jpg"),
-  () => import("@/assets/hero/hero-11.jpg"),
-  () => import("@/assets/hero/hero-12.jpg"),
-  () => import("@/assets/hero/hero-13.jpg"),
-  () => import("@/assets/hero/hero-14.jpg"),
+  () => import("@/assets/hero/hero-4.jpg?format=webp"),
+  () => import("@/assets/hero/hero-5.jpg?format=webp"),
+  () => import("@/assets/hero/hero-6.jpg?format=webp"),
+  () => import("@/assets/hero/hero-7.jpg?format=webp"),
+  () => import("@/assets/hero/hero-8.jpg?format=webp"),
+  () => import("@/assets/hero/hero-9.jpg?format=webp"),
+  () => import("@/assets/hero/hero-10.jpg?format=webp"),
+  () => import("@/assets/hero/hero-11.jpg?format=webp"),
+  () => import("@/assets/hero/hero-12.jpg?format=webp"),
+  () => import("@/assets/hero/hero-13.jpg?format=webp"),
+  () => import("@/assets/hero/hero-14.jpg?format=webp"),
 ];
 
 const HeroSlider = () => {
