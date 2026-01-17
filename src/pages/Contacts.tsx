@@ -206,7 +206,18 @@ const Contacts = () => {
         description="Свяжитесь с нами для бронирования апартаментов в Сочи. Телефон, email, Telegram. Работаем 9:00-19:00 по московскому времени."
       />
       {/* Hero */}
-      <section className="pt-20 pb-16 bg-gradient-to-br from-primary/10 to-accent/10 py-[32px]"></section>
+      <section className="pt-32 pb-8 bg-gradient-to-br from-primary/10 to-accent/10">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
+              Контакты
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Свяжитесь с нами для бронирования апартаментов в Сочи
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Contact Section */}
       <section className="bg-background py-[10px]">
