@@ -37,9 +37,9 @@ const reasons = [
 const Management = () => {
   return (
     <Layout>
-      <SEO 
-        title="Управление недвижимостью" 
-        description="Услуги управления недвижимостью в Сочи для собственников квартир и инвесторов. Сдача квартир в посуточную аренду с гарантией дохода."
+      <SEO
+        title="Управление недвижимостью"
+        description="Услуги управления недвижимостью в Сочи для инвесторов. Сдача квартир в посуточную аренду с гарантией дохода."
       />
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-secondary via-background to-secondary/50 py-[90px]">
