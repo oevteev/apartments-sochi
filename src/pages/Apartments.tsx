@@ -160,7 +160,7 @@ const Apartments = () => {
                 >
                   <img
                     src={image}
-                    alt={`Апартаменты - фото ${index + 1}`}
+                    alt={`Интерьер апартаментов в Сочи с видом на море - фото ${index + 1}`}
                     width={800}
                     height={600}
                     loading="lazy"

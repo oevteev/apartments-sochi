@@ -17,8 +17,14 @@ const About = () => {
       <section id="about-hero" className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <img src={logoAbout} alt="ArendaApartmentsSochi.ru" className="mx-auto mb-8 max-w-xs md:max-w-sm" />
-
+            <img 
+              src={logoAbout} 
+              alt="Логотип компании ВашСочи - аренда апартаментов в Сочи" 
+              className="mx-auto mb-8 max-w-xs md:max-w-sm" 
+            />
+            <h1 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+              О компании ВашСочи
+            </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
               ВашСочи — ваш надёжный партнёр в поиске идеального жилья для отдыха в Сочи. Мы работаем, чтобы каждый
               гость чувствовал себя как дома.
