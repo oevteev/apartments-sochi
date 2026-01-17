@@ -62,12 +62,10 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/management" className="text-muted-foreground hover:text-background transition-colors text-sm">
-                  Для собственников
-                </Link>
-              </li>
-              <li>
-                <Link to="/privacy-policy" className="text-muted-foreground hover:text-background transition-colors text-sm">
+                <Link
+                  to="/privacy-policy"
+                  className="text-muted-foreground hover:text-background transition-colors text-sm"
+                >
                   Политика конфиденциальности
                 </Link>
               </li>
