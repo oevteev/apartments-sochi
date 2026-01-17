@@ -10,6 +10,10 @@ export const useRateLimiter = (formType: string) => {
   const getStorageKey = useCallback(() => `${STORAGE_KEY}_${formType}`, [formType]);
 
   const getCleanedAttempts = useCallback((): number[] => {
+    // Skip localStorage access during SSR
+    if (typeof window === 'undefined') {
+      return [];
+    }
     try {
       const key = getStorageKey();
       const stored = localStorage.getItem(key);
@@ -50,6 +54,10 @@ export const useRateLimiter = (formType: string) => {
   }, [getCleanedAttempts]);
 
   const recordAttempt = useCallback(() => {
+    // Skip localStorage access during SSR
+    if (typeof window === 'undefined') {
+      return;
+    }
     try {
       const key = getStorageKey();
       const stored = localStorage.getItem(key);
