@@ -7,9 +7,9 @@ const Footer = () => {
   return (
     <footer className="bg-foreground text-background">
       <div className="container-custom py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
-          <div className="space-y-4">
+          <div className="space-y-4 lg:col-span-1">
             <h3 className="text-xl font-serif font-bold">ВашСочи</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Бронируйте квартиры посуточно в Сочи с гарантией качества и поддержкой 24/7. Лучшие апартаменты для вашего
@@ -18,12 +18,12 @@ const Footer = () => {
           </div>
 
           {/* Navigation */}
-          <nav role="navigation" aria-label="Навигация в подвале" className="space-y-4">
+          <nav role="navigation" aria-label="Основная навигация" className="space-y-4">
             <h3 className="text-lg font-semibold">Навигация</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/catalog" className="text-muted-foreground hover:text-background transition-colors text-sm">
-                  Каталог
+                  Каталог апартаментов
                 </Link>
               </li>
               <li>
@@ -31,22 +31,44 @@ const Footer = () => {
                   to="/apartments"
                   className="text-muted-foreground hover:text-background transition-colors text-sm"
                 >
-                  Апартаменты
+                  Фотогалерея и видеообзоры
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-muted-foreground hover:text-background transition-colors text-sm">
-                  О нас
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="text-muted-foreground hover:text-background transition-colors text-sm">
-                  Вопросы
+                  О компании
                 </Link>
               </li>
               <li>
                 <Link to="/reviews" className="text-muted-foreground hover:text-background transition-colors text-sm">
-                  Отзывы
+                  Отзывы гостей
+                </Link>
+              </li>
+              <li>
+                <Link to="/contacts" className="text-muted-foreground hover:text-background transition-colors text-sm">
+                  Контакты
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* Information */}
+          <nav role="navigation" aria-label="Дополнительная информация" className="space-y-4">
+            <h3 className="text-lg font-semibold">Информация</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/faq" className="text-muted-foreground hover:text-background transition-colors text-sm">
+                  Частые вопросы
+                </Link>
+              </li>
+              <li>
+                <Link to="/management" className="text-muted-foreground hover:text-background transition-colors text-sm">
+                  Для собственников
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy-policy" className="text-muted-foreground hover:text-background transition-colors text-sm">
+                  Политика конфиденциальности
                 </Link>
               </li>
             </ul>

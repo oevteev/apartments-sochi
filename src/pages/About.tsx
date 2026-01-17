@@ -14,7 +14,7 @@ const About = () => {
         description="ВашСочи — ваш надёжный партнёр в поиске идеального жилья для отдыха в Сочи. История компании, контакты и реквизиты."
       />
       {/* Hero with Logo */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">
+      <section id="about-hero" className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <img src={logoAbout} alt="ArendaApartmentsSochi.ru" className="mx-auto mb-8 max-w-xs md:max-w-sm" />
@@ -28,7 +28,7 @@ const About = () => {
       </section>
 
       {/* Story */}
-      <section className="bg-background py-[10px]">
+      <section id="history" className="bg-background py-[10px]">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-serif font-bold text-foreground mb-6">Наша история</h2>
@@ -42,7 +42,15 @@ const About = () => {
                 профессионалов, готовых помочь в любой ситуации.
               </p>
               <p>
-                Сегодня сотни довольных клиентов выбирают нас для своего отдыха, зная, что их ждёт только лучший сервис.
+                Сегодня сотни довольных клиентов выбирают нас для своего отдыха. Почитайте{" "}
+                <Link to="/reviews" className="text-primary hover:underline font-medium">
+                  отзывы наших гостей
+                </Link>{" "}
+                или{" "}
+                <Link to="/catalog" className="text-primary hover:underline font-medium">
+                  выберите апартаменты
+                </Link>{" "}
+                для вашего отдыха.
               </p>
             </div>
           </div>
@@ -50,7 +58,7 @@ const About = () => {
       </section>
 
       {/* Площадки бронирования */}
-      <section className="py-16 bg-background">
+      <section id="platforms" className="py-16 bg-background">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-serif font-bold text-foreground mb-8 text-left">
@@ -62,7 +70,7 @@ const About = () => {
       </section>
 
       {/* Реквизиты */}
-      <section className="bg-secondary/30 py-[32px]">
+      <section id="details" className="bg-secondary/30 py-[32px]">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-serif font-bold text-foreground mb-8">Реквизиты</h2>
@@ -93,7 +101,7 @@ const About = () => {
       </section>
 
       {/* Контакты */}
-      <section className="bg-background py-[16px]">
+      <section id="contacts" className="bg-background py-[16px]">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-serif font-bold text-foreground mb-8">Контакты</h2>
@@ -128,7 +136,7 @@ const About = () => {
                 to="/contacts"
                 className="flex items-center justify-center gap-4 p-5 bg-primary text-primary-foreground rounded-xl shadow-soft hover:bg-primary/90 transition-colors sm:col-span-2"
               >
-                <div className="font-semibold">Связаться с нами</div>
+                <div className="font-semibold">Забронировать апартаменты</div>
               </Link>
             </div>
           </div>
@@ -136,11 +144,30 @@ const About = () => {
       </section>
 
       {/* Способы оплаты */}
-      <section className="py-16 bg-secondary/30">
+      <section id="payment" className="py-16 bg-secondary/30">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-serif font-bold text-foreground mb-8">Способы оплаты</h2>
             <PaymentMethods />
+          </div>
+        </div>
+      </section>
+
+      {/* Cross-links CTA */}
+      <section className="py-12 bg-background">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-muted-foreground">
+              Остались вопросы? Загляните в раздел{" "}
+              <Link to="/faq" className="text-primary hover:underline font-medium">
+                частых вопросов
+              </Link>{" "}
+              или посмотрите{" "}
+              <Link to="/apartments" className="text-primary hover:underline font-medium">
+                фотогалерею наших апартаментов
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>

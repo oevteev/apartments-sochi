@@ -6,11 +6,23 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const faqData = [
   {
     category: "Бронирование",
+    id: "booking",
     questions: [
       {
         question: "Как забронировать квартиру?",
-        answer:
-          "Вы можете забронировать квартиру через наш каталог, заполнив форму на сайте, позвонив по телефону +7(995)228-28-74 или написав нам в Telegram.",
+        answer: (
+          <>
+            Вы можете забронировать квартиру через наш{" "}
+            <Link to="/catalog" className="text-primary hover:underline font-medium">
+              каталог апартаментов
+            </Link>
+            , заполнив форму на сайте, позвонив по телефону +7(995)228-28-74 или{" "}
+            <Link to="/contacts" className="text-primary hover:underline font-medium">
+              написав нам
+            </Link>{" "}
+            в Telegram.
+          </>
+        ),
       },
       {
         question: "Можно ли отменить бронь и вернуть деньги?",
@@ -26,6 +38,7 @@ const faqData = [
   },
   {
     category: "Заселение и выезд",
+    id: "checkin",
     questions: [
       {
         question: "Какие документы нужны для заселения?",
@@ -49,6 +62,7 @@ const faqData = [
   },
   {
     category: "Оплата",
+    id: "payment",
     questions: [
       {
         question: "Какая предоплата?",
@@ -63,6 +77,7 @@ const faqData = [
   },
   {
     category: "Проживание",
+    id: "stay",
     questions: [
       {
         question: "Что входит в стоимость проживания?",
@@ -93,6 +108,7 @@ const faqData = [
     ],
   },
 ];
+
 const FAQ = () => {
   return (
     <Layout>
@@ -106,18 +122,40 @@ const FAQ = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">Частые вопросы</h1>
             <p className="text-lg text-muted-foreground">
-              Ответы на популярные вопросы о бронировании, оплате и проживании. Не нашли ответ? Свяжитесь с нами!
+              Ответы на популярные вопросы о бронировании, оплате и проживании. Не нашли ответ?{" "}
+              <Link to="/contacts" className="text-primary hover:underline font-medium">
+                Свяжитесь с нами
+              </Link>
+              !
             </p>
           </div>
         </div>
       </section>
+
+      {/* Anchor Navigation */}
+      <nav aria-label="Категории вопросов" className="py-6 bg-secondary/30 sticky top-20 z-40 border-b border-border">
+        <div className="container-custom">
+          <ul className="flex flex-wrap justify-center gap-4 text-sm">
+            {faqData.map((category) => (
+              <li key={category.id}>
+                <a 
+                  href={`#${category.id}`} 
+                  className="px-4 py-2 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-colors shadow-sm"
+                >
+                  {category.category}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
 
       {/* FAQ */}
       <section className="bg-background py-[10px]">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto space-y-12">
             {faqData.map((category) => (
-              <div key={category.category}>
+              <div key={category.category} id={category.id}>
                 <h2 className="text-2xl font-serif font-bold text-foreground mb-6 flex items-center gap-3">
                   <span className="w-10 h-1 bg-primary rounded-full" />
                   {category.category}
@@ -142,17 +180,42 @@ const FAQ = () => {
         </div>
       </section>
 
+      {/* Cross-links Section */}
+      <section className="py-12 bg-secondary/30">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-muted-foreground mb-6">
+              Хотите узнать больше о наших апартаментах? Посмотрите{" "}
+              <Link to="/apartments" className="text-primary hover:underline font-medium">
+                фотогалерею и видеообзоры
+              </Link>{" "}
+              или почитайте{" "}
+              <Link to="/reviews" className="text-primary hover:underline font-medium">
+                отзывы гостей
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-16 bg-secondary/50">
         <div className="container-custom text-center">
           <h2 className="text-2xl font-serif font-bold text-foreground mb-4">Остались вопросы?</h2>
           <p className="text-muted-foreground mb-6">Мы с радостью ответим на все ваши вопросы</p>
-          <div className="flex justify-center">
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               to="/contacts"
               className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors"
             >
-              Связаться с нами
+              Задать вопрос менеджеру
+            </Link>
+            <Link
+              to="/catalog"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-card text-foreground font-semibold rounded-lg hover:bg-secondary transition-colors border border-border"
+            >
+              Выбрать апартаменты
             </Link>
           </div>
         </div>

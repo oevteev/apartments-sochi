@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import RealtyCalendarWidget from "@/components/RealtyCalendarWidget";
 import SEO from "@/components/SEO";
@@ -22,6 +23,34 @@ const Catalog = () => {
         </div>
         <div className="container-custom">
           <RealtyCalendarWidget mode="full" />
+        </div>
+
+        {/* Cross-links Section */}
+        <div className="container-custom mt-12">
+          <div className="bg-secondary/30 rounded-2xl p-8 text-center">
+            <p className="text-muted-foreground mb-4">
+              Ещё не определились? Посмотрите{" "}
+              <Link to="/apartments" className="text-primary hover:underline font-medium">
+                фотогалерею и видеообзоры апартаментов
+              </Link>{" "}
+              или почитайте{" "}
+              <Link to="/reviews" className="text-primary hover:underline font-medium">
+                отзывы наших гостей
+              </Link>
+              .
+            </p>
+            <p className="text-muted-foreground">
+              Есть вопросы по бронированию? Ответы найдёте в разделе{" "}
+              <Link to="/faq" className="text-primary hover:underline font-medium">
+                частых вопросов
+              </Link>{" "}
+              или{" "}
+              <Link to="/contacts" className="text-primary hover:underline font-medium">
+                свяжитесь с нами
+              </Link>
+              .
+            </p>
+          </div>
         </div>
       </div>
     </Layout>
