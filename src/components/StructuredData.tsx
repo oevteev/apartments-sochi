@@ -15,7 +15,7 @@ const organizationData = {
   },
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+7-918-000-00-00",
+    telephone: "+7-995-228-28-74",
     contactType: "customer service",
     availableLanguage: ["Russian"],
   },
@@ -28,7 +28,7 @@ const localBusinessData = {
   name: "ВашСочи — Апартаменты посуточно",
   image: "https://arendaapartmentssochi.ru/og-image.jpg",
   url: "https://vashsochi.ru",
-  telephone: "+7-918-000-00-00",
+  telephone: "+7-995-228-28-74",
   email: "info@vashsochi.ru",
   address: {
     "@type": "PostalAddress",
