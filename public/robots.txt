@@ -16,4 +16,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://vashsochi.ru/sitemap.xml
+Sitemap: https://arendaapartmentssochi.ru/sitemap.xml
