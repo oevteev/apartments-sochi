@@ -1,8 +1,11 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-// Check if running on Lovable preview domain
+// Check if running on Lovable preview domain (SSR-safe)
 const isPreviewDomain = (): boolean => {
+  if (typeof window === 'undefined' || !window.location) {
+    return false;
+  }
   const hostname = window.location.hostname;
   return hostname.includes('preview--') && hostname.endsWith('.lovable.app');
 };
