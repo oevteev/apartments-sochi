@@ -1,43 +1,92 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+// Eagerly load first 3 images for LCP
 import hero1 from "@/assets/hero/hero-1.jpg";
 import hero2 from "@/assets/hero/hero-2.jpg";
 import hero3 from "@/assets/hero/hero-3.jpg";
-import hero4 from "@/assets/hero/hero-4.jpg";
-import hero5 from "@/assets/hero/hero-5.jpg";
-import hero6 from "@/assets/hero/hero-6.jpg";
-import hero7 from "@/assets/hero/hero-7.jpg";
-import hero8 from "@/assets/hero/hero-8.jpg";
-import hero9 from "@/assets/hero/hero-9.jpg";
-import hero10 from "@/assets/hero/hero-10.jpg";
-import hero11 from "@/assets/hero/hero-11.jpg";
-import hero12 from "@/assets/hero/hero-12.jpg";
-import hero13 from "@/assets/hero/hero-13.jpg";
-import hero14 from "@/assets/hero/hero-14.jpg";
 
-const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8, hero9, hero10, hero11, hero12, hero13, hero14];
+// Initial images loaded immediately
+const initialHeroImages = [hero1, hero2, hero3];
+
+// Lazy load remaining images
+const lazyImageLoaders = [
+  () => import("@/assets/hero/hero-4.jpg"),
+  () => import("@/assets/hero/hero-5.jpg"),
+  () => import("@/assets/hero/hero-6.jpg"),
+  () => import("@/assets/hero/hero-7.jpg"),
+  () => import("@/assets/hero/hero-8.jpg"),
+  () => import("@/assets/hero/hero-9.jpg"),
+  () => import("@/assets/hero/hero-10.jpg"),
+  () => import("@/assets/hero/hero-11.jpg"),
+  () => import("@/assets/hero/hero-12.jpg"),
+  () => import("@/assets/hero/hero-13.jpg"),
+  () => import("@/assets/hero/hero-14.jpg"),
+];
 
 const HeroSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [scrollY, setScrollY] = useState(0);
+  const [heroImages, setHeroImages] = useState<string[]>(initialHeroImages);
+  const ticking = useRef(false);
+  const imagesLoaded = useRef(false);
 
+  // Auto-advance slides
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroImages.length);
     }, 7000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [heroImages.length]);
 
+  // Optimized scroll handler with requestAnimationFrame throttling
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (!ticking.current) {
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking.current = false;
+        });
+        ticking.current = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Lazy load remaining images after initial render
+  useEffect(() => {
+    if (imagesLoaded.current) return;
+    
+    const loadRemainingImages = async () => {
+      try {
+        const loaded = await Promise.all(
+          lazyImageLoaders.map(async (loader) => {
+            const module = await loader();
+            return module.default;
+          })
+        );
+        setHeroImages([...initialHeroImages, ...loaded]);
+        imagesLoaded.current = true;
+      } catch (error) {
+        console.error("Failed to load hero images:", error);
+      }
+    };
+
+    // Load after 2 seconds to not block LCP
+    const timer = setTimeout(loadRemainingImages, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const goToPrevious = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  }, [heroImages.length]);
+
+  const goToNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+  }, [heroImages.length]);
 
   const parallaxOffset = scrollY * 0.4;
 
@@ -50,6 +99,7 @@ const HeroSlider = () => {
           style={{
             opacity: index === currentIndex ? 1 : 0,
             transform: `translateY(${parallaxOffset}px) scale(1.1)`,
+            willChange: index === currentIndex ? "opacity, transform" : "auto",
           }}
           aria-hidden={index !== currentIndex}
         >
@@ -65,24 +115,26 @@ const HeroSlider = () => {
           />
         </div>
       ))}
+      
       {/* Gradient overlay */}
       <div
         className="absolute inset-0"
         style={{
           background: "linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%)",
         }}
+        aria-hidden="true"
       />
 
       {/* Navigation arrows */}
       <button
-        onClick={() => setCurrentIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length)}
+        onClick={goToPrevious}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition-all duration-300 backdrop-blur-sm"
         aria-label="Показать предыдущее фото апартаментов"
       >
         <ChevronLeft size={32} aria-hidden="true" />
       </button>
       <button
-        onClick={() => setCurrentIndex((prev) => (prev + 1) % heroImages.length)}
+        onClick={goToNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition-all duration-300 backdrop-blur-sm"
         aria-label="Показать следующее фото апартаментов"
       >

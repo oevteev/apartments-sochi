@@ -124,6 +124,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    target: 'es2020', // Target modern browsers for smaller bundles
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "index.html"),
@@ -138,6 +139,7 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-tooltip',
             '@radix-ui/react-popover',
           ],
+          'vendor-carousel': ['embla-carousel-react'],
         },
       },
     },
