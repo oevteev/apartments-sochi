@@ -21,7 +21,7 @@ import {
   Waves,
 } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -234,7 +234,14 @@ const features = [
 const Index = () => {
   const [showMore, setShowMore] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
   const displayedImages = showMore ? [...initialImages, ...moreImages] : initialImages;
+
+  const handleShowMore = () => {
+    startTransition(() => {
+      setShowMore(true);
+    });
+  };
 
   return (
     <Layout>
@@ -283,8 +290,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section aria-label="Преимущества сервиса" className="py-20 bg-background">
+      {/* Features Section - content-visibility for performance */}
+      <section 
+        aria-label="Преимущества сервиса" 
+        className="py-20 bg-background"
+        style={{ contentVisibility: "auto", containIntrinsicSize: "0 600px" }}
+      >
         <div className="container-custom">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Почему выбирают нас</h2>
@@ -311,8 +322,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Apartments Section */}
-      <section aria-label="Галерея апартаментов" className="py-20 bg-secondary/30">
+      {/* Apartments Section - content-visibility for performance */}
+      <section 
+        aria-label="Галерея апартаментов" 
+        className="py-20 bg-secondary/30"
+        style={{ contentVisibility: "auto", containIntrinsicSize: "0 800px" }}
+      >
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Наши апартаменты</h2>
@@ -343,9 +358,15 @@ const Index = () => {
 
           {!showMore && moreImages.length > 0 && (
             <div className="text-center mb-12">
-              <Button onClick={() => setShowMore(true)} variant="outline" size="lg" className="gap-2">
+              <Button 
+                onClick={handleShowMore} 
+                variant="outline" 
+                size="lg" 
+                className="gap-2"
+                disabled={isPending}
+              >
                 <ChevronDown className="w-5 h-5" aria-hidden="true" />
-                Показать ещё
+                {isPending ? "Загрузка..." : "Показать ещё"}
               </Button>
             </div>
           )}
@@ -416,8 +437,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Reviews Section */}
-      <section aria-label="Отзывы гостей" className="py-20 bg-background">
+      {/* Reviews Section - reserve space for CLS prevention */}
+      <section 
+        aria-label="Отзывы гостей" 
+        className="py-20 bg-background"
+        style={{ minHeight: "500px", contentVisibility: "auto", containIntrinsicSize: "0 500px" }}
+      >
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Отзывы наших гостей</h2>

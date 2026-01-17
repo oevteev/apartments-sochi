@@ -8,11 +8,42 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
+    <!-- Preload LCP hero image -->
+    <link 
+      rel="preload" 
+      as="image" 
+      href="/src/assets/hero/hero-1.jpg"
+      fetchpriority="high"
+    />
+    
+    <!-- Preload critical font -->
+    <link 
+      rel="preload" 
+      href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2" 
+      as="font" 
+      type="font/woff2" 
+      crossorigin 
+    />
+    
+    <!-- Non-blocking font loading -->
+    <link 
+      rel="preload" 
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" 
+      as="style" 
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" />
+    </noscript>
+    
     <!-- DNS prefetch for external resources -->
     <link rel="dns-prefetch" href="https://homereserve.ru" />
     <link rel="dns-prefetch" href="https://www.youtube.com" />
     <link rel="dns-prefetch" href="https://rutube.ru" />
     <link rel="dns-prefetch" href="https://sjeryvxtjzhecfdgnoxp.supabase.co" />
+    
+    <!-- Prefetch likely next pages -->
+    <link rel="prefetch" href="/catalog" as="document" />
     
     <title>Апартаменты посуточно в Сочи | Уютные квартиры у моря</title>
     <meta name="description" content="Аренда апартаментов посуточно в Сочи. Уютные квартиры у моря с видом на горы. Прямое бронирование без комиссий. Трансфер, поддержка 24/7." />
@@ -37,12 +68,31 @@
     
     <!-- Critical CSS for above-the-fold content -->
     <style>
-      /* Critical CSS - prevents FOUC */
-      body { margin: 0; font-family: 'Inter', system-ui, sans-serif; }
+      /* Critical CSS - prevents FOUC and CLS */
+      body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
       #root { min-height: 100vh; }
+      /* Reserve space for header to prevent CLS */
+      header { height: 80px; }
       .hero-loading { 
         min-height: 100vh; 
         background: linear-gradient(180deg, hsl(200, 80%, 45%) 0%, hsl(200, 85%, 35%) 100%);
+      }
+      /* Font fallback with size-adjust */
+      @font-face {
+        font-family: 'Inter';
+        font-display: swap;
+        src: local('Inter'), local('Arial');
+        size-adjust: 100%;
+        ascent-override: 90%;
+        descent-override: 20%;
+      }
+      @font-face {
+        font-family: 'Playfair Display';
+        font-display: swap;
+        src: local('Playfair Display'), local('Georgia');
+        size-adjust: 105%;
+        ascent-override: 95%;
+        descent-override: 25%;
       }
     </style>
   </head>
