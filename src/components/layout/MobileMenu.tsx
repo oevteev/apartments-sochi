@@ -14,9 +14,13 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 lg:hidden">
+    <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Меню навигации">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
+      <div 
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm" 
+        onClick={onClose}
+        aria-hidden="true"
+      />
 
       {/* Menu Panel */}
       <div className="absolute right-0 top-0 bottom-0 w-80 max-w-full bg-white shadow-xl animate-slide-in-right">
@@ -24,13 +28,19 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-border">
             <span className="text-xl font-serif font-bold text-primary">ВашСочи</span>
-            <Button variant="ghost" size="icon" onClick={onClose} className="hover:bg-muted">
-              <X className="w-6 h-6" />
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={onClose} 
+              aria-label="Закрыть меню"
+              className="hover:bg-muted"
+            >
+              <X className="w-6 h-6" aria-hidden="true" />
             </Button>
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 p-4">
+          <nav role="navigation" aria-label="Мобильная навигация" className="flex-1 p-4">
             <ul className="space-y-1">
               {navItems.map((item) => (
                 <li key={item.path}>
@@ -55,15 +65,17 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
             <a
               href="mailto:ArendaApartmentSochi@ya.ru"
               className="flex items-center gap-3 px-4 py-3 rounded-lg text-foreground hover:bg-muted transition-colors"
+              aria-label="Написать на email ArendaApartmentSochi@ya.ru"
             >
-              <Mail className="w-5 h-5 text-primary" />
+              <Mail className="w-5 h-5 text-primary" aria-hidden="true" />
               <span className="text-sm">ArendaApartmentSochi@ya.ru</span>
             </a>
             <a
               href="tel:+79952282874"
               className="flex items-center gap-3 px-4 py-3 rounded-lg text-foreground hover:bg-muted transition-colors"
+              aria-label="Позвонить по номеру +7 995 228-28-74"
             >
-              <Phone className="w-5 h-5 text-primary" />
+              <Phone className="w-5 h-5 text-primary" aria-hidden="true" />
               <span className="text-sm font-medium">+7 (995) 228-28-74</span>
             </a>
             <a
@@ -71,8 +83,9 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#0088cc] text-white hover:bg-[#0077b5] transition-colors"
+              aria-label="Написать в Telegram"
             >
-              <MessageCircle className="w-5 h-5" />
+              <MessageCircle className="w-5 h-5" aria-hidden="true" />
               <span className="text-sm font-medium">Написать в Telegram</span>
             </a>
           </div>

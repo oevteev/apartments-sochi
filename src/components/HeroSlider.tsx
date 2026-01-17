@@ -51,10 +51,11 @@ const HeroSlider = () => {
             opacity: index === currentIndex ? 1 : 0,
             transform: `translateY(${parallaxOffset}px) scale(1.1)`,
           }}
+          aria-hidden={index !== currentIndex}
         >
           <img
             src={image}
-            alt={`Апартаменты в Сочи - интерьер ${index + 1}`}
+            alt={`Роскошный интерьер апартаментов с панорамным видом на море в Сочи - фото ${index + 1}`}
             width={1920}
             height={1080}
             loading={index === 0 ? "eager" : "lazy"}
@@ -76,16 +77,16 @@ const HeroSlider = () => {
       <button
         onClick={() => setCurrentIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length)}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition-all duration-300 backdrop-blur-sm"
-        aria-label="Предыдущий слайд"
+        aria-label="Показать предыдущее фото апартаментов"
       >
-        <ChevronLeft size={32} />
+        <ChevronLeft size={32} aria-hidden="true" />
       </button>
       <button
         onClick={() => setCurrentIndex((prev) => (prev + 1) % heroImages.length)}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition-all duration-300 backdrop-blur-sm"
-        aria-label="Следующий слайд"
+        aria-label="Показать следующее фото апартаментов"
       >
-        <ChevronRight size={32} />
+        <ChevronRight size={32} aria-hidden="true" />
       </button>
 
       {/* Slide indicators */}

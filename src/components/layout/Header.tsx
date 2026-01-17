@@ -56,7 +56,11 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-6">
+            <nav 
+              role="navigation" 
+              aria-label="Главная навигация"
+              className="hidden lg:flex items-center gap-6"
+            >
               {navItems.map((item) => (
                 <Link
                   key={item.path}
@@ -75,10 +79,12 @@ const Header = () => {
             <Button
               variant="ghost"
               size="icon"
+              aria-label="Открыть меню навигации"
+              aria-expanded={isMobileMenuOpen}
               className={`lg:hidden ${textColor} hover:bg-white/20`}
               onClick={() => setIsMobileMenuOpen(true)}
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-6 h-6" aria-hidden="true" />
             </Button>
           </div>
         </div>
