@@ -15,6 +15,10 @@ import {
   ChevronDown,
   Star,
   Quote,
+  KeyRound,
+  Car,
+  Palette,
+  Waves,
 } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useState } from "react";
@@ -198,6 +202,26 @@ const features = [
     icon: MessageCircle,
     title: "Быстрая связь",
     description: "Оперативные ответы в Telegram и по телефону для вашего удобства",
+  },
+  {
+    icon: KeyRound,
+    title: "Удаленное заселение",
+    description: "Smart-замки позволяют заселиться самостоятельно в любое удобное время",
+  },
+  {
+    icon: Car,
+    title: "Бесплатная парковка",
+    description: "Бесплатная парковка для гостей на стоянке дома",
+  },
+  {
+    icon: Palette,
+    title: "Дизайнерский ремонт",
+    description: "Все квартиры с современным дизайнерским ремонтом и качественной мебелью",
+  },
+  {
+    icon: Waves,
+    title: "Вид на море",
+    description: "Все наши квартиры с панорамным видом на море",
   },
 ];
 
