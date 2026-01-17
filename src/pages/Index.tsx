@@ -200,16 +200,6 @@ const features = [
     description: "Официальное оформление бронирования с гарантией возврата средств",
   },
   {
-    icon: HeadphonesIcon,
-    title: "Поддержка 24/7",
-    description: "Круглосуточная помощь на всех этапах — от бронирования до выселения",
-  },
-  {
-    icon: MessageCircle,
-    title: "Быстрая связь",
-    description: "Оперативные ответы в Telegram и по телефону для вашего удобства",
-  },
-  {
     icon: KeyRound,
     title: "Удаленное заселение",
     description: "Smart-замки позволяют заселиться самостоятельно в любое удобное время",
@@ -228,6 +218,16 @@ const features = [
     icon: Waves,
     title: "Вид на море",
     description: "Все наши квартиры с роскошным панорамным видом на море",
+  },
+  {
+    icon: HeadphonesIcon,
+    title: "Поддержка 24/7",
+    description: "Круглосуточная помощь на всех этапах — от бронирования до выселения",
+  },
+  {
+    icon: MessageCircle,
+    title: "Быстрая связь",
+    description: "Оперативные ответы в Telegram и по телефону для вашего удобства",
   },
 ];
 
@@ -251,7 +251,10 @@ const Index = () => {
       />
       <StructuredData />
       {/* Hero Section */}
-      <section aria-label="Бронирование апартаментов" className="relative min-h-screen flex items-center justify-center pt-20">
+      <section
+        aria-label="Бронирование апартаментов"
+        className="relative min-h-screen flex items-center justify-center pt-20"
+      >
         <HeroSlider />
         <div className="container-custom relative z-10 py-20">
           <div className="max-w-2xl mx-auto text-center text-white">
@@ -291,8 +294,8 @@ const Index = () => {
       </section>
 
       {/* Features Section - content-visibility for performance */}
-      <section 
-        aria-label="Преимущества сервиса" 
+      <section
+        aria-label="Преимущества сервиса"
         className="py-20 bg-background"
         style={{ contentVisibility: "auto", containIntrinsicSize: "0 600px" }}
       >
@@ -312,7 +315,10 @@ const Index = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                  <feature.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" aria-hidden="true" />
+                  <feature.icon
+                    className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors"
+                    aria-hidden="true"
+                  />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">{feature.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
@@ -323,8 +329,8 @@ const Index = () => {
       </section>
 
       {/* Apartments Section - content-visibility for performance */}
-      <section 
-        aria-label="Галерея апартаментов" 
+      <section
+        aria-label="Галерея апартаментов"
         className="py-20 bg-secondary/30"
         style={{ contentVisibility: "auto", containIntrinsicSize: "0 800px" }}
       >
@@ -351,20 +357,17 @@ const Index = () => {
                   decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" aria-hidden="true" />
+                <div
+                  className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"
+                  aria-hidden="true"
+                />
               </div>
             ))}
           </div>
 
           {!showMore && moreImages.length > 0 && (
             <div className="text-center mb-12">
-              <Button 
-                onClick={handleShowMore} 
-                variant="outline" 
-                size="lg" 
-                className="gap-2"
-                disabled={isPending}
-              >
+              <Button onClick={handleShowMore} variant="outline" size="lg" className="gap-2" disabled={isPending}>
                 <ChevronDown className="w-5 h-5" aria-hidden="true" />
                 {isPending ? "Загрузка..." : "Показать ещё"}
               </Button>
@@ -438,8 +441,8 @@ const Index = () => {
       </section>
 
       {/* Reviews Section - reserve space for CLS prevention */}
-      <section 
-        aria-label="Отзывы гостей" 
+      <section
+        aria-label="Отзывы гостей"
         className="py-20 bg-background"
         style={{ minHeight: "500px", contentVisibility: "auto", containIntrinsicSize: "0 500px" }}
       >
@@ -516,7 +519,9 @@ const Index = () => {
                     <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-4">{review.text}</p>
                     <div className="border-t border-border pt-4">
                       <p className="font-semibold text-foreground">{review.name}</p>
-                      <time dateTime={review.dateISO} className="text-xs text-muted-foreground">{review.date}</time>
+                      <time dateTime={review.dateISO} className="text-xs text-muted-foreground">
+                        {review.date}
+                      </time>
                     </div>
                   </div>
                 </CarouselItem>
