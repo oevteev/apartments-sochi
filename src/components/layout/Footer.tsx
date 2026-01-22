@@ -12,8 +12,8 @@ const Footer = () => {
           <div className="space-y-4 lg:col-span-1">
             <h3 className="text-xl font-serif font-bold">ВашСочи</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Бронируйте квартиры посуточно в Сочи с гарантией качества и поддержкой 24/7. Лучшие апартаменты для вашего
-              отдыха.
+              Бронируйте дизайнерские квартиры посуточно в Сочи с видом на море, с гарантией качества и поддержкой 24/7.
+              Лучшие для вашего отдыха.
             </p>
           </div>
 
