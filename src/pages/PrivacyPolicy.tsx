@@ -437,7 +437,7 @@ const PrivacyPolicy = () => {
             <p>
               12.3. Актуальная версия Политики в свободном доступе расположена в сети Интернет по адресу{" "}
               <a href="https://arendaapartmentssochi.ru/privacy-policy" className="text-primary hover:underline">
-                https://arendaapartmentssochi.ru/privacy
+                https://arendaapartmentssochi.ru/privacy-policy
               </a>
               .
             </p>
