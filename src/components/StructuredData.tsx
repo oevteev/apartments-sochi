@@ -33,7 +33,7 @@ const localBusinessData = {
   image: [`${DOMAIN}/og-image.jpg`],
   url: DOMAIN,
   telephone: "+7-995-228-28-74",
-  email: "info@vashsochi.ru",
+  email: "arendaapartmentsochi@ya.ru",
   address: {
     "@type": "PostalAddress",
     streetAddress: "ул. Навагинская",
