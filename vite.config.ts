@@ -116,18 +116,7 @@ export default defineConfig(({ mode, isSsrBuild }) => ({
   },
   plugins: [
     react(),
-    imagetools({
-      defaultDirectives: (url) => {
-        // Apply WebP conversion to all jpg/png images
-        if (url.searchParams.has('webp')) {
-          return new URLSearchParams({
-            format: 'webp',
-            quality: '80',
-          });
-        }
-        return new URLSearchParams();
-      },
-    }),
+    imagetools(),
     mode === "development" && componentTagger(),
     lovableSsgPostbuildPlugin(),
   ].filter(Boolean),
@@ -160,5 +149,6 @@ export default defineConfig(({ mode, isSsrBuild }) => ({
   },
   ssr: {
     noExternal: ["react-helmet-async"],
+    external: ["vite-imagetools"],
   },
 }));
