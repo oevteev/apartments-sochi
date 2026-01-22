@@ -16,4 +16,7 @@ Allow: /
 User-agent: *
 Allow: /
 
+Disallow: /contacts/
+Disallow: /privacypolicy/
+
 Sitemap: https://arendaapartmentssochi.ru/sitemap.xml
