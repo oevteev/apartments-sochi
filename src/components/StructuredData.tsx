@@ -29,7 +29,7 @@ const localBusinessData = {
   "@context": "https://schema.org",
   "@type": "LodgingBusiness",
   "@id": `${DOMAIN}/#localbusiness`,
-  name: "ВашСочи — Апартаменты посуточно",
+  name: "ВашСочи — квартиры посуточно",
   image: [`${DOMAIN}/og-image.jpg`],
   url: DOMAIN,
   telephone: "+7-995-228-28-74",
