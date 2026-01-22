@@ -53,7 +53,7 @@ const moreImages = [
 
 const youtubeLinks = [
   {
-    title: "Квартира 45 м2, ЖК 'Южное море', корпус 1",
+    title: "Квартира 46 м2, ЖК 'Южное море', корпус 1",
     url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=6",
   },
   {
@@ -76,7 +76,7 @@ const youtubeLinks = [
 
 const rutubeLinks = [
   {
-    title: "Квартира 45 м2, ЖК 'Южное море', корпус 1",
+    title: "Квартира 46 м2, ЖК 'Южное море', корпус 1",
     url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A&playlist=1161435",
   },
   {
@@ -123,17 +123,26 @@ const Apartments = () => {
           <nav aria-label="Навигация по странице" className="mb-12">
             <ul className="flex flex-wrap justify-center gap-4 text-sm">
               <li>
-                <a href="#booking" className="px-4 py-2 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-colors shadow-sm">
+                <a
+                  href="#booking"
+                  className="px-4 py-2 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-colors shadow-sm"
+                >
                   Бронирование
                 </a>
               </li>
               <li>
-                <a href="#gallery" className="px-4 py-2 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-colors shadow-sm">
+                <a
+                  href="#gallery"
+                  className="px-4 py-2 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-colors shadow-sm"
+                >
                   Фотогалерея
                 </a>
               </li>
               <li>
-                <a href="#videos" className="px-4 py-2 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-colors shadow-sm">
+                <a
+                  href="#videos"
+                  className="px-4 py-2 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-colors shadow-sm"
+                >
                   Видеообзоры
                 </a>
               </li>
