@@ -70,6 +70,9 @@ const SEO = ({
 
       {/* Additional SEO */}
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      
+      {/* Yandex specific */}
+      <meta name="yandex-verification" content="f61260ac039fdd4a" />
       <meta name="googlebot" content="index, follow, max-image-preview:large" />
       <meta name="language" content="Russian" />
       <meta name="geo.region" content="RU-KDA" />
