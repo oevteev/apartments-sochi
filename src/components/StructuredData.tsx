@@ -9,8 +9,9 @@ const organizationData = {
   alternateName: "VashSochi",
   url: DOMAIN,
   logo: `${DOMAIN}/logo.png`,
-  description: "Аренда апартаментов посуточно в Сочи. Комфортное жильё для отдыха у моря.",
-  foundingDate: "2018",
+  description:
+    "Посуточная аренда квартир с видом на море в Сочи. Прямое бронирование. Удаленное заселение, бесплатная парковка, поддержка 24/7.",
+  foundingDate: "2021",
   founder: {
     "@type": "Person",
     name: "Олег Евтеев",
@@ -29,9 +30,7 @@ const localBusinessData = {
   "@type": "LodgingBusiness",
   "@id": `${DOMAIN}/#localbusiness`,
   name: "ВашСочи — Апартаменты посуточно",
-  image: [
-    `${DOMAIN}/og-image.jpg`,
-  ],
+  image: [`${DOMAIN}/og-image.jpg`],
   url: DOMAIN,
   telephone: "+7-995-228-28-74",
   email: "info@vashsochi.ru",
