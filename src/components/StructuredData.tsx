@@ -22,7 +22,7 @@ const organizationData = {
     contactType: "customer service",
     availableLanguage: ["Russian"],
   },
-  sameAs: ["https://t.me/vashsochi"],
+  sameAs: ["https://t.me/WeInSochi"],
 };
 
 const localBusinessData = {
