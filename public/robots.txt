@@ -1,22 +1,40 @@
+# Googlebot - основной поисковый бот Google
 User-agent: Googlebot
 Allow: /
+Disallow: /contacts
+Disallow: /privacy-policy
 
+# Yandexbot - основной поисковый бот Яндекса
+User-agent: Yandex
+Allow: /
+Disallow: /contacts
+Disallow: /privacy-policy
+Host: https://arendaapartmentssochi.ru
+
+# Bingbot
 User-agent: Bingbot
 Allow: /
+Disallow: /contacts
+Disallow: /privacy-policy
 
-User-agent: Yandexbot
-Allow: /
-
+# Социальные сети - разрешить всё для превью ссылок
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: TelegramBot
 Allow: /
 
-Disallow: /contacts/
-Disallow: /privacypolicy/
+User-agent: VKShareBot
+Allow: /
 
+# Все остальные боты
+User-agent: *
+Allow: /
+Disallow: /contacts
+Disallow: /privacy-policy
+
+# Карта сайта
 Sitemap: https://arendaapartmentssochi.ru/sitemap.xml
