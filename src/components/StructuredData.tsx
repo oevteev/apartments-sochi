@@ -14,7 +14,7 @@ const organizationData = {
   foundingDate: "2021",
   founder: {
     "@type": "Person",
-    name: "Олег Евтеев",
+    name: "Олег Евсеев",
   },
   contactPoint: {
     "@type": "ContactPoint",
@@ -60,7 +60,7 @@ const localBusinessData = {
     "@type": "City",
     name: "Сочи",
   },
-  serviceType: "Краткосрочная аренда апартаментов",
+  serviceType: "Краткосрочная и среднесрочная аренда квартир",
   description:
     "Посуточная аренда квартир с видом на море в Сочи. Прямое бронирование. Удаленное заселение, бесплатная парковка, поддержка 24/7.",
   aggregateRating: {
@@ -73,7 +73,8 @@ const localBusinessData = {
   amenityFeature: [
     { "@type": "LocationFeatureSpecification", name: "Wi-Fi", value: true },
     { "@type": "LocationFeatureSpecification", name: "Кондиционер", value: true },
-    { "@type": "LocationFeatureSpecification", name: "Парковка", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Бесплатная парковка", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Удаленное заселение", value: true },
     { "@type": "LocationFeatureSpecification", name: "Вид на море", value: true },
   ],
 };
@@ -102,8 +103,8 @@ const websiteData = {
 const apartmentListingsData = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Апартаменты в Сочи",
-  description: "Каталог апартаментов для посуточной аренды в Сочи",
+  name: "Квартиры в Сочи",
+  description: "Каталог квартир для посуточной аренды в Сочи",
   url: `${DOMAIN}/catalog`,
   numberOfItems: 22,
   itemListElement: [
@@ -113,8 +114,8 @@ const apartmentListingsData = {
       item: {
         "@type": "Apartment",
         "@id": `${DOMAIN}/apartments#1`,
-        name: "Апартаменты с видом на море",
-        description: "Уютные апартаменты с панорамным видом на Чёрное море. Идеально для романтического отдыха.",
+        name: "Квартиры с видом на море",
+        description: "Уютные квартиры с панорамным видом на Чёрное море. Идеально для романтического отдыха.",
         image: `${DOMAIN}/apartments/apart-1.jpg`,
         url: `${DOMAIN}/apartments`,
         numberOfRooms: 1,
@@ -126,6 +127,8 @@ const apartmentListingsData = {
         amenityFeature: [
           { "@type": "LocationFeatureSpecification", name: "Wi-Fi", value: true },
           { "@type": "LocationFeatureSpecification", name: "Кондиционер", value: true },
+          { "@type": "LocationFeatureSpecification", name: "Бесплатная парковка", value: true },
+          { "@type": "LocationFeatureSpecification", name: "Удаленное заселение", value: true },
           { "@type": "LocationFeatureSpecification", name: "Балкон с видом на море", value: true },
         ],
         address: {
@@ -148,7 +151,7 @@ const apartmentListingsData = {
         "@type": "Apartment",
         "@id": `${DOMAIN}/apartments#2`,
         name: "Семейные апартаменты",
-        description: "Просторные апартаменты для семейного отдыха. Две спальни, полностью оборудованная кухня.",
+        description: "Просторные квартиры для семейного отдыха. Спальни, полностью оборудованная кухня.",
         image: `${DOMAIN}/apartments/apart-2.jpg`,
         url: `${DOMAIN}/apartments`,
         numberOfRooms: 2,
@@ -160,39 +163,9 @@ const apartmentListingsData = {
         amenityFeature: [
           { "@type": "LocationFeatureSpecification", name: "Wi-Fi", value: true },
           { "@type": "LocationFeatureSpecification", name: "Кондиционер", value: true },
-          { "@type": "LocationFeatureSpecification", name: "Детская кроватка", value: true },
+          { "@type": "LocationFeatureSpecification", name: "Бесплатная парковка", value: true },
+          { "@type": "LocationFeatureSpecification", name: "Удаленное заселение", value: true },
           { "@type": "LocationFeatureSpecification", name: "Стиральная машина", value: true },
-        ],
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Сочи",
-          addressRegion: "Краснодарский край",
-          addressCountry: "RU",
-        },
-      },
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      item: {
-        "@type": "Apartment",
-        "@id": `${DOMAIN}/apartments#3`,
-        name: "Премиум апартаменты",
-        description: "Люксовые апартаменты премиум-класса с джакузи и террасой. Для особых случаев.",
-        image: `${DOMAIN}/apartments/apart-3.jpg`,
-        url: `${DOMAIN}/apartments`,
-        numberOfRooms: 2,
-        floorSize: {
-          "@type": "QuantitativeValue",
-          value: 80,
-          unitCode: "MTK",
-        },
-        amenityFeature: [
-          { "@type": "LocationFeatureSpecification", name: "Wi-Fi", value: true },
-          { "@type": "LocationFeatureSpecification", name: "Кондиционер", value: true },
-          { "@type": "LocationFeatureSpecification", name: "Джакузи", value: true },
-          { "@type": "LocationFeatureSpecification", name: "Терраса", value: true },
-          { "@type": "LocationFeatureSpecification", name: "Панорамные окна", value: true },
         ],
         address: {
           "@type": "PostalAddress",
