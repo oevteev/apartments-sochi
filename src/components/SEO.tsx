@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
 interface SEOProps {
   title: string;
@@ -14,25 +14,25 @@ interface SEOProps {
   modifiedTime?: string;
 }
 
-const DOMAIN = 'https://arendaapartmentssochi.ru';
+const DOMAIN = "https://arendaapartmentssochi.ru";
 
-const SEO = ({ 
-  title, 
-  description, 
+const SEO = ({
+  title,
+  description,
   image = `${DOMAIN}/og-image.jpg`,
   url,
-  type = 'website',
+  type = "website",
   imageWidth = 1200,
   imageHeight = 630,
-  keywords = 'апартаменты Сочи, аренда квартиры Сочи, посуточная аренда, жилье в Сочи, отдых в Сочи',
-  author = 'Аренда Апартаментов Сочи',
+  keywords = "апартаменты Сочи, аренда квартиры Сочи, посуточная аренда, жилье в Сочи, отдых в Сочи",
+  author = "Аренда Апартаментов Сочи",
   publishedTime,
   modifiedTime,
 }: SEOProps) => {
-  const siteName = 'Апартаменты посуточно в Сочи';
+  const siteName = "Аренда квартир с видом на море в Сочи";
   const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
-  const canonicalUrl = url || (typeof window !== 'undefined' && window.location ? window.location.href : DOMAIN);
-  const absoluteImageUrl = image.startsWith('http') ? image : `${DOMAIN}${image}`;
+  const canonicalUrl = url || (typeof window !== "undefined" && window.location ? window.location.href : DOMAIN);
+  const absoluteImageUrl = image.startsWith("http") ? image : `${DOMAIN}${image}`;
 
   return (
     <Helmet>
