@@ -1,86 +1,82 @@
-# План: Исправление зависания "Saving changes"
 
-## Проблема
+# План: Установка счётчика Яндекс.Метрика
 
-Плагин `lovableSsgPostbuildPlugin` запускается при каждой сборке, включая превью-режим в Lovable. Это вызывает:
-- Рекурсивный вызов Vite (SSR-сборка из closeBundle хука)
-- Длительное ожидание завершения prerender.js
-- Зависание интерфейса "Saving changes"
+## Задача
 
-## Решение
-
-Отключить SSG-плагин для превью-сборок и оставить его только для production-билда.
+Добавить код счётчика Яндекс.Метрика (ID: 106405655) на сайт для отслеживания посещаемости, вебвизора и кликмапы.
 
 ---
 
-## Изменения в файле `vite.config.ts`
+## Изменения
 
-### Вариант 1: Проверка режима сборки (рекомендуется)
+### Файл: `index.html`
 
-```typescript
-function lovableSsgPostbuildPlugin(): Plugin {
-  return {
-    name: "lovable-ssg-postbuild",
-    apply: "build",
-    enforce: "post",
-    closeBundle: {
-      sequential: true,
-      order: "post",
-      async handler() {
-        // Skip SSG in SSR build
-        if (process.env.SSR_BUILD === "true") {
-          return;
-        }
+Добавить код счётчика в секцию `<head>` перед закрывающим тегом `</head>`:
 
-        // Skip SSG in Lovable preview builds (CI environment)
-        // SSG should only run during explicit production builds
-        if (process.env.CI || process.env.LOVABLE_BUILD) {
-          console.log("\n⏭️ Skipping SSG in CI/preview build\n");
-          return;
-        }
-
-        // Rest of the SSG logic...
-      },
-    },
-  };
-}
-```
-
-### Вариант 2: Полное удаление плагина из Vite (надежнее)
-
-Удалить `lovableSsgPostbuildPlugin()` из plugins массива и использовать только npm scripts для SSG:
-
-```typescript
-// В vite.config.ts - убрать lovableSsgPostbuildPlugin() из plugins
-plugins: [
-  react(),
-  mode === "development" && componentTagger(),
-  // lovableSsgPostbuildPlugin() - УДАЛИТЬ
-].filter(Boolean),
-```
-
-Для VPS деплоя использовать существующие npm scripts:
-```bash
-npm run build:client && npm run build:server && npm run prerender
+```html
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106405655', 'ym');
+    ym(106405655, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106405655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 ```
 
 ---
 
-## Рекомендация
+## Расположение в файле
 
-**Вариант 2 надежнее**, потому что:
-- Плагин не будет мешать Lovable превью
-- SSG будет выполняться только при явном запуске `npm run build` на VPS
-- Нет риска рекурсивных вызовов Vite
+```text
+<head>
+  ...
+  <!-- DNS prefetch for external resources -->
+  <link rel="dns-prefetch" href="https://mc.yandex.ru" />  ← добавить
+  ...
+  <!-- Critical CSS -->
+  <style>...</style>
+  
+  <!-- Yandex.Metrika counter -->   ← добавить перед </head>
+  <script>...</script>
+  <noscript>...</noscript>
+  <!-- /Yandex.Metrika counter -->
+</head>
+```
 
 ---
 
-## Итог изменений
+## Дополнительная оптимизация
 
-| Файл | Изменение |
-|------|-----------|
-| `vite.config.ts` | Удалить `lovableSsgPostbuildPlugin()` из plugins массива |
+Добавить DNS prefetch для ускорения загрузки скрипта метрики:
 
-После этого изменения:
-- В Lovable: превью будет работать быстро, без SSG
-- На VPS: выполните `npm run build` для полной SSG-сборки
+```html
+<link rel="dns-prefetch" href="https://mc.yandex.ru" />
+```
+
+---
+
+## Включённые функции метрики
+
+| Функция | Значение | Описание |
+|---------|----------|----------|
+| `ssr` | true | Поддержка Server-Side Rendering |
+| `webvisor` | true | Запись действий посетителей |
+| `clickmap` | true | Карта кликов |
+| `ecommerce` | "dataLayer" | E-commerce аналитика |
+| `accurateTrackBounce` | true | Точный показатель отказов |
+| `trackLinks` | true | Отслеживание переходов |
+
+---
+
+## Результат
+
+После установки:
+1. Яндекс.Метрика начнёт собирать статистику посещений
+2. Вебвизор будет записывать сессии пользователей
+3. Будет доступна карта кликов и скроллинга
+4. Данные появятся в панели Метрики через несколько минут
