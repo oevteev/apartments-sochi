@@ -16,17 +16,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DOMAIN = 'https://arendaapartmentssochi.ru';
 
 // Routes configuration with SEO priorities
-// Excludes: NotFound, Statistics (internal page)
+// Excludes: NotFound, Statistics, About, Contacts, PrivacyPolicy (noIndex pages)
 const routesConfig = [
   { path: '/', priority: 1.0, changefreq: 'weekly' },
   { path: '/catalog', priority: 0.9, changefreq: 'daily' },
   { path: '/apartments', priority: 0.8, changefreq: 'weekly' },
-  { path: '/about', priority: 0.8, changefreq: 'monthly' },
   { path: '/reviews', priority: 0.7, changefreq: 'weekly' },
   { path: '/faq', priority: 0.7, changefreq: 'monthly' },
-  { path: '/contacts', priority: 0.7, changefreq: 'monthly' },
   { path: '/management', priority: 0.6, changefreq: 'monthly' },
-  { path: '/privacy-policy', priority: 0.5, changefreq: 'yearly' },
 ];
 
 function generateSitemap() {
