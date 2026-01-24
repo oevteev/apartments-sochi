@@ -2,6 +2,7 @@
 User-agent: Googlebot
 Allow: /
 Disallow: /contacts
+Disallow: /about
 Disallow: /privacy-policy
 
 # Yandexbot - основной поисковый бот Яндекса
