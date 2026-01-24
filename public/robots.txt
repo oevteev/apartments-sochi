@@ -20,15 +20,23 @@ Disallow: /privacy-policy
 # Социальные сети - разрешить всё для превью ссылок
 User-agent: Twitterbot
 Allow: /
+Disallow: /contacts
+Disallow: /privacy-policy
 
 User-agent: facebookexternalhit
 Allow: /
+Disallow: /contacts
+Disallow: /privacy-policy
 
 User-agent: TelegramBot
 Allow: /
+Disallow: /contacts
+Disallow: /privacy-policy
 
 User-agent: VKShareBot
 Allow: /
+Disallow: /contacts
+Disallow: /privacy-policy
 
 # Все остальные боты
 User-agent: *
