@@ -55,7 +55,7 @@ const moreImages = [apart8, apart9, apart10, apart11, apart12, apart3, apart20, 
 
 const youtubeLinks = [
   {
-    title: "Квартира 45 м2, ЖК 'Южное море', корпус 1",
+    title: "Квартира 46 м2, ЖК 'Южное море', корпус 1",
     url: "https://www.youtube.com/watch?v=OyPPxZljnn8&list=PL1pioUiTzsoM9R2saGt3zUaShWn6-_XmM&index=6",
   },
   {
@@ -78,7 +78,7 @@ const youtubeLinks = [
 
 const rutubeLinks = [
   {
-    title: "Квартира 45 м2, ЖК 'Южное море', корпус 1",
+    title: "Квартира 46 м2, ЖК 'Южное море', корпус 1",
     url: "https://rutube.ru/video/private/003db7881ecdc6570aa200634ff26487/?p=jlnIpPI_ZoCOYA-WSfFC4A&playlist=1161435",
   },
   {
