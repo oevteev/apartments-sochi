@@ -1,119 +1,64 @@
 
-# План: Добавление robots="none" на служебные страницы
+# План: Исключение страниц noIndex из sitemap.xml
 
-## Задача
+## Проблема
 
-Запретить индексацию страниц PrivacyPolicy, Statistics, Contacts и About поисковыми системами, добавив:
-```html
-<meta name="robots" content="none"/>
-```
+Скрипт `generate-sitemap.js` генерирует sitemap при сборке и включает страницы `/about`, `/contacts`, `/privacy-policy`, которые должны быть исключены из индексации.
 
----
+## Решение
+
+Удалить из массива `routesConfig` в файле `generate-sitemap.js` страницы, которые не должны индексироваться:
+- `/about`
+- `/contacts`
+- `/privacy-policy`
 
 ## Изменения
 
-### 1. Файл: `src/components/SEO.tsx`
+### Файл: `generate-sitemap.js`
 
-Добавить новый опциональный проп `noIndex` для управления индексацией:
+Заменить конфигурацию маршрутов (строки 20-30):
 
-```typescript
-interface SEOProps {
-  title: string;
-  description: string;
-  // ... существующие пропы
-  noIndex?: boolean;  // НОВЫЙ ПРОП
-}
+**Было:**
+```javascript
+const routesConfig = [
+  { path: '/', priority: 1.0, changefreq: 'weekly' },
+  { path: '/catalog', priority: 0.9, changefreq: 'daily' },
+  { path: '/apartments', priority: 0.8, changefreq: 'weekly' },
+  { path: '/about', priority: 0.8, changefreq: 'monthly' },
+  { path: '/reviews', priority: 0.7, changefreq: 'weekly' },
+  { path: '/faq', priority: 0.7, changefreq: 'monthly' },
+  { path: '/contacts', priority: 0.7, changefreq: 'monthly' },
+  { path: '/management', priority: 0.6, changefreq: 'monthly' },
+  { path: '/privacy-policy', priority: 0.5, changefreq: 'yearly' },
+];
 ```
 
-Изменить рендеринг мета-тега robots:
-
-```tsx
-// Строка 72 - заменить
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-
-// На условный рендеринг
-{noIndex ? (
-  <meta name="robots" content="none" />
-) : (
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-)}
+**Станет:**
+```javascript
+// Routes configuration with SEO priorities
+// Excludes: NotFound, Statistics, About, Contacts, PrivacyPolicy (noIndex pages)
+const routesConfig = [
+  { path: '/', priority: 1.0, changefreq: 'weekly' },
+  { path: '/catalog', priority: 0.9, changefreq: 'daily' },
+  { path: '/apartments', priority: 0.8, changefreq: 'weekly' },
+  { path: '/reviews', priority: 0.7, changefreq: 'weekly' },
+  { path: '/faq', priority: 0.7, changefreq: 'monthly' },
+  { path: '/management', priority: 0.6, changefreq: 'monthly' },
+];
 ```
 
----
+## Дополнительно
 
-### 2. Файл: `src/pages/PrivacyPolicy.tsx`
-
-Добавить проп `noIndex` в компонент SEO:
-
-```tsx
-<SEO
-  title="Политика конфиденциальности"
-  description="..."
-  noIndex  // ДОБАВИТЬ
-/>
-```
-
----
-
-### 3. Файл: `src/pages/Statistics.tsx`
-
-Добавить проп `noIndex` в оба места использования SEO (строки 106 и 118):
-
-```tsx
-<SEO title="Статистика" description="..." noIndex />
-```
-
----
-
-### 4. Файл: `src/pages/Contacts.tsx`
-
-Добавить проп `noIndex`:
-
-```tsx
-<SEO 
-  title="Контакты" 
-  description="..."
-  noIndex  // ДОБАВИТЬ
-/>
-```
-
----
-
-### 5. Файл: `src/pages/About.tsx`
-
-Добавить проп `noIndex`:
-
-```tsx
-<SEO
-  title="О нас"
-  description="..."
-  noIndex  // ДОБАВИТЬ
-/>
-```
-
----
+Можно удалить устаревший файл `public/sitemap.xml`, так как он всё равно перезаписывается при сборке.
 
 ## Результат
 
-После изменений указанные страницы будут содержать:
-```html
-<meta name="robots" content="none"/>
-```
+После пересборки и публикации sitemap.xml будет содержать только 6 страниц:
+- `/`
+- `/catalog`
+- `/apartments`
+- `/reviews`
+- `/faq`
+- `/management`
 
-Это запретит поисковым системам:
-- Индексировать страницу (`noindex`)
-- Переходить по ссылкам на странице (`nofollow`)
-
-Остальные страницы продолжат индексироваться нормально.
-
----
-
-## Технические детали
-
-| Файл | Тип изменения | Строки |
-|------|---------------|--------|
-| `src/components/SEO.tsx` | Добавить проп + условный рендеринг | 3-15, 72 |
-| `src/pages/PrivacyPolicy.tsx` | Добавить `noIndex` | 7-10 |
-| `src/pages/Statistics.tsx` | Добавить `noIndex` (2 места) | 106, 118 |
-| `src/pages/Contacts.tsx` | Добавить `noIndex` | 204-207 |
-| `src/pages/About.tsx` | Добавить `noIndex` | 12-15 |
+Страницы `/about`, `/contacts`, `/privacy-policy` будут полностью исключены из sitemap, что соответствует их настройке `noIndex`.
