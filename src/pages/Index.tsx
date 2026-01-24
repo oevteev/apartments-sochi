@@ -259,7 +259,7 @@ const Index = () => {
         <div className="container-custom relative z-10 py-20">
           <div className="max-w-2xl mx-auto text-center text-white">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 animate-fade-in">
-              Квартиры в Сочи с гарантией и поддержкой 24/7
+              Аренда квартир в Сочи с гарантией и поддержкой 24/7
             </h1>
             <p className="text-lg md:text-xl text-white/90 mb-10 animate-fade-in" style={{ animationDelay: "0.2s" }}>
               Бронируйте быстро, удобно и без лишних рисков. Лучшие апартаменты в Сочи для вашего идеального отдыха.
