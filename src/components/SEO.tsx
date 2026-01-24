@@ -12,6 +12,7 @@ interface SEOProps {
   author?: string;
   publishedTime?: string;
   modifiedTime?: string;
+  noIndex?: boolean;
 }
 
 const DOMAIN = "https://arendaapartmentssochi.ru";
@@ -28,6 +29,7 @@ const SEO = ({
   author = "Аренда Апартаментов Сочи",
   publishedTime,
   modifiedTime,
+  noIndex = false,
 }: SEOProps) => {
   const siteName = "Аренда квартир с видом на море в Сочи";
   const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
@@ -69,7 +71,11 @@ const SEO = ({
       <meta name="twitter:image:alt" content={fullTitle} />
 
       {/* Additional SEO */}
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      {noIndex ? (
+        <meta name="robots" content="none" />
+      ) : (
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      )}
       
       {/* Yandex specific */}
       <meta name="yandex-verification" content="f61260ac039fdd4a" />

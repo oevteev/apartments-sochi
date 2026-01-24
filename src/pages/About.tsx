@@ -12,6 +12,7 @@ const About = () => {
       <SEO
         title="О нас"
         description="ВашСочи — ваш надёжный партнёр в поиске идеального жилья для отдыха в Сочи. История компании, контакты и реквизиты."
+        noIndex
       />
       {/* Hero with Logo */}
       <section id="about-hero" className="pt-32 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">

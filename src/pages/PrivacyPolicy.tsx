@@ -7,6 +7,7 @@ const PrivacyPolicy = () => {
       <SEO
         title="Политика конфиденциальности"
         description="Политика в отношении обработки персональных данных ИП Евтеев Олег Владимирович. Информация о защите ваших данных."
+        noIndex
       />
       <section className="pt-20 pb-16 bg-gradient-to-br from-primary/10 to-accent/10 py-[32px]"></section>
 

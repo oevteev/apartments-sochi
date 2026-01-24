@@ -103,7 +103,7 @@ const Statistics = () => {
   if (error) {
     return (
       <Layout>
-        <SEO title="Статистика" description="Статистика просмотров сайта" />
+        <SEO title="Статистика" description="Статистика просмотров сайта" noIndex />
         <div className="pt-32 pb-16">
           <div className="container-custom">
             <p className="text-center text-muted-foreground">{error}</p>
@@ -115,7 +115,7 @@ const Statistics = () => {
 
   return (
     <Layout>
-      <SEO title="Статистика" description="Статистика просмотров сайта" />
+      <SEO title="Статистика" description="Статистика просмотров сайта" noIndex />
       
       <section className="pt-32 pb-16">
         <div className="container-custom">
