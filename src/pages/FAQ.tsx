@@ -82,7 +82,7 @@ const faqData = [
       {
         question: "Что входит в стоимость проживания?",
         answer:
-          "Кухня с посудой; WI-FI; Полотенца (кроме пляжных); Постельное белье; Техника (телевизор, кондиционер, бойлер, фен, утюг/отпариватель)",
+          "Кухня с посудой; WI-FI; Постельное белье; Техника (телевизор, кондиционер, стиральная машина, бойлер, фен, утюг/отпариватель); Полотенца (кроме пляжных); Средства гигиены",
       },
       {
         question: "Заселение с детьми разрешено?",
@@ -138,8 +138,8 @@ const FAQ = () => {
           <ul className="flex flex-wrap justify-center gap-4 text-sm">
             {faqData.map((category) => (
               <li key={category.id}>
-                <a 
-                  href={`#${category.id}`} 
+                <a
+                  href={`#${category.id}`}
                   className="px-4 py-2 rounded-full bg-card hover:bg-primary hover:text-primary-foreground transition-colors shadow-sm"
                 >
                   {category.category}
