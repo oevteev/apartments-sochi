@@ -1,66 +1,119 @@
 
-# План: Исправление ошибки сборки Яндекс.Метрики
+# План: Добавление robots="none" на служебные страницы
 
-## Проблема
+## Задача
 
-Ошибка сборки:
-```
-[vite:build-html] Unable to parse HTML; parse5 error code disallowed-content-in-noscript-in-head
-```
-
-**Причина**: Тег `<noscript>` с элементом `<div>` внутри находится в секции `<head>`. По стандарту HTML5, в `<head>` тег `<noscript>` может содержать только `<link>`, `<style>` и `<meta>` элементы. Элемент `<div>` запрещён.
-
----
-
-## Решение
-
-Перенести `<noscript>` часть счётчика Яндекс.Метрики из `<head>` в начало `<body>`.
-
----
-
-## Изменения в файле `index.html`
-
-### 1. Удалить из `<head>` (строка 129):
+Запретить индексацию страниц PrivacyPolicy, Statistics, Contacts и About поисковыми системами, добавив:
 ```html
-<noscript><div><img src="https://mc.yandex.ru/watch/106405655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-```
-
-### 2. Добавить в начало `<body>`:
-```html
-<body>
-  <noscript><div><img src="https://mc.yandex.ru/watch/106405655" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-  <div id="root"><!--app-html--></div>
-  ...
-</body>
+<meta name="robots" content="none"/>
 ```
 
 ---
 
-## Итоговая структура
+## Изменения
 
-```text
-<head>
-  ...
-  <!-- Yandex.Metrika counter -->
-  <script type="text/javascript">
-      (function(m,e,t,r,i,k,a){...})(window, document,'script',...);
-      ym(106405655, 'init', {...});
-  </script>
-  <!-- /Yandex.Metrika counter -->
-</head>
+### 1. Файл: `src/components/SEO.tsx`
 
-<body>
-  <noscript><div><img src="https://mc.yandex.ru/watch/106405655" ... /></div></noscript>
-  <div id="root"><!--app-html--></div>
-  ...
-</body>
+Добавить новый опциональный проп `noIndex` для управления индексацией:
+
+```typescript
+interface SEOProps {
+  title: string;
+  description: string;
+  // ... существующие пропы
+  noIndex?: boolean;  // НОВЫЙ ПРОП
+}
+```
+
+Изменить рендеринг мета-тега robots:
+
+```tsx
+// Строка 72 - заменить
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+// На условный рендеринг
+{noIndex ? (
+  <meta name="robots" content="none" />
+) : (
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+)}
+```
+
+---
+
+### 2. Файл: `src/pages/PrivacyPolicy.tsx`
+
+Добавить проп `noIndex` в компонент SEO:
+
+```tsx
+<SEO
+  title="Политика конфиденциальности"
+  description="..."
+  noIndex  // ДОБАВИТЬ
+/>
+```
+
+---
+
+### 3. Файл: `src/pages/Statistics.tsx`
+
+Добавить проп `noIndex` в оба места использования SEO (строки 106 и 118):
+
+```tsx
+<SEO title="Статистика" description="..." noIndex />
+```
+
+---
+
+### 4. Файл: `src/pages/Contacts.tsx`
+
+Добавить проп `noIndex`:
+
+```tsx
+<SEO 
+  title="Контакты" 
+  description="..."
+  noIndex  // ДОБАВИТЬ
+/>
+```
+
+---
+
+### 5. Файл: `src/pages/About.tsx`
+
+Добавить проп `noIndex`:
+
+```tsx
+<SEO
+  title="О нас"
+  description="..."
+  noIndex  // ДОБАВИТЬ
+/>
 ```
 
 ---
 
 ## Результат
 
-После исправления:
-1. Сборка пройдёт успешно
-2. Сайт можно будет опубликовать
-3. Счётчик Яндекс.Метрики начнёт собирать данные
+После изменений указанные страницы будут содержать:
+```html
+<meta name="robots" content="none"/>
+```
+
+Это запретит поисковым системам:
+- Индексировать страницу (`noindex`)
+- Переходить по ссылкам на странице (`nofollow`)
+
+Остальные страницы продолжат индексироваться нормально.
+
+---
+
+## Технические детали
+
+| Файл | Тип изменения | Строки |
+|------|---------------|--------|
+| `src/components/SEO.tsx` | Добавить проп + условный рендеринг | 3-15, 72 |
+| `src/pages/PrivacyPolicy.tsx` | Добавить `noIndex` | 7-10 |
+| `src/pages/Statistics.tsx` | Добавить `noIndex` (2 места) | 106, 118 |
+| `src/pages/Contacts.tsx` | Добавить `noIndex` | 204-207 |
+| `src/pages/About.tsx` | Добавить `noIndex` | 12-15 |
