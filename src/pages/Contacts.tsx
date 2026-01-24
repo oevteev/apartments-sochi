@@ -204,6 +204,7 @@ const Contacts = () => {
       <SEO 
         title="Контакты" 
         description="Свяжитесь с нами для бронирования апартаментов в Сочи. Телефон, email, Telegram. Работаем 9:00-19:00 по московскому времени."
+        noIndex
       />
       {/* Hero */}
       <section className="pt-32 pb-8 bg-gradient-to-br from-primary/10 to-accent/10">
