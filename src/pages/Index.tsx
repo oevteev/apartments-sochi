@@ -282,7 +282,9 @@ const Index = () => {
       <section aria-label="Поиск жилья" className="py-20 bg-secondary/30">
         <div className="container-custom">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Найдите идеальное жильё</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+              Найдите идеальные апартаменты у моря
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Используйте наш удобный поиск для подбора апартаментов по вашим критериям
             </p>
