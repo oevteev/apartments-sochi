@@ -10,6 +10,13 @@ import cianIcon from "@/assets/icons/cian.png";
 import yandexIcon from "@/assets/icons/yandex.png";
 const reviews = [
   {
+    name: "Мария",
+    date: "17 января 2026 г.",
+    rating: 5,
+    text: "Олег замечательный хозяин ,быстро все покажет и расскажет 👍🏻 А квартира ….это эстетика и красота👍🏻за свои деньги ,такие виды и такая красота🥰🥰 Фотки ,вид на море❣️❣️❣️РЕКОМЕНДУЮ❣️",
+    apartment: "Квартира-студия, 45 м², 2 кровати",
+  },
+  {
     name: "Денис",
     date: "13 ноября 2025 г.",
     rating: 5,
@@ -407,9 +414,7 @@ const Reviews = () => {
       {/* CTA Section with Cross-links */}
       <section className="py-16 bg-secondary/50">
         <div className="container-custom text-center">
-          <h2 className="text-2xl font-serif font-bold text-foreground mb-4">
-            Готовы создать свои впечатления?
-          </h2>
+          <h2 className="text-2xl font-serif font-bold text-foreground mb-4">Готовы создать свои впечатления?</h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Забронируйте апартаменты и станьте нашим следующим довольным гостем
           </p>
