@@ -30,6 +30,9 @@ import apart19 from "@/assets/aparts/apart-19.jpg?format=webp";
 import apart20 from "@/assets/aparts/apart-20.jpg?format=webp";
 import apart21 from "@/assets/aparts/apart-21.jpg?format=webp";
 import apart22 from "@/assets/aparts/apart-22.jpg?format=webp";
+import apart23 from "@/assets/aparts/apart-23.jpg?format=webp";
+import apart24 from "@/assets/aparts/apart-24.jpg?format=webp";
+import apart25 from "@/assets/aparts/apart-25.jpg?format=webp";
 
 const initialImages = [apart1, apart2, apart4, apart5, apart6, apart7];
 const moreImages = [
@@ -49,6 +52,9 @@ const moreImages = [
   apart20,
   apart21,
   apart22,
+  apart23,
+  apart24,
+  apart25,
 ];
 
 const youtubeLinks = [
