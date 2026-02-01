@@ -36,13 +36,18 @@ interface UseSmartCaptchaOptions {
 }
 
 export const useSmartCaptcha = (options: UseSmartCaptchaOptions = {}) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [containerElement, setContainerElement] = useState<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<number | null>(null);
   const callbackRef = useRef<((token: string) => void) | null>(null);
   const [isReady, setIsReady] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [clientKey, setClientKey] = useState<string | null>(null);
-  const initAttemptedRef = useRef(false);
+  const [widgetRendered, setWidgetRendered] = useState(false);
+
+  // Callback ref for container - triggers re-render when element changes
+  const containerRef = useCallback((node: HTMLDivElement | null) => {
+    setContainerElement(node);
+  }, []);
 
   // Fetch client key from edge function (skip for preview domains)
   useEffect(() => {
@@ -93,33 +98,29 @@ export const useSmartCaptcha = (options: UseSmartCaptchaOptions = {}) => {
     };
 
     document.head.appendChild(script);
-
-    return () => {
-      // Cleanup on unmount
-      if (widgetIdRef.current !== null && window.smartCaptcha) {
-        try {
-          window.smartCaptcha.destroy(widgetIdRef.current);
-        } catch (e) {
-          // Widget might already be destroyed
-        }
-      }
-    };
+    // No cleanup - script stays loaded for the lifetime of the app
   }, [clientKey]);
 
-  // Initialize widget when ready
+  // Initialize widget when container element changes
   useEffect(() => {
-    if (!isReady || !containerRef.current || !window.smartCaptcha || !clientKey) {
+    if (!isReady || !containerElement || !window.smartCaptcha || !clientKey) {
       return;
     }
 
-    if (initAttemptedRef.current) {
-      return; // Already attempted initialization
+    // Destroy previous widget if exists
+    if (widgetIdRef.current !== null) {
+      try {
+        window.smartCaptcha.destroy(widgetIdRef.current);
+      } catch (e) {
+        // Widget might already be destroyed
+      }
+      widgetIdRef.current = null;
+      setWidgetRendered(false);
     }
 
-    initAttemptedRef.current = true;
-
+    // Render new widget
     try {
-      widgetIdRef.current = window.smartCaptcha.render(containerRef.current, {
+      widgetIdRef.current = window.smartCaptcha.render(containerElement, {
         sitekey: clientKey,
         invisible: true,
         hl: "ru",
@@ -132,11 +133,26 @@ export const useSmartCaptcha = (options: UseSmartCaptchaOptions = {}) => {
           options.onSuccess?.(token);
         },
       });
+      setWidgetRendered(true);
     } catch (e) {
       console.error("SmartCaptcha render error:", e);
       options.onError?.();
     }
-  }, [isReady, clientKey, options]);
+  }, [isReady, clientKey, containerElement, options]);
+
+  // Cleanup when container is removed
+  useEffect(() => {
+    return () => {
+      if (widgetIdRef.current !== null && window.smartCaptcha) {
+        try {
+          window.smartCaptcha.destroy(widgetIdRef.current);
+        } catch (e) {
+          // Widget might already be destroyed
+        }
+        widgetIdRef.current = null;
+      }
+    };
+  }, [containerElement]);
 
   const execute = useCallback((): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -181,7 +197,7 @@ export const useSmartCaptcha = (options: UseSmartCaptchaOptions = {}) => {
     containerRef,
     execute,
     reset,
-    isReady: isPreviewDomain() || (isReady && clientKey !== null && widgetIdRef.current !== null),
+    isReady: isPreviewDomain() || (isReady && clientKey !== null && widgetRendered),
     isLoading,
   };
 };
