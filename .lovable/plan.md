@@ -1,107 +1,101 @@
 
-# План: Исправление работы формы "Быстрая связь" при выборе MAX
-
-## Проблема
-
-При выборе иконки MAX (или Telegram при повторном открытии) форма "Быстрая связь" не отправляет запрос. Кнопка "Отправить" может быть заблокирована или captcha не выполняется.
-
-## Причина
-
-В хуке `useSmartCaptcha` есть несколько проблем:
-
-1. **`initAttemptedRef.current`** устанавливается в `true` при первой инициализации и никогда не сбрасывается
-2. При закрытии модального окна выполняется cleanup, который уничтожает виджет (`destroy`)
-3. При повторном открытии `containerRef` указывает на новый DOM-элемент, но инициализация не происходит из-за `initAttemptedRef.current === true`
-4. Условие `isReady` возвращает `false`, так как `widgetIdRef.current === null` после cleanup
-5. Кнопка остаётся заблокированной (`disabled={!isCaptchaReady}`)
-
-## Решение
-
-Исправить хук `useSmartCaptcha`, чтобы он корректно переинициализировал виджет при смене контейнера.
-
-### Файл: `src/hooks/useSmartCaptcha.ts`
-
-**Изменения:**
-
-1. Сбрасывать `initAttemptedRef` при изменении `containerRef`
-2. Добавить проверку, что контейнер существует в DOM перед инициализацией
-3. Убрать cleanup, который уничтожает виджет (или сделать его условным)
-
-```typescript
-// Добавить отслеживание контейнера
-const [containerElement, setContainerElement] = useState<HTMLDivElement | null>(null);
-
-// Изменить containerRef на callback ref
-const containerRef = useCallback((node: HTMLDivElement | null) => {
-  if (node !== null) {
-    setContainerElement(node);
-  }
-}, []);
-
-// В useEffect для инициализации - убрать initAttemptedRef
-// или сбрасывать его при смене containerElement
-useEffect(() => {
-  if (!isReady || !containerElement || !window.smartCaptcha || !clientKey) {
-    return;
-  }
-
-  // Уничтожить предыдущий виджет если есть
-  if (widgetIdRef.current !== null) {
-    try {
-      window.smartCaptcha.destroy(widgetIdRef.current);
-    } catch (e) {
-      // ignore
-    }
-    widgetIdRef.current = null;
-  }
-
-  // Рендерить новый виджет
-  try {
-    widgetIdRef.current = window.smartCaptcha.render(containerElement, {
-      sitekey: clientKey,
-      invisible: true,
-      hl: "ru",
-      callback: (token: string) => {
-        setIsLoading(false);
-        if (callbackRef.current) {
-          callbackRef.current(token);
-          callbackRef.current = null;
-        }
-        options.onSuccess?.(token);
-      },
-    });
-  } catch (e) {
-    console.error("SmartCaptcha render error:", e);
-    options.onError?.();
-  }
-}, [isReady, clientKey, containerElement]); // Добавить containerElement в зависимости
-```
-
-4. Убрать cleanup из useEffect для скрипта (или переместить в отдельный useEffect)
-
-## Альтернативное решение (проще)
-
-Поднять `QuickContactModal` выше по дереву компонентов, чтобы он не пересоздавался при каждом открытии меню. Модальное окно уже использует `open/onOpenChange`, поэтому его можно вынести в родительский компонент.
-
-Но это не решит проблему полностью, если пользователь закроет и снова откроет форму.
-
-## Рекомендуемое решение
-
-Исправить `useSmartCaptcha`, чтобы он корректно работал при пересоздании контейнера:
-
-1. Использовать callback ref вместо useRef для контейнера
-2. Переинициализировать виджет при каждом появлении нового контейнера
-3. Убрать или исправить cleanup логику
+## Цель
+Сделать так, чтобы форма «Быстрая связь» снова отправляла заявку, а кнопка «Отправить» становилась доступной (не была постоянно disabled).
 
 ---
 
-## Технические детали
+## Что сейчас происходит (по коду)
+Кнопка «Отправить» в `QuickContactModal` заблокирована, пока `isCaptchaReady === false`:
 
-### Файл: `src/hooks/useSmartCaptcha.ts`
+- `QuickContactModal.tsx`:
+  - `disabled={isSubmitting || !isCaptchaReady}`
+  - контейнер капчи: `<div ref={containerRef} className="hidden" />`
 
-Полный список изменений:
-- Строка 39: изменить `containerRef` на callback ref
-- Строка 45: добавить `containerElement` state
-- Строки 110-139: переписать useEffect для инициализации
-- Строки 97-106: убрать преждевременный cleanup
-- Строка 184: исправить условие `isReady`
+Проблема в том, что `isCaptchaReady` часто не становится `true`, потому что капча не «рендерится» корректно или тут же уничтожается.
+
+---
+
+## Причины (2 ключевые)
+### 1) Контейнер SmartCaptcha скрыт через `display: none`
+В `QuickContactModal.tsx` контейнер капчи имеет `className="hidden"` (Tailwind = `display:none`).
+Многие виджеты (включая капчи) не могут корректно инициализироваться внутри `display:none`, поэтому `render(...)` может падать/не создавать рабочий widgetId, а `isReady` остаётся false → кнопка disabled.
+
+### 2) `useSmartCaptcha` переинициализирует/ломает виджет слишком часто
+В текущем `useSmartCaptcha.ts` есть две архитектурные проблемы:
+- `options` находится в зависимостях эффекта инициализации:
+  - `useSmartCaptcha(options = {})` при каждом ререндере компонента получает новый объект `{}` → зависимость меняется → эффект заново “destroy+render” даже без реальной причины.
+- Cleanup-эффект привязан к `containerElement`:
+  - `useEffect(() => return destroy, [containerElement])`
+  - при любых сменах ref/перемонтировании (а в dev/strict режимах это бывает часто) виджет может быть уничтожен сразу после рендера.
+
+Итог: `widgetRendered` может “сбрасываться” → `isReady` становится false → кнопка недоступна.
+
+---
+
+## Изменения, которые нужно внести
+
+### A) Починить контейнер капчи в QuickContactModal (убрать `hidden`)
+Файл: `src/components/QuickContactModal.tsx`
+
+Заменить:
+- `<div ref={containerRef} className="hidden" />`
+
+На вариант “невидим, но в DOM и не display:none”, например:
+- `className="sr-only"` (скрыт визуально, но элемент существует и измерим)
+или
+- `className="absolute -left-[9999px] -top-[9999px] w-px h-px overflow-hidden"`
+
+Цель: чтобы SmartCaptcha мог нормально отрендериться, а `isCaptchaReady` стал true.
+
+---
+
+### B) Исправить `useSmartCaptcha`, чтобы он не пересоздавал виджет на каждый ререндер
+Файл: `src/hooks/useSmartCaptcha.ts`
+
+1) Убрать `options` из dependency array эффекта инициализации виджета
+Сейчас:
+- `useEffect(..., [isReady, clientKey, containerElement, options])`
+
+Сделать:
+- `useEffect(..., [isReady, clientKey, containerElement])`
+
+2) Чтобы коллбеки `onSuccess/onError` не “терялись”, хранить их в `useRef`
+- завести `optionsRef`
+- в отдельном `useEffect` обновлять `optionsRef.current = options`
+- в callback капчи использовать `optionsRef.current.onSuccess?.(...)`
+
+3) Упростить cleanup: уничтожать виджет только при размонтировании хука
+Сейчас cleanup завязан на `containerElement`, что может приводить к уничтожению в неожиданные моменты.
+Сделать cleanup-эффект с пустыми зависимостями `[]`, который при unmount уничтожит текущий `widgetIdRef.current`.
+
+4) Поведение при `containerRef(null)`
+Когда ref становится `null` (модалка закрылась), аккуратно:
+- `setWidgetRendered(false)`
+- (опционально) `widgetIdRef.current = null` после destroy (если решим destroy делать сразу на закрытии; но безопаснее — destroy на unmount/следующую инициализацию)
+
+---
+
+## Проверка (что именно протестировать)
+1) Открыть меню внизу справа → выбрать Telegram → открыть «Быстрая связь»
+   - кнопка «Отправить» должна стать активной через короткое время (после готовности капчи)
+   - отправка должна пройти успешно
+2) Закрыть модалку → снова открыть → выбрать MAX → открыть «Быстрая связь»
+   - кнопка «Отправить» снова активна
+   - отправка проходит успешно (как и для Telegram)
+3) 3–4 раза подряд: открыть/закрыть модалку, чередуя Telegram/MAX
+   - кнопка не “залипает” disabled
+4) Проверить на мобильном (особенно iOS Safari/Android Chrome), что кнопка активируется стабильно.
+
+---
+
+## Риски и как их учтём
+- Если SmartCaptcha требует видимости контейнера (не просто “не display:none”, а реально в видимой области), тогда `sr-only` может оказаться недостаточным.
+  - В этом случае используем вариант “offscreen absolute”, но без `display:none`.
+- Если появятся ошибки `SmartCaptcha render error`, добавим более подробный `console.error` с контекстом (clientKey, наличие containerElement) для диагностики.
+
+---
+
+## Файлы, которые будут изменены
+- `src/components/QuickContactModal.tsx` (замена `hidden` контейнера капчи на корректный способ скрытия)
+- `src/hooks/useSmartCaptcha.ts` (стабилизация инициализации, корректный cleanup, устранение зависимости от `options`)
+
