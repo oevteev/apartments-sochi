@@ -1,64 +1,107 @@
 
-# План: Исключение страниц noIndex из sitemap.xml
+# План: Исправление работы формы "Быстрая связь" при выборе MAX
 
 ## Проблема
 
-Скрипт `generate-sitemap.js` генерирует sitemap при сборке и включает страницы `/about`, `/contacts`, `/privacy-policy`, которые должны быть исключены из индексации.
+При выборе иконки MAX (или Telegram при повторном открытии) форма "Быстрая связь" не отправляет запрос. Кнопка "Отправить" может быть заблокирована или captcha не выполняется.
+
+## Причина
+
+В хуке `useSmartCaptcha` есть несколько проблем:
+
+1. **`initAttemptedRef.current`** устанавливается в `true` при первой инициализации и никогда не сбрасывается
+2. При закрытии модального окна выполняется cleanup, который уничтожает виджет (`destroy`)
+3. При повторном открытии `containerRef` указывает на новый DOM-элемент, но инициализация не происходит из-за `initAttemptedRef.current === true`
+4. Условие `isReady` возвращает `false`, так как `widgetIdRef.current === null` после cleanup
+5. Кнопка остаётся заблокированной (`disabled={!isCaptchaReady}`)
 
 ## Решение
 
-Удалить из массива `routesConfig` в файле `generate-sitemap.js` страницы, которые не должны индексироваться:
-- `/about`
-- `/contacts`
-- `/privacy-policy`
+Исправить хук `useSmartCaptcha`, чтобы он корректно переинициализировал виджет при смене контейнера.
 
-## Изменения
+### Файл: `src/hooks/useSmartCaptcha.ts`
 
-### Файл: `generate-sitemap.js`
+**Изменения:**
 
-Заменить конфигурацию маршрутов (строки 20-30):
+1. Сбрасывать `initAttemptedRef` при изменении `containerRef`
+2. Добавить проверку, что контейнер существует в DOM перед инициализацией
+3. Убрать cleanup, который уничтожает виджет (или сделать его условным)
 
-**Было:**
-```javascript
-const routesConfig = [
-  { path: '/', priority: 1.0, changefreq: 'weekly' },
-  { path: '/catalog', priority: 0.9, changefreq: 'daily' },
-  { path: '/apartments', priority: 0.8, changefreq: 'weekly' },
-  { path: '/about', priority: 0.8, changefreq: 'monthly' },
-  { path: '/reviews', priority: 0.7, changefreq: 'weekly' },
-  { path: '/faq', priority: 0.7, changefreq: 'monthly' },
-  { path: '/contacts', priority: 0.7, changefreq: 'monthly' },
-  { path: '/management', priority: 0.6, changefreq: 'monthly' },
-  { path: '/privacy-policy', priority: 0.5, changefreq: 'yearly' },
-];
+```typescript
+// Добавить отслеживание контейнера
+const [containerElement, setContainerElement] = useState<HTMLDivElement | null>(null);
+
+// Изменить containerRef на callback ref
+const containerRef = useCallback((node: HTMLDivElement | null) => {
+  if (node !== null) {
+    setContainerElement(node);
+  }
+}, []);
+
+// В useEffect для инициализации - убрать initAttemptedRef
+// или сбрасывать его при смене containerElement
+useEffect(() => {
+  if (!isReady || !containerElement || !window.smartCaptcha || !clientKey) {
+    return;
+  }
+
+  // Уничтожить предыдущий виджет если есть
+  if (widgetIdRef.current !== null) {
+    try {
+      window.smartCaptcha.destroy(widgetIdRef.current);
+    } catch (e) {
+      // ignore
+    }
+    widgetIdRef.current = null;
+  }
+
+  // Рендерить новый виджет
+  try {
+    widgetIdRef.current = window.smartCaptcha.render(containerElement, {
+      sitekey: clientKey,
+      invisible: true,
+      hl: "ru",
+      callback: (token: string) => {
+        setIsLoading(false);
+        if (callbackRef.current) {
+          callbackRef.current(token);
+          callbackRef.current = null;
+        }
+        options.onSuccess?.(token);
+      },
+    });
+  } catch (e) {
+    console.error("SmartCaptcha render error:", e);
+    options.onError?.();
+  }
+}, [isReady, clientKey, containerElement]); // Добавить containerElement в зависимости
 ```
 
-**Станет:**
-```javascript
-// Routes configuration with SEO priorities
-// Excludes: NotFound, Statistics, About, Contacts, PrivacyPolicy (noIndex pages)
-const routesConfig = [
-  { path: '/', priority: 1.0, changefreq: 'weekly' },
-  { path: '/catalog', priority: 0.9, changefreq: 'daily' },
-  { path: '/apartments', priority: 0.8, changefreq: 'weekly' },
-  { path: '/reviews', priority: 0.7, changefreq: 'weekly' },
-  { path: '/faq', priority: 0.7, changefreq: 'monthly' },
-  { path: '/management', priority: 0.6, changefreq: 'monthly' },
-];
-```
+4. Убрать cleanup из useEffect для скрипта (или переместить в отдельный useEffect)
 
-## Дополнительно
+## Альтернативное решение (проще)
 
-Можно удалить устаревший файл `public/sitemap.xml`, так как он всё равно перезаписывается при сборке.
+Поднять `QuickContactModal` выше по дереву компонентов, чтобы он не пересоздавался при каждом открытии меню. Модальное окно уже использует `open/onOpenChange`, поэтому его можно вынести в родительский компонент.
 
-## Результат
+Но это не решит проблему полностью, если пользователь закроет и снова откроет форму.
 
-После пересборки и публикации sitemap.xml будет содержать только 6 страниц:
-- `/`
-- `/catalog`
-- `/apartments`
-- `/reviews`
-- `/faq`
-- `/management`
+## Рекомендуемое решение
 
-Страницы `/about`, `/contacts`, `/privacy-policy` будут полностью исключены из sitemap, что соответствует их настройке `noIndex`.
+Исправить `useSmartCaptcha`, чтобы он корректно работал при пересоздании контейнера:
+
+1. Использовать callback ref вместо useRef для контейнера
+2. Переинициализировать виджет при каждом появлении нового контейнера
+3. Убрать или исправить cleanup логику
+
+---
+
+## Технические детали
+
+### Файл: `src/hooks/useSmartCaptcha.ts`
+
+Полный список изменений:
+- Строка 39: изменить `containerRef` на callback ref
+- Строка 45: добавить `containerElement` state
+- Строки 110-139: переписать useEffect для инициализации
+- Строки 97-106: убрать преждевременный cleanup
+- Строка 184: исправить условие `isReady`
