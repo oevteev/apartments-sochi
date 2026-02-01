@@ -43,6 +43,12 @@ export const useSmartCaptcha = (options: UseSmartCaptchaOptions = {}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [clientKey, setClientKey] = useState<string | null>(null);
   const [widgetRendered, setWidgetRendered] = useState(false);
+  
+  // Keep options in a ref to avoid dependency issues
+  const optionsRef = useRef(options);
+  useEffect(() => {
+    optionsRef.current = options;
+  }, [options]);
 
   // Callback ref for container - triggers re-render when element changes
   const containerRef = useCallback((node: HTMLDivElement | null) => {
@@ -130,17 +136,17 @@ export const useSmartCaptcha = (options: UseSmartCaptchaOptions = {}) => {
             callbackRef.current(token);
             callbackRef.current = null;
           }
-          options.onSuccess?.(token);
+          optionsRef.current.onSuccess?.(token);
         },
       });
       setWidgetRendered(true);
     } catch (e) {
       console.error("SmartCaptcha render error:", e);
-      options.onError?.();
+      optionsRef.current.onError?.();
     }
-  }, [isReady, clientKey, containerElement, options]);
+  }, [isReady, clientKey, containerElement]);
 
-  // Cleanup when container is removed
+  // Cleanup only on unmount
   useEffect(() => {
     return () => {
       if (widgetIdRef.current !== null && window.smartCaptcha) {
@@ -152,7 +158,7 @@ export const useSmartCaptcha = (options: UseSmartCaptchaOptions = {}) => {
         widgetIdRef.current = null;
       }
     };
-  }, [containerElement]);
+  }, []);
 
   const execute = useCallback((): Promise<string> => {
     return new Promise((resolve, reject) => {

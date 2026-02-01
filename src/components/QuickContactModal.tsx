@@ -192,8 +192,8 @@ const QuickContactModal = ({ open, onOpenChange }: QuickContactModalProps) => {
             </label>
           </div>
 
-          {/* Invisible SmartCaptcha container */}
-          <div ref={containerRef} className="hidden" />
+          {/* SmartCaptcha container - sr-only keeps it in DOM but visually hidden */}
+          <div ref={containerRef} className="sr-only" aria-hidden="true" />
 
           <Button type="submit" className="w-full" disabled={isSubmitting || !isCaptchaReady}>
             {isSubmitting ? (
