@@ -188,7 +188,7 @@ const BookingForm = () => {
         <label htmlFor="booking-privacy-policy" className="text-sm text-white/90 leading-tight cursor-pointer">
           Отправляя данную форму, вы соглашаетесь{" "}
           <Link to="/privacy-policy" className="text-accent hover:underline">
-            с политикой конфиденциальности
+            с политикой обработки персональных данных
           </Link>
         </label>
       </div>

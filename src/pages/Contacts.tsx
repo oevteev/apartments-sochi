@@ -324,7 +324,7 @@ const Contacts = () => {
                   >
                     Отправляя данную форму, вы соглашаетесь{" "}
                     <Link to="/privacy-policy" className="text-primary hover:underline">
-                      с политикой конфиденциальности
+                      с политикой обработки персональных данных
                     </Link>
                   </label>
                 </div>
