@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import TelegramButton from "@/components/TelegramButton";
+import CookieConsent from "@/components/CookieConsent";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { usePageTracking } from "@/hooks/usePageTracking";
 
@@ -27,6 +28,7 @@ const Layout = ({ children }: LayoutProps) => {
       <main id="main-content" className="flex-1">{children}</main>
       <Footer />
       <TelegramButton />
+      <CookieConsent />
     </div>
   );
 };
