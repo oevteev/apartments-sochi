@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.1",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "apartments-sochi",
+      "version": "0.1.0",
+      "title": "Apartments Sochi"
+    },
+    "tools": [
+      {
+        "name": "list_apartments",
+        "title": "Список апартаментов",
+        "description": "Список апартаментов в Сочи с площадью, жилым комплексом и ссылкой на видеообзор.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "minArea": {
+              "type": "number",
+              "description": "Минимальная площадь в м²."
+            },
+            "maxArea": {
+              "type": "number",
+              "description": "Максимальная площадь в м²."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_booking_policies",
+        "title": "Условия бронирования",
+        "description": "Правила бронирования, заселения/выезда и оплаты (предоплата, депозит, отмена).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "topic": {
+              "type": "string",
+              "enum": [
+                "booking",
+                "checkin",
+                "payment"
+              ],
+              "description": "Ограничить ответ одной темой."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_contacts",
+        "title": "Контакты и разделы сайта",
+        "description": "Контактные данные (телефон, email, часы работы) и список публичных страниц сайта.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_booking_platforms",
+        "title": "Площадки бронирования",
+        "description": "Внешние площадки (Avito, Суточно.ру, Островок, Циан, Яндекс Путешествия, Отелло) с прямыми ссылками.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
