@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { imagetools } from "vite-imagetools";
+import { mcpPlugin } from "@lovable.dev/mcp-js/stacks/supabase/vite";
 
 /**
  * SSG Postbuild Plugin
@@ -118,6 +119,7 @@ export default defineConfig(({ mode, isSsrBuild }) => ({
     react(),
     imagetools(),
     mode === "development" && componentTagger(),
+    mcpPlugin(),
     lovableSsgPostbuildPlugin(),
   ].filter(Boolean),
   resolve: {
